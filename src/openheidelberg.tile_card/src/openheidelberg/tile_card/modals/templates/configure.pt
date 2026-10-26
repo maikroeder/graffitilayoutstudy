@@ -1,0 +1,91 @@
+<tal:translate i18n:domain="openheidelberg.tile_card">
+
+  <div class="interaktivbasetiles-modal-header"
+       data-base_url="${python: context.absolute_url()}"
+       data-uid="${python: view.tile['id']}">
+    <i class="interaktiv-icon-basetilestheme-image"></i>
+    <h3 class="title" i18n:translate="label_configure_card_title">Card</h3>
+
+    <ul id="modal-header-actions">
+      <li class="modal-action-save" title="Save" i18n:attributes="title label_save_button">
+        <i class="interaktiv-icon-basetilestheme-check"></i>
+      </li>
+      <li class="interaktivbasetiles-modal-close" title="Abort" i18n:attributes="title label_abort_button">
+        <i class="interaktiv-icon-basetilestheme-delete-row"></i>
+      </li>
+    </ul>
+  </div>
+
+  <div class="interaktivbasetiles-modal-content container">
+    <form class="modal-edit-form">
+      <div class="modal-content modal-content-row">
+
+        <div class="row modal-content-row form-group">
+          <div class="col-md-4"><label for="card-title" i18n:translate="label_card_title">Title</label></div>
+          <div class="col-md-8 field">
+            <input type="text" id="card-title" name="title" class="field-input text"
+                   value="${python: view.tile.get('title', '')}" />
+          </div>
+        </div>
+
+        <div class="row modal-content-row form-group">
+          <div class="col-md-4"><label for="card-description" i18n:translate="label_card_description">Short description</label></div>
+          <div class="col-md-8 field">
+            <textarea id="card-description" name="description" rows="4"
+                      class="field-input textarea">${python: view.tile.get('description', '')}</textarea>
+          </div>
+        </div>
+
+        <div class="row modal-content-row form-group" tal:define="images python: view.get_images()">
+          <div class="col-md-4"><label for="card-image" i18n:translate="label_card_image">Image</label></div>
+          <div class="col-md-8 field">
+            <select id="card-image" name="image" class="field-input select">
+              <option value="" i18n:translate="label_card_no_image">(no image)</option>
+              <option tal:repeat="img images" value="${img/uid}"
+                      tal:attributes="selected python: 'selected' if img['selected'] else None">${img/title}</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="row modal-content-row form-group">
+          <div class="col-md-4"><label for="card-image-alt" i18n:translate="label_card_image_alt">Alternative text of the image</label></div>
+          <div class="col-md-8 field">
+            <input type="text" id="card-image-alt" name="image_alt" class="field-input text"
+                   value="${python: view.tile.get('image_alt', '')}" />
+          </div>
+        </div>
+
+        <div class="row modal-content-row form-group">
+          <div class="col-md-4"><label for="card-link-href" i18n:translate="label_card_link_href">Link target</label></div>
+          <div class="col-md-8 field">
+            <input type="text" id="card-link-href" name="link_href" class="field-input text"
+                   placeholder="https://… or /path"
+                   value="${python: view.tile.get('link_href', '')}" />
+          </div>
+        </div>
+
+        <div class="row modal-content-row form-group">
+          <div class="col-md-4"><label for="card-link-label" i18n:translate="label_card_link_label">Action label</label></div>
+          <div class="col-md-8 field">
+            <input type="text" id="card-link-label" name="link_label" class="field-input text"
+                   value="${python: view.tile.get('link_label', '')}" />
+          </div>
+        </div>
+
+        <div class="row modal-content-row form-group">
+          <div class="col-md-4"><label for="card-link-new-window" i18n:translate="label_card_link_new_window">Open in a new window</label></div>
+          <div class="col-md-8 field">
+            <select id="card-link-new-window" name="link_new_window" class="field-input select">
+              <option value="false" tal:attributes="selected python: None if view.tile.get('link_new_window') else 'selected'" i18n:translate="label_no">No</option>
+              <option value="true" tal:attributes="selected python: 'selected' if view.tile.get('link_new_window') else None" i18n:translate="label_yes">Yes</option>
+            </select>
+          </div>
+        </div>
+
+      </div>
+      <input type="hidden" value="${python: view.tile['id']}" name="id" />
+    </form>
+    <div class="spinner"></div>
+  </div>
+
+</tal:translate>

@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<layers>
+    <layer
+        name="openheidelberg.tile_card"
+        interface="openheidelberg.tile_card.interfaces.IOpenHeidelbergTileCardLayer"
+    />
+</layers>

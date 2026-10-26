@@ -1,0 +1,15 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    i18n_domain="openheidelberg.tile_card">
+
+  <!-- View: TileCard -->
+  <browser:page
+      name="view_tile_tilecard"
+      for="interaktiv.basetiles.contenttypes.tilepage.ITilePage"
+      class="openheidelberg.tile_card.views.view.TileCardView"
+      permission="zope2.View"
+      layer="openheidelberg.tile_card.interfaces.IOpenHeidelbergTileCardLayer"
+  />
+
+</configure>

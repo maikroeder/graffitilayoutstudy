@@ -1,0 +1,14 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser">
+
+    <!-- Modal: edit the card -->
+    <browser:page
+        name="configure_tilecard_modal"
+        for="interaktiv.basetiles.contenttypes.tilepage.ITilePage"
+        class="openheidelberg.tile_card.modals.configure.ConfigureModalView"
+        permission="cmf.ModifyPortalContent"
+        layer="openheidelberg.tile_card.interfaces.IOpenHeidelbergTileCardLayer"
+    />
+
+</configure>

@@ -3,12 +3,31 @@
     xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
     i18n_domain="openheidelberg.tile_card">
 
+    <include file="permissions.zcml" />
+    <include package=".views" />
+    <include package=".modals" />
+
     <genericsetup:registerProfile
         name="default"
         title="openheidelberg.tile_card"
         directory="profiles/default"
         description="Installs the openheidelberg.tile_card package"
         provides="Products.GenericSetup.interfaces.EXTENSION"
+        post_handler="openheidelberg.tile_card.setuphandlers.setup_after"
+    />
+
+    <genericsetup:registerProfile
+        name="uninstall"
+        title="openheidelberg.tile_card"
+        directory="profiles/uninstall"
+        description="Uninstalls the openheidelberg.tile_card package"
+        provides="Products.GenericSetup.interfaces.EXTENSION"
+        post_handler="openheidelberg.tile_card.setuphandlers.uninstall_after"
+    />
+
+    <utility
+        factory=".setuphandlers.HiddenProfiles"
+        name="openheidelberg.tile_card-hiddenprofiles"
     />
 
 </configure>

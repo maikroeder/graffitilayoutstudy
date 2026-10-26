@@ -1,0 +1,9 @@
+{
+  "name": "openheidelberg.tile_card",
+  "version": "0.1.0",
+  "interaktiv_setup": {
+    "packages": [
+      "openheidelberg.tile_card"
+    ]
+  }
+}

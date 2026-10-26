@@ -1,0 +1,75 @@
+import zope.schema as schema
+from interaktiv.basetiles.contenttypes import TILE_DEFAULT_FIELDS_KEY
+from interaktiv.basetiles.contenttypes import TILE_PERMISSIONS_KEY
+from interaktiv.basetiles.contenttypes.basetile import BaseTile
+from interaktiv.basetiles.contenttypes.basetile import IBaseTile
+from interaktiv.basetiles.stubs import TilePermissions
+from openheidelberg.tile_card import _
+from plone.app.vocabularies.catalog import CatalogSource
+from z3c.relationfield.schema import RelationChoice
+from zope.interface import implementer
+from zope.interface import taggedValue
+
+
+class ITileCard(IBaseTile):
+    taggedValue(TILE_PERMISSIONS_KEY, dict(
+        title=TilePermissions.MODIFY,
+        description=TilePermissions.MODIFY,
+        image=TilePermissions.MODIFY,
+        image_alt=TilePermissions.MODIFY,
+        link_href=TilePermissions.MODIFY,
+        link_label=TilePermissions.MODIFY,
+        link_new_window=TilePermissions.MODIFY,
+    ))
+
+    taggedValue(TILE_DEFAULT_FIELDS_KEY, [])
+
+    title = schema.TextLine(
+        title=_('label_card_title', default='Title'),
+        required=True,
+    )
+
+    description = schema.Text(
+        title=_('label_card_description', default='Short description'),
+        required=False,
+    )
+
+    image = RelationChoice(
+        title=_('label_card_image', default='Image'),
+        source=CatalogSource(portal_type=['Image']),
+        required=False,
+    )
+
+    image_alt = schema.TextLine(
+        title=_('label_card_image_alt', default='Alternative text of the image'),
+        description=_(
+            'help_card_image_alt',
+            default='Leave empty for a purely decorative image.'
+        ),
+        required=False,
+    )
+
+    link_href = schema.TextLine(
+        title=_('label_card_link_href', default='Link target'),
+        description=_(
+            'help_card_link_href',
+            default='The single primary action of the card: a full URL or a path inside the site.'
+        ),
+        required=False,
+    )
+
+    link_label = schema.TextLine(
+        title=_('label_card_link_label', default='Action label'),
+        required=False,
+    )
+
+    link_new_window = schema.Bool(
+        title=_('label_card_link_new_window', default='Open in a new window'),
+        default=False,
+        required=False,
+    )
+
+
+@implementer(ITileCard)
+class TileCard(BaseTile):
+    """A card: image, title, short description and one primary action."""

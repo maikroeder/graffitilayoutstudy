@@ -1,0 +1,22 @@
+<configure xmlns="http://namespaces.zope.org/zope">
+  <permission
+      id="openheidelberg.tile_card.add"
+      title="InteraktivTiles: Add CardTile"
+  />
+  <permission
+      id="openheidelberg.tile_card.delete"
+      title="InteraktivTiles: Delete CardTile"
+  />
+  <permission
+      id="openheidelberg.tile_card.move"
+      title="InteraktivTiles: Move CardTile"
+  />
+  <permission
+      id="openheidelberg.tile_card.modify"
+      title="InteraktivTiles: Modify CardTile"
+  />
+  <permission
+      id="openheidelberg.tile_card.style"
+      title="InteraktivTiles: Style CardTile"
+  />
+</configure>

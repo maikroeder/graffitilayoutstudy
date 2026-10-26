@@ -1,0 +1,23 @@
+<tal:translate i18n:domain="openheidelberg.tile_card">
+<tal:tile metal:use-macro="python: view.get_tile_view_macro()">
+  <div class="tile-content tile-card-content" metal:fill-slot="tile_content"
+       tal:define="image python: view.get_image(); link python: view.get_link()">
+    <article class="card">
+      <figure class="card-image" tal:condition="python: image">
+        <img src="${image/url}" alt="${image/alt}" loading="lazy" />
+      </figure>
+      <div class="card-body">
+        <h3 class="card-title">${python: view.tile.get('title', '')}</h3>
+        <p class="card-description" tal:condition="python: view.tile.get('description')">${python: view.tile.get('description')}</p>
+        <p class="card-action" tal:condition="python: link">
+          <a class="card-link" href="${link/href}"
+             tal:attributes="target python: link['target'] or None; rel python: link['rel'] or None">${link/label}</a>
+        </p>
+        <p class="card-placeholder discreet"
+           tal:condition="python: view.get_edit_mode() and not (image or link or view.tile.get('description'))"
+           i18n:translate="label_card_placeholder">Use "Edit card" to add an image, a description and an action.</p>
+      </div>
+    </article>
+  </div>
+</tal:tile>
+</tal:translate>
