@@ -3,8 +3,8 @@ from os import path
 from setuptools import find_namespace_packages
 from setuptools import setup
 
-NAME = 'openheidelberg.layout'
-DESCRIPTION = 'OpenHeidelberg site layout built with the Graffiti tiles editor (theme, tile page layouts, design tokens).'
+NAME = 'openheidelberg.tile_card'
+DESCRIPTION = 'Card tile: a rectangular container that bundles an image, a title, a short description and a single primary action.'
 VERSION = '0.1.0.dev0'
 REQUIRES_PYTHON = '>=3.8'
 
@@ -42,7 +42,6 @@ setup(
     ],
     keywords='',
     author='Maik Röder',
-    license='GPL',
     packages=find_namespace_packages('src'),
     namespace_packages=['openheidelberg'],
     package_dir={'': 'src'},

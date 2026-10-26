@@ -19,8 +19,8 @@ package.json, Gruntfile.js, pre.js, post.js    node side of the update_styleguid
 src/graffiti.*, src/interaktiv.cronjob, src/interaktiv.workingcopy
                           vendored from Graffiti main, commit c3740f1 (2026-10-26); do not edit
 src/interaktiv.*          all other tiles editor packages: checked out by mr.developer, gitignored
-src/openheidelberg.layout        site layout (theme, tile page layouts, design tokens)
-src/openheidelberg.tile_events   OpenHeidelberg-specific tile
+src/openheidelberg.policy        policy package of the site (structure of graffiti.policy); installs Graffiti + tile_card
+src/openheidelberg.tile_card     card tile (image, title, short description, one action)
 docs/design-guidelines.md placeholder for the input design guidelines
 ```
 
@@ -53,6 +53,6 @@ Status of this buildout: assembled from Graffiti `main`'s own configs, **not yet
 
 ## Naming
 
-All site-specific code goes into packages prefixed `openheidelberg.` (e.g. `openheidelberg.layout`,
-`openheidelberg.tile_events`). Add a new one: create `src/openheidelberg.<name>`, then add it to the
+All site-specific code goes into packages prefixed `openheidelberg.` (e.g. `openheidelberg.policy`,
+`openheidelberg.tile_card`). Add a new one: create `src/openheidelberg.<name>`, then add it to the
 `eggs`, `eggs-test` and `develop` lists in `buildout.d/base/sources.cfg`.

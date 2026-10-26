@@ -1,0 +1,7 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:genericsetup="http://namespaces.zope.org/genericsetup">
+
+    <!-- Upgrade steps go here, one module per step (v0001_to_v0002.py), as in graffiti.policy -->
+
+</configure>

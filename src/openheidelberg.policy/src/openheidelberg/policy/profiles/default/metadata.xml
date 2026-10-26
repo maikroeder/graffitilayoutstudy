@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<metadata>
+    <version>0001</version>
+    <dependencies>
+        <dependency>profile-graffiti.policy:default</dependency>
+        <dependency>profile-openheidelberg.tile_card:default</dependency>
+    </dependencies>
+</metadata>

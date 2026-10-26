@@ -1,13 +1,13 @@
 <configure
     xmlns="http://namespaces.zope.org/zope"
     xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
-    i18n_domain="openheidelberg.layout">
+    i18n_domain="openheidelberg.tile_card">
 
     <genericsetup:registerProfile
         name="default"
-        title="openheidelberg.layout"
+        title="openheidelberg.tile_card"
         directory="profiles/default"
-        description="Installs the openheidelberg.layout package"
+        description="Installs the openheidelberg.tile_card package"
         provides="Products.GenericSetup.interfaces.EXTENSION"
     />
 
