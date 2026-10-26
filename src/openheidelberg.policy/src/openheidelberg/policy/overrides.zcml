@@ -1,0 +1,9 @@
+<configure xmlns="http://namespaces.zope.org/zope">
+
+    <!-- No headless Chrome: template thumbnails are a static placeholder -->
+    <utility
+        factory="openheidelberg.policy.templates.PlaceholderTemplatesUtility"
+        provides="interaktiv.basetiles.utilities.templates.ITemplatesUtility"
+    />
+
+</configure>

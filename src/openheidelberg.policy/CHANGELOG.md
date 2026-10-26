@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased] - YYYY-MM-DD
 ### Added
 - Package skeleton in the structure of graffiti.policy: default and uninstall profile, upgrades folder
+- overrides.zcml replaces the templates utility: template thumbnails are a generated placeholder, no headless Chrome (puppeteer) is started
 ### Changed
 ### Deprecated
 ### Removed
