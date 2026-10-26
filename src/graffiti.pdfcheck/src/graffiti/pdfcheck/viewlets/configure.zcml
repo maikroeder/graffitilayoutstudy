@@ -1,0 +1,15 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser">
+
+    <!-- the result in the view of the file, for users who may change it -->
+    <browser:viewlet
+        name="graffiti.pdfcheck"
+        for="plone.dexterity.interfaces.IDexterityContent"
+        manager="plone.app.layout.viewlets.interfaces.IAboveContentBody"
+        class=".pdfcheck.PdfCheckViewlet"
+        permission="cmf.ModifyPortalContent"
+        layer="graffiti.pdfcheck.interfaces.IGraffitiPdfcheckLayer"
+    />
+
+</configure>

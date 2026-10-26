@@ -1,0 +1,4 @@
+<?xml version="1.0"?>
+<registry>
+    <records interface="graffiti.tile_button.interfaces.IGraffitiTileButtonSettings" prefix="graffiti.tile_button" />
+</registry>

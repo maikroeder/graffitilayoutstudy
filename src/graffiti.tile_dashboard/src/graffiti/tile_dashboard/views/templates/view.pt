@@ -1,0 +1,18 @@
+<html xmlns:i18n="http://xml.zope.org/namespaces/i18n" i18n:domain="graffiti.tile_dashboard" lang="en">
+<tal:tile metal:use-macro="python: view.get_tile_view_macro()">
+  <div class="tile-content tile-dashboard-content" metal:fill-slot="tile_content">
+    <div class="tile-dashboard-boxes" data-url="${python: view.data_url()}">
+      <a tal:repeat="box python: view.get_boxes()"
+         class="tile-dashboard-box" href="${box/url}" data-box-id="${box/id}" title="${box/description}"
+         data-urgent="${python: 'true' if box.get('urgent') else 'false'}">
+        <span class="tile-dashboard-count" aria-live="polite">&hellip;</span>
+        <span class="tile-dashboard-title">${box/title}</span>
+        <!-- task list icon, drawn by CSS (static/less/tile.less) and shown by static/js/tile.js
+             as soon as the number is above zero; a project replaces the icon with its own CSS rule -->
+        <span class="tile-dashboard-todo" tal:condition="python: box.get('urgent')"
+              role="img" title="To do" i18n:attributes="title label_todo; aria-label label_todo" aria-label="To do"></span>
+      </a>
+    </div>
+  </div>
+</tal:tile>
+</html>

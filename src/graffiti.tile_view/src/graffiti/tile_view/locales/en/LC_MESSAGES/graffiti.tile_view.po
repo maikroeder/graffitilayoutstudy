@@ -1,0 +1,72 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: graffiti.tile_view\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+"Language-Code: en\n"
+"Language-Name: English\n"
+"Preferred-Encodings: utf-8 latin1\n"
+"Domain: graffiti.tile_view\n"
+
+msgid "label_TileView"
+msgstr "Embedded view"
+
+msgid "help_TileView"
+msgstr "Embeds a view registered by a developer into the tiles page"
+
+msgid "label_title"
+msgstr "Title"
+
+msgid "label_view_id"
+msgstr "View"
+
+msgid "help_view_id"
+msgstr "Which of the registered views this tile embeds."
+
+msgid "label_placeholder"
+msgstr "Embedded view"
+
+msgid "label_mode_ajax_load"
+msgstr "(interim solution: content area of a normal page)"
+
+msgid "label_placeholder_choose"
+msgstr "No view chosen yet. Use the tile settings to pick one."
+
+msgid "label_placeholder_unknown"
+msgstr "The chosen view is no longer registered. Visitors do not see this tile."
+
+msgid "label_configure_view"
+msgstr "Choose view"
+
+msgid "label_configure_modal_title"
+msgstr "Embedded view"
+
+msgid "label_save_button"
+msgstr "Save"
+
+msgid "label_abort_button"
+msgstr "Abort"
+
+msgid "label_no_view"
+msgstr "(none)"
+
+msgid "label_view_example_recent"
+msgstr "Example: recently changed"
+
+msgid "help_view_example_recent"
+msgstr "The ten most recently changed items the current user may see. Frameless view of this package."
+
+msgid "label_view_plone_search"
+msgstr "Search page of Plone"
+
+msgid "help_view_plone_search"
+msgstr "The normal search page, cut down to its content area via ajax_load."
+
+msgid "label_view_plone_sitemap"
+msgstr "Sitemap of Plone"
+
+msgid "help_view_plone_sitemap"
+msgstr "The sitemap page, cut down to its content area via ajax_load. Plain HTML without JavaScript."
+

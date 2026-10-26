@@ -1,0 +1,98 @@
+// clipboard with two ticked lines, as data URI (colour does not matter, it is used as a mask)
+@tile-dashboard-todo-icon: ~'url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 24 24%27 fill=%27none%27 stroke=%27%23000%27 stroke-width=%271.8%27 stroke-linecap=%27round%27 stroke-linejoin=%27round%27%3E%3Crect x=%274%27 y=%273.5%27 width=%2716%27 height=%2718%27 rx=%272%27/%3E%3Cpath d=%27M9 2.5h6v3H9z%27 fill=%27%23000%27 stroke=%27none%27/%3E%3Cpath d=%27M7.5 10.2l1.3 1.3 2.2-2.5M12.5 10.3h4.5%27/%3E%3Cpath d=%27M7.5 15.2l1.3 1.3 2.2-2.5M12.5 15.3h4.5%27/%3E%3C/svg%3E")';
+
+.tile-dashboard {
+  .tile-dashboard-boxes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1em;
+  }
+  .tile-dashboard-box {
+    position: relative;
+    flex: 1 1 12em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1.5em 1em;
+    border: 1px solid #ddd;
+    border-radius: 0.5em;
+    text-align: center;
+    text-decoration: none;
+
+    &:hover,
+    &:focus {
+      border-color: currentColor;
+    }
+  }
+  .tile-dashboard-count {
+    font-size: 2.5em;
+    font-weight: bold;
+    line-height: 1.2;
+  }
+  // task list icon in the top right corner, only visible on urgent boxes with entries.
+  // The icon is a mask, so it takes the colour of the box. A project replaces it with its own
+  // rule for `.tile-dashboard-todo::before`: another mask-image, a background-image or an icon font.
+  .tile-dashboard-todo {
+    display: none;
+    position: absolute;
+    top: 0.6em;
+    right: 0.6em;
+    width: 1.6em;
+    height: 1.6em;
+
+    &::before {
+      content: "";
+      display: block;
+      width: 100%;
+      height: 100%;
+      background-color: currentColor;
+      -webkit-mask-image: @tile-dashboard-todo-icon;
+      mask-image: @tile-dashboard-todo-icon;
+      -webkit-mask-repeat: no-repeat;
+      mask-repeat: no-repeat;
+      -webkit-mask-position: center;
+      mask-position: center;
+      -webkit-mask-size: contain;
+      mask-size: contain;
+    }
+  }
+  // urgent box with entries, class set by static/js/tile.js
+  .tile-dashboard-box.is-urgent {
+    border-color: #c0392b;
+    background: #fdf3f2;
+    color: #c0392b;
+
+    .tile-dashboard-todo {
+      display: block;
+    }
+  }
+  .tile-placeholder {
+    background: #eee;
+    border: 1px dashed #aaa;
+    padding: 1em;
+    text-align: center;
+
+    p {
+      margin: 0 0 0.5em;
+    }
+    .tile-placeholder-label span {
+      display: block;
+    }
+    .tile-placeholder-boxes {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.5em;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+
+      li {
+        padding: 0.25em 0.75em;
+        border: 1px solid #aaa;
+        border-radius: 0.5em;
+        background: #fff;
+      }
+    }
+  }
+}

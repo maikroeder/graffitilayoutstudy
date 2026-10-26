@@ -1,0 +1,50 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: graffiti.tile_tabs\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+"Language-Code: de\n"
+"Language-Name: German\n"
+"Preferred-Encodings: utf-8 latin1\n"
+"Domain: graffiti.tile_tabs\n"
+
+msgid "label_TileTabs"
+msgstr "Tab-Listen"
+
+msgid "help_TileTabs"
+msgstr "Platzhalter, der mehrere Listen in Reitern anzeigt"
+
+msgid "label_title"
+msgstr "Titel"
+
+msgid "label_placeholder"
+msgstr "Tab-Listen"
+
+msgid "label_placeholder_help"
+msgstr "Dieser Bereich wird automatisch befüllt. Die Reiter lassen sich nur außerhalb des Editors umschalten."
+
+msgid "label_no_tabs"
+msgstr "Keine Reiter. Besucher sehen dieses Tile nicht."
+
+msgid "label_no_rows"
+msgstr "Keine Einträge"
+
+msgid "label_column_title"
+msgstr "Titel"
+
+msgid "label_column_type"
+msgstr "Typ"
+
+msgid "label_column_modified"
+msgstr "Geändert"
+
+msgid "label_tab_recent"
+msgstr "Zuletzt geändert"
+
+msgid "label_tab_mine"
+msgstr "Von mir angelegt"
+
+msgid "label_tab_folder"
+msgstr "In diesem Ordner"

@@ -1,0 +1,28 @@
+<div id="graffiti-pdfcheck" role="status" i18n:domain="graffiti.pdfcheck"
+     tal:define="findings view/findings;
+                 hints view/hints;
+                 details view/details"
+     tal:attributes="class view/box_classes">
+  <link rel="stylesheet" tal:attributes="href view/css_url" />
+  <strong tal:condition="findings" i18n:translate="viewlet_findings">PDF check: this file can probably not be processed later.</strong>
+  <strong tal:condition="not:findings" i18n:translate="viewlet_hints">PDF check: please note</strong>
+  <ul tal:condition="findings" class="graffiti-pdfcheck-findings">
+    <li tal:repeat="text findings" tal:content="text" />
+  </ul>
+  <tal:hints condition="hints">
+    <p class="graffiti-pdfcheck-also" tal:condition="findings" i18n:translate="viewlet_hints_also">Please also note:</p>
+    <ul class="graffiti-pdfcheck-hints">
+      <li tal:repeat="text hints" tal:content="text" />
+    </ul>
+  </tal:hints>
+  <details class="graffiti-pdfcheck-details">
+    <summary i18n:translate="viewlet_details">Technical details</summary>
+    <ul tal:condition="details">
+      <li tal:repeat="item details"><strong tal:content="item/step" />: <span tal:replace="item/text" /></li>
+    </ul>
+    <p i18n:translate="viewlet_checked">
+      Checked on <span i18n:name="date" tal:replace="view/checked_at" />
+      with <span i18n:name="tools" tal:replace="view/tools" />.
+    </p>
+  </details>
+</div>

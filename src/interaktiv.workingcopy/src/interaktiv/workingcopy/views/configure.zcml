@@ -1,0 +1,57 @@
+<configure
+        xmlns="http://namespaces.zope.org/zope"
+        xmlns:browser="http://namespaces.zope.org/browser"
+        i18n_domain="interaktiv.workingcopy">
+
+    <!-- Workingcopy Base: Control, Checkout, Cancel, Checkin, Diff -->
+    <browser:page
+            for="*"
+            name="workingcopy_control"
+            class="interaktiv.workingcopy.views.control.ControlView"
+            permission="zope2.View"
+            allowed_attributes="checkin_allowed checkout_allowed cancel_allowed"
+    />
+    <browser:page
+            name="arbeitskopie-erstellen"
+            for="interaktiv.workingcopy.behaviors.workingcopy.IWorkingcopyBehavior"
+            class="interaktiv.workingcopy.views.checkout.CheckoutView"
+            permission="cmf.ModifyPortalContent"
+    />
+    <browser:page
+            name="arbeitskopie-verwerfen"
+            for="interaktiv.workingcopy.behaviors.workingcopy.IWorkingcopyBehavior"
+            class="interaktiv.workingcopy.views.cancel.CancelView"
+            permission="cmf.ModifyPortalContent"
+    />
+    <browser:page
+            name="arbeitskopie-mit-original-austauschen"
+            for="interaktiv.workingcopy.behaviors.workingcopy.IWorkingcopyBehavior"
+            class="interaktiv.workingcopy.views.checkin.CheckinView"
+            permission="cmf.ModifyPortalContent"
+    />
+    <browser:page
+            name="arbeitskopie-und-original-vergleichen"
+            for="interaktiv.workingcopy.behaviors.workingcopy.IWorkingcopyBehavior"
+            class="interaktiv.workingcopy.views.diff.DiffView"
+            permission="zope2.View"
+    />
+
+    <!-- Override delete_confirmation of plone.app.content -->
+    <browser:page
+            name="delete_confirmation"
+            for="*"
+            class="interaktiv.workingcopy.views.actions.InteraktivDeleteConfirmationForm"
+            permission="zope2.DeleteObjects"
+            layer="interaktiv.workingcopy.interfaces.IInteraktivWorkingcopyLayer"
+    />
+
+    <!-- Override object_delete of plone.app.content -->
+    <browser:page
+            name="object_delete"
+            for="*"
+            class="interaktiv.workingcopy.views.actions.InteraktivObjectDeleteView"
+            permission="zope2.DeleteObjects"
+            layer="interaktiv.workingcopy.interfaces.IInteraktivWorkingcopyLayer"
+    />
+
+</configure>

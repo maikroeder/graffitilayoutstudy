@@ -1,0 +1,52 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      lang="en"
+   metal:use-macro="context/main_template/macros/master"
+   i18n:domain="plone">
+<body>
+<metal:override fill-slot="top_slot"
+   tal:define="disable_column_one python:request.set('disable_plone.leftcolumn',1);
+  disable_column_two python:request.set('disable_plone.rightcolumn',1);"/>
+<metal:content fill-slot="content-core">
+  <metal:content define-macro="content-core">
+    <article id="content">
+      <form action="#" method="post"
+         tal:attributes="action string:${context/absolute_url}/@@arbeitskopie-mit-original-austauschen">
+        <h1 class="documentFirstHeading"
+           i18n:translate="title_checkin">
+          Check in <span i18n:name="object_title" tal:content="here/Title" />
+        </h1>
+        <p i18n:translate="description_checkin">
+          Checking in this working copy will replace the existing item
+          with the working copy.
+        </p>
+        <fieldset>
+          <div class="field">
+            <label for="description"
+               i18n:translate="label_checkin_message">
+              Check-in Message
+            </label>
+            <div class="formHelp" i18n:translate="help_checkin_message">
+              Enter a message to be saved alongside the check-in. This
+              should explain what was changed, for audit purposes.
+            </div>
+            <textarea title="" cols="60" rows="3" id="checkin_message" name="checkin_message"></textarea>
+          </div>
+
+          <div class="formControls">
+            <button class="btn-interaktiv btn-interaktiv-blue" type="submit"
+                    name="form.button.Checkin">
+              Arbeitskopie mit Original austauschen
+            </button>
+            <button class="btn-interaktiv btn-interaktiv-grey" type="submit"
+                    name="form.button.Cancel">
+              Abbrechen
+            </button>
+          </div>
+        </fieldset>
+      </form>
+    </article>
+  </metal:content>
+</metal:content>
+</body>
+</html>

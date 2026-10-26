@@ -1,0 +1,15 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    i18n_domain="graffiti.tile_search">
+
+  <!-- View: TileSearch -->
+  <browser:page
+      name="view_tile_tilesearch"
+      for="interaktiv.basetiles.contenttypes.tilepage.ITilePage"
+      class="graffiti.tile_search.views.view.TileSearchView"
+      permission="zope2.View"
+      layer="graffiti.tile_search.interfaces.IGraffitiTileSearchLayer"
+  />
+
+</configure>

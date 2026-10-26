@@ -1,0 +1,19 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    i18n_domain="graffiti.contenttypes">
+
+    <!-- View: WebMirror -->
+    <browser:page
+        name="view"
+        for="graffiti.contenttypes.contenttypes.webmirror.IWebmirror"
+        class="graffiti.contenttypes.views.webmirror.WebMirrorView"
+        permission="zope2.View"
+    />
+    <browser:page
+        name="webmirror_asset"
+        for="graffiti.contenttypes.contenttypes.webmirror.IWebmirror"
+        class="graffiti.contenttypes.views.webmirror.WebmirrorAssetView"
+        permission="zope2.View"
+    />
+</configure>

@@ -1,0 +1,39 @@
+.tile-view {
+  .tile-view-embedded {
+    // the embedded markup keeps its own classes, the tile only makes sure it does not overflow
+    overflow-x: auto;
+  }
+  .tile-view-example-recent {
+    ul {
+      margin: 0;
+      padding-left: 1.2em;
+    }
+    .modified {
+      margin-left: 0.5em;
+      color: #777;
+      font-size: 0.9em;
+    }
+  }
+  .tile-placeholder {
+    background: #eee;
+    border: 1px dashed #aaa;
+    padding: 1em;
+    text-align: center;
+
+    p {
+      margin: 0 0 0.5em;
+    }
+    .tile-placeholder-label span {
+      display: block;
+    }
+    em {
+      color: #777;
+    }
+  }
+}
+
+.configure_tileview_modal {
+  .tile-view-description {
+    text-transform: none;
+  }
+}

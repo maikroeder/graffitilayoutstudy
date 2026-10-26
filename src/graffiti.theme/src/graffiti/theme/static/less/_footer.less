@@ -1,0 +1,67 @@
+// Footer of the demo site. Its content are three static text portlets
+// (scripts/setup_demo_theme.py).
+//
+// The colors are variables of the tiles styleguide from v29 on (Plone 6).
+// LESS takes the last definition of a variable and the styleguide comes after
+// this file: on Plone 6 the values of the control panel win, these defaults
+// only count on Plone 5, where interaktiv.layout has fixed colors.
+@footer-top-background-color: #1E2221;
+@footer-bottom-background-color: #0D0D0B;
+@footer-font-color: #DAD1B9;
+@footer-link-color: #FFFFFF;
+@footer-link-color-hover: #D9912C;
+@footer-site-actions-link-color: #DAD1B9;
+@footer-site-actions-link-color-hover: #D9912C;
+
+body #company-footer {
+  background-color: @footer-top-background-color;
+  border-top: none;
+  padding-top: 40px;
+  .portlets .portletWrapper {
+    width: 30%;
+    max-width: 360px;
+    .portlet.portletStaticText {
+      padding-left: 0;
+    }
+  }
+  .portlets .portletWrapper .portlet {
+    color: @footer-font-color;
+    .portletHeader {
+      color: #FFFFFF;
+      padding-bottom: 12px;
+    }
+    .portletContent {
+      p,
+      li {
+        color: @footer-font-color;
+        margin-bottom: 0;
+        padding-bottom: 4px;
+        padding-top: 4px;
+      }
+      // lines up with the portlet header, like the list entries
+      p {
+        padding-left: 0;
+        padding-right: 0;
+      }
+      a {
+        color: @footer-link-color;
+        text-decoration: underline;
+        &:hover {
+          color: @footer-link-color-hover;
+        }
+      }
+    }
+  }
+  #social-media-site-actions {
+    background-color: @footer-bottom-background-color;
+    height: auto;
+    margin-top: 40px;
+    padding: 18px 0;
+    #site-actions a {
+      color: @footer-site-actions-link-color;
+      &:hover {
+        color: @footer-site-actions-link-color-hover;
+      }
+    }
+  }
+}

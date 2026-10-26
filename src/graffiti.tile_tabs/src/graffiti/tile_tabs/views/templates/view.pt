@@ -1,0 +1,36 @@
+<html xmlns:i18n="http://xml.zope.org/namespaces/i18n" i18n:domain="graffiti.tile_tabs" lang="en">
+<tal:tile metal:use-macro="python: view.get_tile_view_macro()">
+  <div class="tile-content tile-tabs-content" metal:fill-slot="tile_content"
+       tal:define="tabs python: view.get_tabs(); prefix python: 'tile-tabs-' + view.tile['id']">
+    <ul class="tile-tabs-nav" role="tablist">
+      <li tal:repeat="tab tabs" class="tile-tabs-nav-item ${python: 'active' if repeat['tab'].start else ''}" role="presentation">
+        <button type="button" role="tab" id="${prefix}-${tab/id}-tab" data-tab="${tab/id}"
+                aria-controls="${prefix}-${tab/id}"
+                aria-selected="${python: 'true' if repeat['tab'].start else 'false'}">${tab/title}</button>
+      </li>
+    </ul>
+    <div tal:repeat="tab tabs" class="tile-tabs-panel" role="tabpanel" data-tab="${tab/id}"
+         id="${prefix}-${tab/id}" aria-labelledby="${prefix}-${tab/id}-tab"
+         tal:attributes="hidden python: None if repeat['tab'].start else 'hidden'">
+      <table class="tile-tabs-table" tal:condition="tab/rows">
+        <thead>
+          <tr>
+            <th tal:repeat="column tab/columns" class="tile-tabs-cell-${column/id}">${column/title}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr tal:repeat="row tab/rows">
+            <td tal:repeat="column tab/columns" class="tile-tabs-cell-${column/id}">
+              <tal:cell define="text python: row['cells'].get(column['id'], ''); linked python: repeat['column'].start and row.get('url')">
+                <a tal:condition="linked" href="${row/url}">${text}</a>
+                <tal:text condition="not: linked">${text}</tal:text>
+              </tal:cell>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <p class="tile-tabs-empty" tal:condition="not: tab/rows">${tab/empty_text}</p>
+    </div>
+  </div>
+</tal:tile>
+</html>

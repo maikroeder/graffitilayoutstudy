@@ -1,0 +1,17 @@
+<configure
+        xmlns="http://namespaces.zope.org/zope"
+        xmlns:plone="http://namespaces.plone.org/plone"
+        i18n_domain="interaktiv.workingcopy">
+
+    <include package="plone.behavior" file="meta.zcml"/>
+
+    <plone:behavior
+            title="Workingcopy Behavior"
+            description="Adds Workingcopy Behavior"
+            for="plone.dexterity.interfaces.IDexterityContent"
+            factory="interaktiv.workingcopy.behaviors.workingcopy.WorkingcopyBehavior"
+            provides="interaktiv.workingcopy.behaviors.workingcopy.IWorkingcopyBehavior"
+            marker="interaktiv.workingcopy.behaviors.workingcopy.IWorkingcopyBehavior"
+    />
+
+</configure>

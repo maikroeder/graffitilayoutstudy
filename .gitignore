@@ -19,10 +19,6 @@ __pycache__/
 /node_modules
 /download-cache/
 
-# Upstream Graffiti checkout and mr.developer checkouts of interaktiv.* packages
-/upstream/
-/src/interaktiv.*
-
 # Versioncheck
 .plone.versioncheck.tracked.json
 buildout.d/.plone.versioncheck.cache
@@ -32,5 +28,4 @@ buildout.d/.plone.versioncheck.cache
 
 # Machine-specific buildout config (recreated per the install howto)
 /stage.cfg
-/src/graffiti.*
 /package-lock.json

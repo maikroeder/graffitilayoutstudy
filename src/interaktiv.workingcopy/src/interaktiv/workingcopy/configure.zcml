@@ -1,0 +1,34 @@
+<configure
+        xmlns="http://namespaces.zope.org/zope"
+        xmlns:five="http://namespaces.zope.org/five"
+        xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+        i18n_domain="interaktiv.workingcopy">
+
+    <five:registerPackage package="." initialize=".initialize"/>
+    <include package="interaktiv.workingcopy.behaviors"/>
+    <include package="interaktiv.workingcopy.events"/>
+    <include package="interaktiv.workingcopy.subscribers"/>
+    <include package="interaktiv.workingcopy.upgrades"/>
+    <include package="interaktiv.workingcopy.utilities"/>
+    <include package="interaktiv.workingcopy.views"/>
+    <include package="interaktiv.workingcopy.viewlets"/>
+    <include package="plone.browserlayer"/>
+
+    <genericsetup:registerProfile
+            name="default"
+            title="interaktiv.workingcopy"
+            directory="profiles/default"
+            description="Installs the interaktiv.workingcopy package"
+            provides="Products.GenericSetup.interfaces.EXTENSION"
+    />
+
+    <genericsetup:registerProfile
+            name="uninstall"
+            title="interaktiv.workingcopy"
+            directory="profiles/uninstall"
+            description="Installs the interaktiv.uninstall package"
+            provides="Products.GenericSetup.interfaces.EXTENSION"
+    />
+
+
+</configure>

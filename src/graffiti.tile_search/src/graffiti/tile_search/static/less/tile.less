@@ -1,0 +1,65 @@
+.tile-search {
+  .tile-search-content {
+    position: relative;
+  }
+  .tile-search-form {
+    display: flex;
+    gap: 0.5em;
+
+    .searchField {
+      flex: 1 1 auto;
+      min-width: 0;
+    }
+  }
+  // pat-livesearch appends the result list behind the input (Plone 5) or behind the form (Plone 6).
+  // Plone 6 aligns it to the right edge because its own search box sits in the header, Plone 5 does
+  // not style it at all. Inside a tile the results belong below the input, so the tile styles them.
+  .livesearch-results {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: auto;
+    width: 100%;
+    max-width: 100%;
+    margin: 0.25em 0 0;
+    padding: 0;
+    list-style: none;
+    background: #fff;
+    border: 1px solid #ccc;
+    z-index: 100;
+
+    li {
+      padding: 0.5em 0.75em;
+      border-top: 1px solid #eee;
+
+      &:first-child {
+        border-top: 0;
+      }
+    }
+    // the pattern renders every hit as <h4 class="title"> plus <p class="description">.
+    // The tiles theme sets headings inside #content to 1rem (10px), the id selector wins
+    // against any class selector, hence the !important.
+    .title {
+      font-size: 1em !important;
+      line-height: 1.3;
+      margin: 0 0 0.2em;
+    }
+    .description {
+      font-size: 0.9em;
+      margin: 0;
+    }
+  }
+  .tile-placeholder {
+    background: #eee;
+    border: 1px dashed #aaa;
+    padding: 1em;
+    text-align: center;
+
+    p {
+      margin: 0 0 0.5em;
+    }
+    .tile-placeholder-label span {
+      display: block;
+    }
+  }
+}

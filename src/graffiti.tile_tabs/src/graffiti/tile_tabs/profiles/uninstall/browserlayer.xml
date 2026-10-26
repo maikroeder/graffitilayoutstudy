@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<layers>
+    <layer
+        name="graffiti.tile_tabs"
+        remove="true"
+    />
+</layers>

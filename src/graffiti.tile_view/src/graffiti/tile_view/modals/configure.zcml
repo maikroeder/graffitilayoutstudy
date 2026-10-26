@@ -1,0 +1,14 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser">
+
+    <!-- Modal: choose the view -->
+    <browser:page
+        name="configure_tileview_modal"
+        for="interaktiv.basetiles.contenttypes.tilepage.ITilePage"
+        class="graffiti.tile_view.modals.configure.ConfigureModalView"
+        permission="cmf.ModifyPortalContent"
+        layer="graffiti.tile_view.interfaces.IGraffitiTileViewLayer"
+    />
+
+</configure>

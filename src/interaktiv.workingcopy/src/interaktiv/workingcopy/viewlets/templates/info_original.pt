@@ -1,0 +1,39 @@
+<aside id="global_statusmessage_workingcopy"
+   tal:define="working_copy view/working_copy;
+  isAnon context/@@plone_portal_state/anonymous;
+  is_workingcopy view/is_workingcopy"
+   tal:condition="python: not isAnon and not is_workingcopy">
+  <div class="col-xs-12 col-sm-12">
+    <div class="col-md-12">
+      <div class="portalMessage warning"
+         i18n:domain="plone">
+
+        <strong i18n:translate="">Warning</strong>
+        <tal:block i18n:translate="working_copy_info">
+          <span>
+            This item is being edited by
+            <a i18n:name="creator"
+               tal:attributes="href view/creator_url"
+               tal:omit-tag="not: view/creator_url"
+               tal:content="view/creator_name">john smith</a>
+            in
+            <a i18n:name="working_copy"
+               i18n:translate="label_working_copy"
+               tal:attributes="href working_copy/@@plone_context_state/view_url;
+              title working_copy/Description">a working copy</a>
+            created on
+            <span i18n:name="created" tal:content="view/created"/>.
+          </span>
+        </tal:block>
+
+
+        (<a i18n:translate="view_changes"
+         tal:attributes="href string:${context/absolute_url}/@@arbeitskopie-und-original-vergleichen">
+        View changes
+      </a>)
+
+      </div>
+    </div>
+  </div>
+  <div class="clear"></div>
+</aside>

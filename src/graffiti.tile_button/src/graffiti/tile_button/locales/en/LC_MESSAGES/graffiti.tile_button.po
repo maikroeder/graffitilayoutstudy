@@ -1,0 +1,30 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: graffiti.tile_button\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+"Language-Code: en\n"
+"Domain: graffiti.tile_button\n"
+
+msgid "label_additional_css_classes"
+msgstr "Additional CSS classes"
+
+msgid "label_button_css_classes"
+msgstr "Button: Additional CSS classes"
+
+msgid "help_button_css_classes"
+msgstr "Separated by spaces. Letters, digits, hyphens and underscores are allowed."
+
+msgid "msg_invalid_css_classes"
+msgstr "CSS classes may only contain letters, digits, hyphens and underscores, separated by spaces."
+
+msgid "label_css_classes_caption"
+msgstr "CSS classes"
+
+msgid "label_css_classes_enabled"
+msgstr "Offer custom CSS classes for buttons"
+
+msgid "help_css_classes_enabled"
+msgstr "Editors who may style the button tile set their own CSS classes. Switched off, the field is not offered, classes already set stay on the buttons."

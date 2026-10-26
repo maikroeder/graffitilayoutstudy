@@ -1,0 +1,43 @@
+/* The result of the PDF check in the view of the file. The box uses the classes of the status messages of Plone. */
+
+/* a box of its own: it stays beside a floating preview image instead of running below it */
+#graffiti-pdfcheck {
+    display: flow-root;
+}
+
+#graffiti-pdfcheck ul {
+    margin: 0.3em 0 0.3em 1.2em;
+    padding: 0;
+}
+
+#graffiti-pdfcheck p {
+    margin: 0.5em 0 0;
+}
+
+#graffiti-pdfcheck .graffiti-pdfcheck-details {
+    margin-top: 0.6em;
+    font-size: 0.9em;
+}
+
+#graffiti-pdfcheck .graffiti-pdfcheck-details summary {
+    /* the theme hides the triangle of the summary */
+    display: list-item;
+    cursor: pointer;
+}
+
+#graffiti-pdfcheck .graffiti-pdfcheck-details p {
+    margin-top: 0.3em;
+}
+
+/* the checks on the settings page: the check box beside its title, also when the title needs two lines */
+.graffiti-pdfcheck-checks label {
+    display: flex;
+    align-items: baseline;
+    gap: 0.4em;
+    margin: 0;
+    font-weight: normal;
+}
+
+.graffiti-pdfcheck-checks td {
+    vertical-align: top;
+}

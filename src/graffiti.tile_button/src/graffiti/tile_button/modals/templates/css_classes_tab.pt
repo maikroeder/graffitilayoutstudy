@@ -1,0 +1,21 @@
+<tal:translate i18n:domain="graffiti.tile_button">
+    <div role="tabpanel" class="tab-pane tab-css_classes" id="tab-css_classes">
+      <div class="col-md-12 modal-content">
+        <div class="row modal-content-row">
+          <div class="col-md-12">
+            <p class="caption" i18n:translate="label_css_classes_caption">CSS classes</p>
+            <div class="row modal-form-row">
+              <div class="col-md-6">
+                <label for="button-css-classes" i18n:translate="label_additional_css_classes">Additional CSS classes</label>
+              </div>
+              <div class="col-md-6">
+                <input type="text" name="button_css_classes" id="button-css-classes"
+                       value="${python: view.tile.get('button_css_classes') or ''}" />
+                <p class="help-block" i18n:translate="help_button_css_classes">Separated by spaces. Letters, digits, hyphens and underscores are allowed.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</tal:translate>

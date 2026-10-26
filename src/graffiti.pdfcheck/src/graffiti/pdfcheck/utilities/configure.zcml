@@ -1,0 +1,9 @@
+<configure xmlns="http://namespaces.zope.org/zope">
+
+    <!-- runs the checks; a project replaces it, for example to use an external service -->
+    <utility
+        factory=".local_runner.LocalRunner"
+        provides="graffiti.pdfcheck.interfaces.IPdfCheckRunner"
+    />
+
+</configure>

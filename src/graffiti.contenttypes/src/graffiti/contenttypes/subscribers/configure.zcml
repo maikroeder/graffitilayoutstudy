@@ -1,0 +1,15 @@
+<configure xmlns="http://namespaces.zope.org/zope">
+
+  <subscriber
+      for="graffiti.contenttypes.contenttypes.webmirror.IWebmirror
+           zope.lifecycleevent.interfaces.IObjectAddedEvent"
+      handler=".webmirror.webmirror_added_handler"
+      />
+
+  <subscriber
+      for="graffiti.contenttypes.contenttypes.webmirror.IWebmirror
+           zope.lifecycleevent.interfaces.IObjectModifiedEvent"
+      handler=".webmirror.webmirror_modified_handler"
+      />
+
+</configure>

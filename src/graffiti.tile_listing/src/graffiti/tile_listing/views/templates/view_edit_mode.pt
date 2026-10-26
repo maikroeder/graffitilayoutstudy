@@ -1,0 +1,11 @@
+<html xmlns:i18n="http://xml.zope.org/namespaces/i18n" i18n:domain="graffiti.tile_listing" lang="en">
+<tal:tile metal:use-macro="python: view.get_tile_view_macro()">
+  <div class="tile-content tile-listing-content tile-placeholder" metal:fill-slot="tile_content">
+    <p class="tile-placeholder-label">
+      <strong i18n:translate="label_placeholder">Folder listing</strong>
+      <span i18n:translate="label_placeholder_help">This area is filled automatically.</span>
+    </p>
+    <p class="tile-placeholder-info">${python: view.get_label()} (${python: len(view.get_items())})</p>
+  </div>
+</tal:tile>
+</html>

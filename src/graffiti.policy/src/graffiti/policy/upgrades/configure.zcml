@@ -1,0 +1,32 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:genericsetup="http://namespaces.zope.org/genericsetup">
+
+    <genericsetup:upgradeStep
+        source="0010"
+        destination="0011"
+        title="Install graffiti.contenttypes"
+        description=""
+        profile="graffiti.policy:default"
+        handler="graffiti.policy.upgrades.v0010_to_v0011.upgrade"
+    />
+
+    <genericsetup:upgradeStep
+        source="0011"
+        destination="0012"
+        title="Install the Graffiti tiles"
+        description="Placeholder tiles for entry pages and custom CSS classes for the button tile"
+        profile="graffiti.policy:default"
+        handler="graffiti.policy.upgrades.v0011_to_v0012.upgrade"
+    />
+
+    <genericsetup:upgradeStep
+        source="0012"
+        destination="0013"
+        title="Install graffiti.pdfcheck"
+        description="Checks PDF files on upload whether they can be processed later"
+        profile="graffiti.policy:default"
+        handler="graffiti.policy.upgrades.v0012_to_v0013.upgrade"
+    />
+
+</configure>

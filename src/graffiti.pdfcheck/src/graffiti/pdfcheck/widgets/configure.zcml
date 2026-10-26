@@ -1,0 +1,16 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:z3c="http://namespaces.zope.org/z3c">
+
+    <include package="z3c.form" file="meta.zcml" />
+
+    <!-- the layer of the Plone forms, as plone.app.z3cform 4 (Plone 6) uses it for its check box template:
+         with the same layer the more specific widget decides -->
+    <z3c:widgetTemplate
+        mode="input"
+        widget=".interfaces.IChecksWidget"
+        layer="plone.app.z3cform.interfaces.IPloneFormLayer"
+        template="templates/checks_input.pt"
+    />
+
+</configure>

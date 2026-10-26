@@ -1,0 +1,40 @@
+<configure
+        xmlns="http://namespaces.zope.org/zope"
+        xmlns:five="http://namespaces.zope.org/five"
+        xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+        i18n_domain="graffiti.contenttypes">
+
+    <five:registerPackage package="." initialize=".initialize"/>
+
+    <include package=".contenttypes" />
+    <include package=".subscribers" />
+    <include package=".views" />
+
+    <genericsetup:registerProfile
+            name="default"
+            title="graffiti.contenttypes"
+            directory="profiles/default"
+            description="Installs the graffiti.contenttypes package"
+            provides="Products.GenericSetup.interfaces.EXTENSION"
+            post_handler="graffiti.contenttypes.setuphandlers.post_install"
+    />
+
+    <genericsetup:registerProfile
+            name="uninstall"
+            title="graffiti.contenttypes (uninstall)"
+            directory="profiles/uninstall"
+            description="Uninstalls the graffiti.contenttypes add-on."
+            provides="Products.GenericSetup.interfaces.EXTENSION"
+            post_handler="graffiti.contenttypes.setuphandlers.uninstall"
+    />
+
+
+    <!-- ContentProxy: Webmirror -->
+    <adapter
+            for="graffiti.contenttypes.contenttypes.webmirror.IWebmirror
+             zope.publisher.interfaces.http.IHTTPRequest"
+            provides="zope.publisher.interfaces.IPublishTraverse"
+            factory="graffiti.contenttypes.traversal.ContentProxyTraverser"
+    />
+
+</configure>

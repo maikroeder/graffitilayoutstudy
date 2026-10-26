@@ -1,0 +1,32 @@
+<configure
+        xmlns="http://namespaces.zope.org/zope"
+        xmlns:genericsetup="http://namespaces.zope.org/genericsetup">
+
+    <genericsetup:upgradeStep
+            source="0001"
+            destination="0002"
+            title="Update outdated locks"
+            description=""
+            profile="interaktiv.workingcopy:default"
+            handler="interaktiv.workingcopy.upgrades.v0001_to_v0002.upgrade"
+    />
+
+    <genericsetup:upgradeStep
+            source="0002"
+            destination="0010"
+            title="Remove bad layer"
+            description=""
+            profile="interaktiv.workingcopy:default"
+            handler="interaktiv.workingcopy.upgrades.v0002_to_v0010.upgrade"
+    />
+
+    <genericsetup:upgradeStep
+        source="0010"
+        destination="0011"
+        title="Re-run improved upgradestep to remove bad layer (v0002_to_v0010)"
+        description="Make sure everyone has run the improved version"
+        profile="interaktiv.workingcopy:default"
+        handler="interaktiv.workingcopy.upgrades.v0010_to_v0011.upgrade"
+    />
+
+</configure>

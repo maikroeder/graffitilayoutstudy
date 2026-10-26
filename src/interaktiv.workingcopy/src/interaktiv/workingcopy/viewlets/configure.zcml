@@ -1,0 +1,24 @@
+<configure
+        xmlns="http://namespaces.zope.org/zope"
+        xmlns:browser="http://namespaces.zope.org/browser"
+        i18n_domain="interaktiv.workingcopy">
+
+    <!-- Viewlet: Info Original -->
+    <browser:viewlet
+            name="interaktiv.workingcopy.info_original"
+            manager="plone.app.layout.viewlets.interfaces.IAboveContent"
+            class="interaktiv.workingcopy.viewlets.info.InteraktivInfoOriginalViewlet"
+            permission="zope2.View"
+            layer="interaktiv.workingcopy.interfaces.IInteraktivWorkingcopyLayer"
+    />
+
+    <!-- Viewlet: Info Workingcopy -->
+    <browser:viewlet
+            name="interaktiv.workingcopy.info_workingcopy"
+            manager="plone.app.layout.viewlets.interfaces.IAboveContent"
+            class="interaktiv.workingcopy.viewlets.info.InteraktivInfoWorkingcopyViewlet"
+            permission="zope2.View"
+            layer="interaktiv.workingcopy.interfaces.IInteraktivWorkingcopyLayer"
+    />
+
+</configure>

@@ -1,0 +1,29 @@
+// interaktiv.layout gives the main menu 70% of the header and floats it to
+// the right. With the Plone toolbar open or with more entries it needs more
+// room: it breaks into two rows or drops below the logo. On the desktop the
+// menu takes all the space next to the logo instead. As a block formatting
+// context (flow-root) it stays beside the floated logo without clipping the
+// submenus. Below the break point interaktiv.layout shows its off-canvas
+// menu, that stays untouched.
+
+// The break point comes from the tiles styleguide on Plone 6
+// (interaktiv.layout 13.x). Plone 5 (interaktiv.layout 5.x) has no such
+// variable and uses @screen-md-min. LESS takes the last definition of a
+// variable and the styleguide comes after this file, so this default only
+// counts on Plone 5. It has to compile on both, LESS evaluates every definition.
+@navigation-breakpoint-mobile: @screen-md-min;
+
+@media (min-width: (@navigation-breakpoint-mobile + 1)) {
+  body.navigation-theme-navigation_default #company-topbar #company-navigation {
+    display: flow-root;
+    float: none;
+    width: auto;
+  }
+}
+
+// Narrow desktops: less space between the entries (30px in interaktiv.layout)
+@media (min-width: (@navigation-breakpoint-mobile + 1)) and (max-width: @screen-lg-min) {
+  body.navigation-theme-navigation_default #company-topbar #company-navigation nav > ul > li {
+    margin-left: 20px;
+  }
+}

@@ -1,0 +1,15 @@
+<html xmlns:i18n="http://xml.zope.org/namespaces/i18n" i18n:domain="graffiti.tile_listing" lang="en">
+<tal:tile metal:use-macro="python: view.get_tile_view_macro()">
+  <div class="tile-content tile-listing-content" metal:fill-slot="tile_content"
+       tal:define="items python: view.get_items()">
+    <ul class="tile-listing-items" tal:condition="python: items">
+      <li tal:repeat="item items" class="tile-listing-item">
+        <a href="${item/url}" class="contenttype-${python: item['portal_type'].lower().replace(' ', '-')}">${item/title}</a>
+        <p class="tile-listing-description" tal:condition="item/description">${item/description}</p>
+      </li>
+    </ul>
+    <p class="tile-listing-empty" tal:condition="python: not items"
+       i18n:translate="label_no_items">There are currently no items in this folder.</p>
+  </div>
+</tal:tile>
+</html>

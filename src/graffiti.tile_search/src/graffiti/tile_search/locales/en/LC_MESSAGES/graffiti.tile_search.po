@@ -1,0 +1,26 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: graffiti.tile_search\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+"Language-Code: en\n"
+"Language-Name: English\n"
+"Preferred-Encodings: utf-8 latin1\n"
+"Domain: graffiti.tile_search\n"
+
+msgid "label_TileSearch"
+msgstr "Search"
+
+msgid "help_TileSearch"
+msgstr "Placeholder for the search with live results"
+
+msgid "label_title"
+msgstr "Title"
+
+msgid "label_placeholder"
+msgstr "Search"
+
+msgid "label_placeholder_help"
+msgstr "The search field is shown here. It can only be used outside the editor."

@@ -1,0 +1,8 @@
+<div class="tile-view-example-recent" xmlns:i18n="http://xml.zope.org/namespaces/i18n" i18n:domain="graffiti.tile_view">
+  <ul>
+    <li tal:repeat="item python: view.get_items()">
+      <a href="${item/url}">${item/title}</a>
+      <span class="modified">${item/modified}</span>
+    </li>
+  </ul>
+</div>

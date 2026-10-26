@@ -1,0 +1,45 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+    xmlns:i18n="http://namespaces.zope.org/i18n"
+    xmlns:plone="http://namespaces.plone.org/plone"
+    i18n_domain="graffiti.tile_button">
+
+    <i18n:registerTranslations directory="locales" />
+
+    <include package="plone.behavior" file="meta.zcml" />
+    <include package="interaktiv.tile_button" />
+    <include package="graffiti.tile_button.views"/>
+    <include package="graffiti.tile_button.modals"/>
+
+    <plone:behavior
+        title="Button tile: custom CSS classes"
+        description="Editors who may style the button tile add their own classes to the button link"
+        for="plone.dexterity.interfaces.IDexterityContent"
+        factory="graffiti.tile_button.behaviors.ButtonCssClassesBehavior"
+        provides="graffiti.tile_button.behaviors.IButtonCssClassesBehavior"
+        marker="graffiti.tile_button.behaviors.IButtonCssClassesBehavior"
+    />
+
+    <genericsetup:registerProfile
+        name="default"
+        title="graffiti.tile_button"
+        directory="profiles/default"
+        description="Custom CSS classes for the button tile"
+        provides="Products.GenericSetup.interfaces.EXTENSION"
+    />
+
+    <genericsetup:registerProfile
+        name="uninstall"
+        title="graffiti.tile_button"
+        directory="profiles/uninstall"
+        description="Uninstalls the graffiti.tile_button package"
+        provides="Products.GenericSetup.interfaces.EXTENSION"
+    />
+
+    <utility
+            factory=".setuphandlers.HiddenProfiles"
+            name="graffiti.tile_button-hiddenprofiles"
+    />
+
+</configure>

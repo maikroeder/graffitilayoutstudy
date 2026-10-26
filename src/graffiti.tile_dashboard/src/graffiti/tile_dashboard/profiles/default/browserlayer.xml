@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<layers>
+    <layer
+        name="graffiti.tile_dashboard"
+        interface="graffiti.tile_dashboard.interfaces.IGraffitiTileDashboardLayer"
+    />
+</layers>

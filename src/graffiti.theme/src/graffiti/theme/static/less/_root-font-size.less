@@ -1,0 +1,17 @@
+// The tiles packages write font sizes in rem and convert them from px with
+// @global-font-size of the tiles styleguide (.font-size-px). The root font
+// size has to match, otherwise every rem value shrinks.
+// On Plone 5 Barceloneta (62.5%) and the Bootstrap 3 import of
+// interaktiv.theme 4.x (10px) win over the root size of interaktiv.basetiles,
+// labels in the tiles dialogs end up at 7.5px instead of 12px.
+// :root outranks their html selectors although this file comes first.
+// On Plone 6 the root already has these values, nothing changes there.
+html:root {
+  font-size: @global-font-size;
+  @media (max-width: @screen-lg-min) {
+    font-size: @global-font-size-tablet;
+  }
+  @media (max-width: @screen-sm-min) {
+    font-size: @global-font-size-phone;
+  }
+}

@@ -1,0 +1,22 @@
+<configure xmlns="http://namespaces.zope.org/zope">
+  <permission
+      id="graffiti.tile_view.add"
+      title="InteraktivTiles: Add ViewTile"
+  />
+  <permission
+      id="graffiti.tile_view.delete"
+      title="InteraktivTiles: Delete ViewTile"
+  />
+  <permission
+      id="graffiti.tile_view.move"
+      title="InteraktivTiles: Move ViewTile"
+  />
+  <permission
+      id="graffiti.tile_view.modify"
+      title="InteraktivTiles: Modify ViewTile"
+  />
+  <permission
+      id="graffiti.tile_view.style"
+      title="InteraktivTiles: Style ViewTile"
+  />
+</configure>

@@ -1,0 +1,12 @@
+<html xmlns:i18n="http://xml.zope.org/namespaces/i18n" i18n:domain="graffiti.tile_search" lang="en">
+<tal:tile metal:use-macro="python: view.get_tile_view_macro()">
+  <div class="tile-content tile-search-content tile-placeholder" metal:fill-slot="tile_content">
+    <p class="tile-placeholder-label">
+      <strong i18n:translate="label_placeholder">Search</strong>
+      <span i18n:translate="label_placeholder_help">The search field is shown here. It can only be used outside the editor.</span>
+    </p>
+    <input class="form-control" type="text" disabled="disabled" placeholder="Search Site"
+           i18n:domain="plone" i18n:attributes="placeholder title_search_site" />
+  </div>
+</tal:tile>
+</html>

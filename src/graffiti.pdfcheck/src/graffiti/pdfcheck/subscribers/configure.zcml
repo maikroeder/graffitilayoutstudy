@@ -1,0 +1,15 @@
+<configure xmlns="http://namespaces.zope.org/zope">
+
+    <!-- check the file when it is added or changed -->
+    <subscriber
+        for="plone.dexterity.interfaces.IDexterityContent
+             zope.lifecycleevent.interfaces.IObjectAddedEvent"
+        handler=".upload.on_added"
+    />
+    <subscriber
+        for="plone.dexterity.interfaces.IDexterityContent
+             zope.lifecycleevent.interfaces.IObjectModifiedEvent"
+        handler=".upload.on_modified"
+    />
+
+</configure>

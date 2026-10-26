@@ -1,0 +1,238 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: graffiti.pdfcheck\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+"Language-Code: en\n"
+"Language-Name: English\n"
+"Preferred-Encodings: utf-8 latin1\n"
+"Domain: graffiti.pdfcheck\n"
+
+#. Default: "PDF check settings"
+msgid "label_settings"
+msgstr "PDF check settings"
+
+#. Default: "Checks PDF files on upload whether they can be processed later."
+msgid "help_settings"
+msgstr "Checks PDF files on upload whether they can be processed later."
+
+msgid "PDF check settings"
+msgstr "PDF check settings"
+
+#. Default: "Check PDF files on upload"
+msgid "label_enabled"
+msgstr "Check PDF files on upload"
+
+#. Default: "The upload is never rejected. Editors get a message about the result."
+msgid "help_enabled"
+msgstr "The upload is never rejected. Editors get a message about the result."
+
+#. Default: "Content types"
+msgid "label_portal_types"
+msgstr "Content types"
+
+#. Default: "PDF files of these content types are checked. Only content types with a file field are offered."
+msgid "help_portal_types"
+msgstr "PDF files of these content types are checked. Only content types with a file field are offered."
+
+#. Default: "Checks"
+msgid "label_checks"
+msgstr "Checks"
+
+#. Default: "These checks run for every PDF file."
+msgid "help_checks"
+msgstr "These checks run for every PDF file."
+
+#. Default: "Choose at least one check. To switch the check off, untick \"Check PDF files on upload\"."
+msgid "error_no_check"
+msgstr "Choose at least one check. To switch the check off, untick \"Check PDF files on upload\"."
+
+#. Default: "Open the file: damaged, password, edit protection"
+msgid "check_open"
+msgstr "Open the file: damaged, password, edit protection"
+
+#. Default: "Read the text: files without text, for example scans"
+msgid "check_text"
+msgstr "Read the text: files without text, for example scans"
+
+#. Default: "Put the pages together again and add metadata"
+msgid "check_rewrite"
+msgstr "Put the pages together again and add metadata"
+
+#. Default: "Append a second PDF file (program pdfunite)"
+msgid "check_pdfunite"
+msgstr "Append a second PDF file (program pdfunite)"
+
+#. Default: "Check the inner structure (program qpdf)"
+msgid "check_qpdf"
+msgstr "Check the inner structure (program qpdf)"
+
+#. Default: "Check"
+msgid "checks_column_check"
+msgstr "Check"
+
+#. Default: "Name"
+msgid "checks_column_name"
+msgstr "Name"
+
+#. Default: "Python function"
+msgid "checks_column_function"
+msgstr "Python function"
+
+#. Default: "Time limit in seconds"
+msgid "label_timeout"
+msgstr "Time limit in seconds"
+
+#. Default: "How long the check of one file may take. The editor waits for it when uploading."
+msgid "help_timeout"
+msgstr "How long the check of one file may take. The editor waits for it when uploading."
+
+#. Default: "Memory limit in MB"
+msgid "label_memory_mb"
+msgstr "Memory limit in MB"
+
+#. Default: "How much memory the check of one file may use. It runs in a process of its own."
+msgid "help_memory_mb"
+msgstr "How much memory the check of one file may use. It runs in a process of its own."
+
+#. Default: "Largest file in MB"
+msgid "label_max_size_mb"
+msgstr "Largest file in MB"
+
+#. Default: "Larger files are not checked, the editor gets a hint."
+msgid "help_max_size_mb"
+msgstr "Larger files are not checked, the editor gets a hint."
+
+#. Default: "The file is damaged and can not be opened."
+msgid "finding_damaged"
+msgstr "The file is damaged and can not be opened."
+
+#. Default: "The file is encrypted and could not be checked completely."
+msgid "finding_crypto_missing"
+msgstr "The file is encrypted and could not be checked completely."
+
+#. Default: "The file is protected with a password."
+msgid "finding_password"
+msgstr "The file is protected with a password."
+
+#. Default: "The file has an edit protection."
+msgid "finding_edit_protection"
+msgstr "The file has an edit protection."
+
+#. Default: "No text can be read from the file, for example because it is a scan."
+msgid "finding_no_text"
+msgstr "No text can be read from the file, for example because it is a scan."
+
+#. Default: "The pages of the file can not be put together again."
+msgid "finding_rewrite"
+msgstr "The pages of the file can not be put together again."
+
+#. Default: "No second PDF file can be appended to the file."
+msgid "finding_pdfunite"
+msgstr "No second PDF file can be appended to the file."
+
+#. Default: "The inner structure of the file has errors."
+msgid "finding_qpdf"
+msgstr "The inner structure of the file has errors."
+
+#. Default: "The check took too long and was stopped."
+msgid "finding_timeout"
+msgstr "The check took too long and was stopped."
+
+#. Default: "The check needed too much memory and was stopped."
+msgid "finding_memory"
+msgstr "The check needed too much memory and was stopped."
+
+#. Default: "The check could not run."
+msgid "finding_check_error"
+msgstr "The check could not run."
+
+#. Default: "The inner structure has small errors that can be repaired automatically."
+msgid "hint_qpdf_warnings"
+msgstr "The inner structure has small errors that can be repaired automatically."
+
+#. Default: "The file was not checked."
+msgid "hint_not_checked"
+msgstr "The file was not checked."
+
+#. Default: "When the file is processed, these are lost: ${items}."
+msgid "hint_lost"
+msgstr "When the file is processed, these are lost: ${items}."
+
+#. Default: "bookmarks"
+msgid "lost_outlines"
+msgstr "bookmarks"
+
+#. Default: "form fields"
+msgid "lost_form_fields"
+msgstr "form fields"
+
+#. Default: "signatures"
+msgid "lost_signatures"
+msgstr "signatures"
+
+#. Default: "embedded files"
+msgid "lost_embedded_files"
+msgstr "embedded files"
+
+#. Default: "PDF header"
+msgid "step_header"
+msgstr "PDF header"
+
+#. Default: "File size"
+msgid "step_size"
+msgstr "File size"
+
+#. Default: "Open"
+msgid "step_open"
+msgstr "Open"
+
+#. Default: "Read the text"
+msgid "step_text"
+msgstr "Read the text"
+
+#. Default: "Rebuild page by page"
+msgid "step_rewrite"
+msgstr "Rebuild page by page"
+
+#. Default: "Append a second PDF"
+msgid "step_pdfunite"
+msgstr "Append a second PDF"
+
+#. Default: "Check the structure"
+msgid "step_qpdf"
+msgstr "Check the structure"
+
+#. Default: "Check process"
+msgid "step_runner"
+msgstr "Check process"
+
+#. Default: "PDF check: the file was saved, but it can probably not be processed later. ${reasons}"
+msgid "message_findings"
+msgstr "PDF check: the file was saved, but it can probably not be processed later. ${reasons}"
+
+#. Default: "PDF check: the file was saved. Please note: ${hints}"
+msgid "message_hints"
+msgstr "PDF check: the file was saved. Please note: ${hints}"
+
+#. Default: "PDF check: this file can probably not be processed later."
+msgid "viewlet_findings"
+msgstr "PDF check: this file can probably not be processed later."
+
+#. Default: "PDF check: please note"
+msgid "viewlet_hints"
+msgstr "PDF check: please note"
+
+#. Default: "Please also note:"
+msgid "viewlet_hints_also"
+msgstr "Please also note:"
+
+#. Default: "Technical details"
+msgid "viewlet_details"
+msgstr "Technical details"
+
+#. Default: "Checked on ${date} with ${tools}."
+msgid "viewlet_checked"
+msgstr "Checked on ${date} with ${tools}."

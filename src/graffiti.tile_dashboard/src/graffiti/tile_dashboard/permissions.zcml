@@ -1,0 +1,22 @@
+<configure xmlns="http://namespaces.zope.org/zope">
+  <permission
+      id="graffiti.tile_dashboard.add"
+      title="InteraktivTiles: Add DashboardTile"
+  />
+  <permission
+      id="graffiti.tile_dashboard.delete"
+      title="InteraktivTiles: Delete DashboardTile"
+  />
+  <permission
+      id="graffiti.tile_dashboard.move"
+      title="InteraktivTiles: Move DashboardTile"
+  />
+  <permission
+      id="graffiti.tile_dashboard.modify"
+      title="InteraktivTiles: Modify DashboardTile"
+  />
+  <permission
+      id="graffiti.tile_dashboard.style"
+      title="InteraktivTiles: Style DashboardTile"
+  />
+</configure>

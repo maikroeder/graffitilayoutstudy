@@ -1,0 +1,24 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    i18n_domain="graffiti.tile_dashboard">
+
+  <!-- View: TileDashboard -->
+  <browser:page
+      name="view_tile_tiledashboard"
+      for="interaktiv.basetiles.contenttypes.tilepage.ITilePage"
+      class="graffiti.tile_dashboard.views.view.TileDashboardView"
+      permission="zope2.View"
+      layer="graffiti.tile_dashboard.interfaces.IGraffitiTileDashboardLayer"
+  />
+
+  <!-- JSON: numbers of the dashboard boxes, loaded by static/js/tile.js -->
+  <browser:page
+      name="tile_dashboard_data"
+      for="interaktiv.basetiles.contenttypes.tilepage.ITilePage"
+      class="graffiti.tile_dashboard.views.data.TileDashboardDataView"
+      permission="zope2.View"
+      layer="graffiti.tile_dashboard.interfaces.IGraffitiTileDashboardLayer"
+  />
+
+</configure>

@@ -1,0 +1,21 @@
+<tal:tile metal:use-macro="python: view.get_tile_view_macro()">
+  <div class="tile-content tile-button-content" metal:fill-slot="tile_content"
+     tal:attributes="style python: view.get_tile_style()"
+     tal:define="button_style python: view.get_button_style(); icon_style python: view.get_icon_style()">
+
+    <a tal:attributes="href python: view.get_link() or None"
+       class="${python: view.get_button_classes('button font-family-bold' if view.tile.get('button_font_bold', '') else 'button')}"
+       style="${python: button_style['default']}"
+       data-icon-orientation="${python: view.get_icon_orientation()}"
+       onmouseout="adjustTileButtonStyling(this, '${python: button_style['default']}', '${python: icon_style['default']}')"
+       onmouseover="adjustTileButtonStyling(this, '${python: button_style['hover']}', '${python: icon_style['hover']}')"
+       target="${python: view.tile.get('button_add_in_new_window', False) and '_blank' or '_self'}">
+      <i tal:define="button_icon python: view.get_icon()" tal:condition="button_icon"
+         class="${button_icon}"
+         style="${python: icon_style['default']}"
+      ></i>
+      <span>${python: view.get_button_text()}</span>
+    </a>
+
+  </div>
+</tal:tile>

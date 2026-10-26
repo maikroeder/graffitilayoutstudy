@@ -1,0 +1,12 @@
+<configure xmlns="http://namespaces.zope.org/zope">
+
+    <utility
+        component=".file_types.FileTypesVocabularyFactory"
+        name="graffiti.pdfcheck.FileTypes"
+    />
+    <utility
+        component=".checks.ChecksVocabularyFactory"
+        name="graffiti.pdfcheck.Checks"
+    />
+
+</configure>

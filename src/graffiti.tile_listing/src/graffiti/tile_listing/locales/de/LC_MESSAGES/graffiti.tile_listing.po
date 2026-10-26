@@ -1,0 +1,29 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: graffiti.tile_listing\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+"Language-Code: de\n"
+"Language-Name: German\n"
+"Preferred-Encodings: utf-8 latin1\n"
+"Domain: graffiti.tile_listing\n"
+
+msgid "label_TileListing"
+msgstr "Ordnerliste"
+
+msgid "help_TileListing"
+msgstr "Platzhalter, der den Inhalt des Ordners dieser Seite auflistet"
+
+msgid "label_title"
+msgstr "Titel"
+
+msgid "label_no_items"
+msgstr "In diesem Ordner gibt es derzeit keine Inhalte."
+
+msgid "label_placeholder"
+msgstr "Ordnerliste"
+
+msgid "label_placeholder_help"
+msgstr "Dieser Bereich wird automatisch befüllt."

@@ -1,0 +1,32 @@
+<aside id="global_statusmessage_workingcopy"
+   tal:define="original view/original;
+  is_original view/is_original">
+  <div class="col-xs-12 col-sm-12">
+    <div class="col-md-12">
+      <div class="portalMessage info"
+         tal:condition="not: is_original"
+         i18n:domain="plone">
+
+        <strong i18n:translate="">Warning</strong>
+        <tal:block i18n:translate="checkout_info">
+          This is a working copy of
+          <a i18n:name="baseline_title"
+             tal:attributes="href original/@@plone_context_state/view_url;
+            title original/Description"
+             tal:content="original/Title"></a>, made by
+          <a i18n:name="creator"
+             tal:attributes="href view/creator_url"
+             tal:omit-tag="not: view/creator_url"
+             tal:content="view/creator_name">john smith</a>
+          on
+          <span i18n:name="created" tal:content="view/created"/>.
+        </tal:block>
+
+        (<a i18n:translate="view_changes"
+         tal:attributes="href string:${context/absolute_url}/@@arbeitskopie-und-original-vergleichen">
+        View changes
+      </a>)
+      </div>
+    </div>
+  </div>
+</aside>

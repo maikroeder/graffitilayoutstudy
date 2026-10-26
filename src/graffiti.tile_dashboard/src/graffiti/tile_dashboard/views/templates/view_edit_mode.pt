@@ -1,0 +1,16 @@
+<html xmlns:i18n="http://xml.zope.org/namespaces/i18n" i18n:domain="graffiti.tile_dashboard" lang="en">
+<tal:tile metal:use-macro="python: view.get_tile_view_macro()">
+  <div class="tile-content tile-dashboard-content tile-placeholder" metal:fill-slot="tile_content"
+       tal:define="boxes python: view.get_boxes()">
+    <p class="tile-placeholder-label">
+      <strong i18n:translate="label_placeholder">Dashboard</strong>
+      <span i18n:translate="label_placeholder_help">The boxes are filled automatically. The numbers are only loaded outside the editor.</span>
+    </p>
+    <ul class="tile-placeholder-boxes" tal:condition="python: boxes">
+      <li tal:repeat="box boxes">${box/title}</li>
+    </ul>
+    <p class="tile-placeholder-info" tal:condition="python: not boxes"
+       i18n:translate="label_placeholder_no_boxes">There are no boxes yet. Visitors do not see this tile.</p>
+  </div>
+</tal:tile>
+</html>

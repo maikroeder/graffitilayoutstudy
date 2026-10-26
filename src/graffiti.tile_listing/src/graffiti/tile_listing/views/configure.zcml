@@ -1,0 +1,15 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    i18n_domain="graffiti.tile_listing">
+
+  <!-- View: TileListing -->
+  <browser:page
+      name="view_tile_tilelisting"
+      for="interaktiv.basetiles.contenttypes.tilepage.ITilePage"
+      class="graffiti.tile_listing.views.view.TileListingView"
+      permission="zope2.View"
+      layer="graffiti.tile_listing.interfaces.IGraffitiTileListingLayer"
+  />
+
+</configure>

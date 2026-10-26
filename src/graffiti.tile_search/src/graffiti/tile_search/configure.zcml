@@ -1,0 +1,36 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+    xmlns:i18n="http://namespaces.zope.org/i18n"
+    i18n_domain="graffiti.tile_search">
+
+    <i18n:registerTranslations directory="locales" />
+
+    <include file="permissions.zcml" />
+    <include package="graffiti.tile_search.adapters"/>
+    <include package="graffiti.tile_search.views"/>
+
+    <genericsetup:registerProfile
+        name="default"
+        title="graffiti.tile_search"
+        directory="profiles/default"
+        description="Installs the graffiti.tile_search package"
+        provides="Products.GenericSetup.interfaces.EXTENSION"
+        post_handler="graffiti.tile_search.setuphandlers.setup_after"
+    />
+
+    <genericsetup:registerProfile
+        name="uninstall"
+        title="graffiti.tile_search"
+        directory="profiles/uninstall"
+        description="Uninstalls the graffiti.tile_search package"
+        provides="Products.GenericSetup.interfaces.EXTENSION"
+        post_handler="graffiti.tile_search.setuphandlers.uninstall_after"
+    />
+
+    <utility
+            factory=".setuphandlers.HiddenProfiles"
+            name="graffiti.tile_search-hiddenprofiles"
+    />
+
+</configure>

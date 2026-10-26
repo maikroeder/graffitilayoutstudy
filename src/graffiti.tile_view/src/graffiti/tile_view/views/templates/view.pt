@@ -1,0 +1,10 @@
+<html xmlns:i18n="http://xml.zope.org/namespaces/i18n" i18n:domain="graffiti.tile_view" lang="en">
+<tal:tile metal:use-macro="python: view.get_tile_view_macro()">
+  <div class="tile-content tile-view-content" metal:fill-slot="tile_content"
+       tal:define="html python: view.get_html(); entry python: view.get_entry()"
+       data-view-id="${python: entry and entry['id'] or ''}"
+       data-view-mode="${python: entry and entry['mode'] or ''}">
+    <div class="tile-view-embedded" tal:content="structure html"></div>
+  </div>
+</tal:tile>
+</html>

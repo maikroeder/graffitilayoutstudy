@@ -1,0 +1,20 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    i18n_domain="graffiti.pdfcheck">
+
+    <browser:resourceDirectory
+        name="graffiti.pdfcheck"
+        directory="static"
+    />
+
+    <!-- the result for conditions in workflows; without layer, so that it also works in scripts -->
+    <browser:page
+        name="pdfcheck"
+        for="*"
+        class=".views.PdfCheckView"
+        permission="zope2.View"
+        allowed_attributes="suitable findings hints has_finding"
+    />
+
+</configure>

@@ -1,0 +1,11 @@
+<configure
+        xmlns="http://namespaces.zope.org/zope"
+        i18n_domain="interaktiv.workingcopy">
+
+    <subscriber
+            for="interaktiv.workingcopy.behaviors.workingcopy.IWorkingcopyBehavior
+             OFS.interfaces.IObjectWillBeRemovedEvent"
+            handler="interaktiv.workingcopy.subscribers.delete_workingcopy.cleanup_after_deleting_workingcopy"
+    />
+
+</configure>

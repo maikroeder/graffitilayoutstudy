@@ -1,0 +1,15 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    i18n_domain="graffiti.tile_tabs">
+
+  <!-- View: TileTabs -->
+  <browser:page
+      name="view_tile_tiletabs"
+      for="interaktiv.basetiles.contenttypes.tilepage.ITilePage"
+      class="graffiti.tile_tabs.views.view.TileTabsView"
+      permission="zope2.View"
+      layer="graffiti.tile_tabs.interfaces.IGraffitiTileTabsLayer"
+  />
+
+</configure>

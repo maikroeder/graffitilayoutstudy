@@ -1,0 +1,24 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    i18n_domain="graffiti.tile_view">
+
+  <!-- View: TileView -->
+  <browser:page
+      name="view_tile_tileview"
+      for="interaktiv.basetiles.contenttypes.tilepage.ITilePage"
+      class="graffiti.tile_view.views.view.TileViewView"
+      permission="zope2.View"
+      layer="graffiti.tile_view.interfaces.IGraffitiTileViewLayer"
+  />
+
+  <!-- Example of a frameless view, registered by the default provider with mode "view" -->
+  <browser:page
+      name="tile-view-example-recent"
+      for="*"
+      class="graffiti.tile_view.views.example.ExampleRecentView"
+      permission="zope2.View"
+      layer="graffiti.tile_view.interfaces.IGraffitiTileViewLayer"
+  />
+
+</configure>

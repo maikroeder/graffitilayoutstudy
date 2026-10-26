@@ -1,0 +1,22 @@
+<configure xmlns="http://namespaces.zope.org/zope">
+  <permission
+      id="graffiti.tile_tabs.add"
+      title="InteraktivTiles: Add TabsTile"
+  />
+  <permission
+      id="graffiti.tile_tabs.delete"
+      title="InteraktivTiles: Delete TabsTile"
+  />
+  <permission
+      id="graffiti.tile_tabs.move"
+      title="InteraktivTiles: Move TabsTile"
+  />
+  <permission
+      id="graffiti.tile_tabs.modify"
+      title="InteraktivTiles: Modify TabsTile"
+  />
+  <permission
+      id="graffiti.tile_tabs.style"
+      title="InteraktivTiles: Style TabsTile"
+  />
+</configure>

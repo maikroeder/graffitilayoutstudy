@@ -1,0 +1,15 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    i18n_domain="graffiti.tile_button">
+
+  <!-- Overrides the view of the button tile for the layer of this package -->
+  <browser:page
+      name="view_tile_tilebuttonct"
+      for="interaktiv.basetiles.contenttypes.tilepage.ITilePage"
+      class="graffiti.tile_button.views.view.TileButtonView"
+      permission="zope2.View"
+      layer="graffiti.tile_button.interfaces.IGraffitiTileButtonLayer"
+  />
+
+</configure>

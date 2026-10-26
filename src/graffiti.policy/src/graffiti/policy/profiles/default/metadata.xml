@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<metadata>
+    <version>0013</version>
+    <dependencies>
+        <dependency>profile-graffiti.contenttypes:default</dependency>
+        <dependency>profile-graffiti.tile_listing:default</dependency>
+        <dependency>profile-graffiti.tile_search:default</dependency>
+        <dependency>profile-graffiti.tile_dashboard:default</dependency>
+        <dependency>profile-graffiti.tile_tabs:default</dependency>
+        <dependency>profile-graffiti.tile_view:default</dependency>
+        <dependency>profile-graffiti.tile_button:default</dependency>
+        <dependency>profile-graffiti.pdfcheck:default</dependency>
+
+        <!-- Interaktiv -->
+        <dependency>profile-interaktiv.fonts:default</dependency>
+        <dependency>profile-interaktiv.layout:default</dependency>
+        <dependency>profile-interaktiv.image_focus:default</dependency>
+        <dependency>profile-interaktiv.migrator:default</dependency>
+        <dependency>profile-interaktiv.workingcopy:default</dependency>
+
+        <!-- Interaktiv Tiles -->
+        <dependency>profile-interaktiv.basetiles:default</dependency>
+        <dependency>profile-interaktiv.tile_image:default</dependency>
+        <dependency>profile-interaktiv.tile_text:default</dependency>
+        <dependency>profile-interaktiv.tile_files:default</dependency>
+        <dependency>profile-interaktiv.tile_subheadline:default</dependency>
+        <dependency>profile-interaktiv.tile_news:default</dependency>
+        <dependency>profile-interaktiv.tile_audio:default</dependency>
+        <dependency>profile-interaktiv.tile_button:default</dependency>
+        <dependency>profile-interaktiv.tile_collapse:default</dependency>
+        <dependency>profile-interaktiv.tile_contact:default</dependency>
+        <dependency>profile-interaktiv.tile_icon:default</dependency>
+        <dependency>profile-interaktiv.tile_iframe:default</dependency>
+        <dependency>profile-interaktiv.tile_line:default</dependency>
+        <dependency>profile-interaktiv.tile_map:default</dependency>
+        <dependency>profile-interaktiv.tile_slider:default</dependency>
+        <dependency>profile-interaktiv.tile_spacer:default</dependency>
+        <dependency>profile-interaktiv.tile_timeline:default</dependency>
+        <dependency>profile-interaktiv.tile_video:default</dependency>
+        <dependency>profile-interaktiv.tilepage_versioning:default</dependency>
+
+        <dependency>profile-interaktiv.theme:default</dependency>
+        <dependency>collective.solr:default</dependency>
+    </dependencies>
+</metadata>

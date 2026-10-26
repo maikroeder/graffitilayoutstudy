@@ -1,0 +1,13 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser">
+
+    <browser:page
+        name="pdfcheck-settings"
+        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+        class=".settings.PdfCheckSettingsView"
+        permission="cmf.ManagePortal"
+        layer="graffiti.pdfcheck.interfaces.IGraffitiPdfcheckLayer"
+    />
+
+</configure>

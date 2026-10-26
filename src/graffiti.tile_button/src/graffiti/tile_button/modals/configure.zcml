@@ -1,0 +1,23 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    i18n_domain="graffiti.tile_button">
+
+  <!-- Tab "CSS classes" in the dialog of the button tile -->
+  <browser:page
+      name="configure_tile_button_navigation_tabs"
+      for="interaktiv.basetiles.contenttypes.tilepage.ITilePage"
+      class="graffiti.tile_button.modals.button_dialog.ButtonDialogTabs"
+      permission="cmf.ModifyPortalContent"
+      layer="graffiti.tile_button.interfaces.IGraffitiTileButtonLayer"
+  />
+
+  <browser:page
+      name="configure_tile_button_content"
+      for="interaktiv.basetiles.contenttypes.tilepage.ITilePage"
+      class="graffiti.tile_button.modals.button_dialog.ButtonDialogContent"
+      permission="cmf.ModifyPortalContent"
+      layer="graffiti.tile_button.interfaces.IGraffitiTileButtonLayer"
+  />
+
+</configure>

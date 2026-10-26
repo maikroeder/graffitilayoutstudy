@@ -1,0 +1,45 @@
+// Header of the demo site: a stripe in the colors of the Graffiti logo below
+// the header, the main menu in black with a red underline instead of the
+// light blue of interaktiv.layout. Font and size of the menu come from the
+// tiles styleguide (scripts/setup_demo_theme.py).
+@graffiti-black: #0D0D0B;
+@graffiti-red: #DC2D19;
+@graffiti-orange: #D9912C;
+@graffiti-blue: #216991;
+
+header#company-header {
+  #company-topbar {
+    padding: 14px 0;
+  }
+  &::after {
+    background: linear-gradient(90deg, @graffiti-red 0%, @graffiti-orange 35%, @graffiti-blue 70%, @graffiti-black 100%);
+    bottom: 0;
+    content: '';
+    height: 4px;
+    left: 0;
+    position: absolute;
+    right: 0;
+  }
+}
+
+// one ID more than the rules of interaktiv.layout
+body.navigation-theme-navigation_default #company-topbar #company-navigation ul li {
+  a {
+    border-bottom-width: 4px;
+    border-bottom-color: transparent;
+    color: @graffiti-black;
+    &:hover {
+      border-bottom: 4px solid @graffiti-red;
+    }
+  }
+  &.in-path > a {
+    border-bottom: 4px solid @graffiti-red;
+  }
+  ul.sub-sections li a {
+    border-bottom: none;
+    &:hover {
+      border-bottom: none;
+      color: @graffiti-red;
+    }
+  }
+}

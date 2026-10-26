@@ -1,0 +1,9 @@
+<configure xmlns="http://namespaces.zope.org/zope">
+
+    <!-- replaces the upload utility of interaktiv.basetiles, see utilities/upload_file.py -->
+    <utility
+        factory=".utilities.upload_file.UploadFileUtilityWithoutPreviewError"
+        provides="interaktiv.basetiles.utilities.upload_file.IUploadFileUtility"
+    />
+
+</configure>

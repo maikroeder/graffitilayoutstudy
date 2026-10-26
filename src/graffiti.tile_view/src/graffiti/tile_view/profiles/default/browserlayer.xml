@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<layers>
+    <layer
+        name="graffiti.tile_view"
+        interface="graffiti.tile_view.interfaces.IGraffitiTileViewLayer"
+    />
+</layers>

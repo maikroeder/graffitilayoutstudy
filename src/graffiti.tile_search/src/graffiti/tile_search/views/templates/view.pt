@@ -1,0 +1,26 @@
+<html xmlns:i18n="http://xml.zope.org/namespaces/i18n" i18n:domain="graffiti.tile_search" lang="en">
+<tal:tile metal:use-macro="python: view.get_tile_view_macro()">
+  <div class="tile-content tile-search-content" metal:fill-slot="tile_content"
+       tal:define="input_id python: view.input_id()">
+    <form class="${python: view.form_classes()}"
+          role="search"
+          action="${python: view.search_url()}"
+          tal:attributes="data-pat-livesearch python: view.livesearch_options()">
+      <label class="hiddenStructure" for="${input_id}" i18n:domain="plone" i18n:translate="text_search">Search Site</label>
+      <input class="searchField form-control"
+             id="${input_id}"
+             name="${python: view.search_parameter_name()}"
+             type="text"
+             value=""
+             placeholder="Search Site"
+             title="Search Site"
+             i18n:domain="plone"
+             i18n:attributes="title title_search_site; placeholder title_search_site" />
+      <tal:parameters tal:repeat="parameter python: view.parameters().items()">
+        <input type="hidden" name="${python: parameter[0]}" value="${python: parameter[1]}" />
+      </tal:parameters>
+      <button class="searchButton btn btn-primary" type="submit" i18n:domain="plone" i18n:translate="label_search">Search</button>
+    </form>
+  </div>
+</tal:tile>
+</html>

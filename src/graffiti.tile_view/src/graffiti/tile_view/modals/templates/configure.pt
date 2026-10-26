@@ -1,0 +1,47 @@
+<tal:translate i18n:domain="graffiti.tile_view">
+
+  <div class="interaktivbasetiles-modal-header"
+       data-base_url="${python: context.absolute_url()}"
+       data-uid="${python: view.tile['id']}">
+    <i class="interaktiv-icon-basetilestheme-iframe"></i>
+    <h3 class="title" i18n:translate="label_configure_modal_title">Embedded view</h3>
+
+    <ul id="modal-header-actions">
+      <li class="modal-action-save" title="Save" i18n:attributes="title label_save_button">
+        <i class="interaktiv-icon-basetilestheme-check"></i>
+      </li>
+      <li class="interaktivbasetiles-modal-close" title="Abort" i18n:attributes="title label_abort_button">
+        <i class="interaktiv-icon-basetilestheme-delete-row"></i>
+      </li>
+    </ul>
+  </div>
+
+  <div class="interaktivbasetiles-modal-content container" tal:define="views python: view.get_views()">
+    <form class="modal-edit-form">
+      <div class="modal-content modal-content-row">
+        <div class="row modal-content-row form-group">
+          <div class="col-md-4">
+            <label for="tile-view-select" i18n:translate="label_view_id">View</label>
+          </div>
+          <div class="col-md-8 field">
+            <select name="view_id" id="tile-view-select" class="field-input select">
+              <option value="" i18n:translate="label_no_view">(none)</option>
+              <option tal:repeat="entry views" value="${entry/id}"
+                      tal:attributes="selected python: 'selected' if entry['selected'] else None"
+                      data-description="${entry/description}"
+                      data-mode="${entry/mode}">${entry/title}</option>
+            </select>
+          </div>
+        </div>
+        <div class="row modal-content-row">
+          <div class="col-md-12">
+            <p class="tile-view-description discreet"></p>
+          </div>
+        </div>
+      </div>
+      <input type="hidden" value="${python: view.tile['id']}" name="id" />
+    </form>
+    <div class="spinner"></div>
+  </div>
+
+</tal:translate>

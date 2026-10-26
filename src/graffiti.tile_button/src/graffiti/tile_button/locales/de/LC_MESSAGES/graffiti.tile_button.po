@@ -1,0 +1,30 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: graffiti.tile_button\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+"Language-Code: de\n"
+"Domain: graffiti.tile_button\n"
+
+msgid "label_additional_css_classes"
+msgstr "Zusätzliche CSS-Klassen"
+
+msgid "label_button_css_classes"
+msgstr "Button: Zusätzliche CSS-Klassen"
+
+msgid "help_button_css_classes"
+msgstr "Durch Leerzeichen getrennt. Erlaubt sind Buchstaben, Ziffern, Bindestrich und Unterstrich."
+
+msgid "msg_invalid_css_classes"
+msgstr "CSS-Klassen dürfen nur Buchstaben, Ziffern, Bindestrich und Unterstrich enthalten und werden durch Leerzeichen getrennt."
+
+msgid "label_css_classes_caption"
+msgstr "CSS-Klassen"
+
+msgid "label_css_classes_enabled"
+msgstr "Button-CSS-Klassen anbieten"
+
+msgid "help_css_classes_enabled"
+msgstr "Redakteure mit Gestaltungsrecht setzen eigene CSS-Klassen am Button. Ausgeschaltet wird das Feld nicht angeboten, bereits gesetzte Klassen bleiben an den Buttons."

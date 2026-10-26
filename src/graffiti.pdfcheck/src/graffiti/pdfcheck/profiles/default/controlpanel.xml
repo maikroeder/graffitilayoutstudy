@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<object name="portal_controlpanel" xmlns:i18n="http://xml.zope.org/namespaces/i18n" i18n:domain="graffiti.pdfcheck"
+        purge="False">
+  <configlet i18n:attributes="title"
+      title="PDF check settings"
+      action_id="pdfcheck-settings"
+      appId="graffiti.pdfcheck"
+      category="Products"
+      condition_expr=""
+      icon_expr=""
+      url_expr="string:${portal_url}/@@pdfcheck-settings"
+      visible="True">
+    <permission>Manage portal</permission>
+  </configlet>
+</object>

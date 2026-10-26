@@ -1,0 +1,37 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+    xmlns:i18n="http://namespaces.zope.org/i18n"
+    i18n_domain="graffiti.tile_view">
+
+    <i18n:registerTranslations directory="locales" />
+
+    <include file="permissions.zcml" />
+    <include package="graffiti.tile_view.adapters"/>
+    <include package="graffiti.tile_view.modals"/>
+    <include package="graffiti.tile_view.views"/>
+
+    <genericsetup:registerProfile
+        name="default"
+        title="graffiti.tile_view"
+        directory="profiles/default"
+        description="Installs the graffiti.tile_view package"
+        provides="Products.GenericSetup.interfaces.EXTENSION"
+        post_handler="graffiti.tile_view.setuphandlers.setup_after"
+    />
+
+    <genericsetup:registerProfile
+        name="uninstall"
+        title="graffiti.tile_view"
+        directory="profiles/uninstall"
+        description="Uninstalls the graffiti.tile_view package"
+        provides="Products.GenericSetup.interfaces.EXTENSION"
+        post_handler="graffiti.tile_view.setuphandlers.uninstall_after"
+    />
+
+    <utility
+            factory=".setuphandlers.HiddenProfiles"
+            name="graffiti.tile_view-hiddenprofiles"
+    />
+
+</configure>

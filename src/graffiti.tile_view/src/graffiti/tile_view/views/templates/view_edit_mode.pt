@@ -1,0 +1,17 @@
+<html xmlns:i18n="http://xml.zope.org/namespaces/i18n" i18n:domain="graffiti.tile_view" lang="en">
+<tal:tile metal:use-macro="python: view.get_tile_view_macro()">
+  <div class="tile-content tile-view-content tile-placeholder" metal:fill-slot="tile_content"
+       tal:define="entry python: view.get_entry()">
+    <p class="tile-placeholder-label">
+      <strong i18n:translate="label_placeholder">Embedded view</strong>
+      <span tal:condition="entry">${entry/title}
+        <em tal:condition="python: entry['mode'] == 'ajax_load'" i18n:translate="label_mode_ajax_load">(interim solution: content area of a normal page)</em>
+      </span>
+      <span tal:condition="not: entry" i18n:translate="label_placeholder_choose">No view chosen yet. Use the tile settings to pick one.</span>
+    </p>
+    <p class="tile-placeholder-info" tal:condition="entry">${entry/description}</p>
+    <p class="tile-placeholder-info" tal:condition="python: view.tile.get('view_id') and not entry"
+       i18n:translate="label_placeholder_unknown">The chosen view is no longer registered. Visitors do not see this tile.</p>
+  </div>
+</tal:tile>
+</html>

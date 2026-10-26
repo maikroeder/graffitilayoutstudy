@@ -1,0 +1,29 @@
+<configure
+        xmlns="http://namespaces.zope.org/zope"
+        xmlns:five="http://namespaces.zope.org/five"
+        xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+        i18n_domain="graffiti.policy">
+
+    <five:registerPackage package="." initialize=".initialize"/>
+
+    <include package=".upgrades" />
+
+    <genericsetup:registerProfile
+            name="default"
+            title="graffiti.policy"
+            directory="profiles/default"
+            description="Installs the graffiti.policy package"
+            provides="Products.GenericSetup.interfaces.EXTENSION"
+            post_handler="graffiti.policy.setuphandlers.post_install"
+    />
+
+    <genericsetup:registerProfile
+            name="uninstall"
+            title="graffiti.policy (uninstall)"
+            directory="profiles/uninstall"
+            description="Uninstalls the graffiti.policy add-on."
+            provides="Products.GenericSetup.interfaces.EXTENSION"
+            post_handler="graffiti.policy.setuphandlers.uninstall"
+    />
+
+</configure>

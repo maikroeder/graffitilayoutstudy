@@ -1,0 +1,121 @@
+// Content area of the demo site.
+
+// The theme rules put #viewlet-above-content (information bars of working
+// copies, lock info) into the row of the status messages without the
+// .container of #global_statusmessage, so these bars ran from the toolbar to
+// the right edge. Same layout as #global_statusmessage in interaktiv.layout.
+#company-content .status-message-row > #viewlet-above-content {
+  align-items: center;
+  display: flex;
+  flex-flow: column wrap;
+  padding-left: 15px;
+  padding-right: 15px;
+  width: 100%;
+  // the bars sit in their own wrappers (lock info, working copy)
+  > * {
+    max-width: 1200px;
+    width: 100%;
+  }
+}
+
+// Text tiles: lines of a readable length and lists that line up with the text
+// around them. Paragraphs with images keep the full width.
+#content .tile.tile-text .tile-content {
+  p:not(:has(img)),
+  ul,
+  ol {
+    max-width: 48rem;
+  }
+  ul,
+  ol {
+    padding-left: 1.25em;
+  }
+  li {
+    margin-bottom: 0.25em;
+  }
+}
+
+// Tiles with a background color (cards on the demo pages): slightly rounded corners
+#content .tile > .background-options .background-color {
+  border-radius: 6px;
+}
+
+// Tiles pages: interaktiv.layout puts no space between the header and the
+// content, because the rows of tiles bring their own margin. The byline of
+// signed-in users and the portlet columns have none, they touched the header.
+body.portaltype-tilepage {
+  #portal-column-one,
+  #portal-column-two {
+    padding-top: 25px;
+  }
+  #content > header .documentByLine {
+    padding-top: 15px;
+  }
+}
+
+// Parts of the demo pages (scripts/demo_common.py): plain HTML with classes
+// in text tiles, so that editors can copy them.
+@graffiti-text-red: #C42716;
+@graffiti-text-blue: #216991;
+
+#content .tile.tile-text .tile-content {
+  // the row brings the space above a tile, a heading at its top adds none
+  h2:first-child,
+  h3:first-child {
+    margin-top: 0;
+  }
+  p.lead {
+    .font-size-px(21);
+    line-height: 1.5;
+  }
+  // "At a glance": label above value
+  dl.graffiti-facts {
+    margin: 0;
+    dt {
+      color: @graffiti-text-blue;
+      font-family: "@{global-font-family-bold}";
+      .font-size-px(13);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+    dd {
+      margin: 0 0 12px 0;
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+  ul.graffiti-links {
+    list-style: none;
+    margin: 0;
+    padding-left: 0;
+    li::before {
+      color: @graffiti-text-blue;
+      content: '\2192\00a0';
+    }
+  }
+  // number of a step in "Try it"
+  .graffiti-step {
+    align-items: center;
+    background-color: @graffiti-text-red;
+    border-radius: 50%;
+    color: #FFFFFF;
+    display: inline-flex;
+    font-size: 0.8em;
+    height: 1.6em;
+    justify-content: center;
+    margin-right: 0.5em;
+    vertical-align: 0.1em;
+    width: 1.6em;
+  }
+  p.graffiti-screenshot img {
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    border-radius: 4px;
+    height: auto;
+    max-width: 100%;
+  }
+  pre {
+    white-space: pre-wrap;
+    word-break: break-word;
+  }
+}

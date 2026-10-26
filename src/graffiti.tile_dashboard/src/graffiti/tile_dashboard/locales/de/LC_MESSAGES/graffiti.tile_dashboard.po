@@ -1,0 +1,32 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: graffiti.tile_dashboard\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+"Language-Code: de\n"
+"Language-Name: German\n"
+"Preferred-Encodings: utf-8 latin1\n"
+"Domain: graffiti.tile_dashboard\n"
+
+msgid "label_TileDashboard"
+msgstr "Dashboard"
+
+msgid "help_TileDashboard"
+msgstr "Platzhalter für Dashboard-Boxen, deren Zahlen nachgeladen werden"
+
+msgid "label_title"
+msgstr "Titel"
+
+msgid "label_placeholder"
+msgstr "Dashboard"
+
+msgid "label_placeholder_help"
+msgstr "Die Boxen werden automatisch befüllt. Die Zahlen werden nur außerhalb des Editors geladen."
+
+msgid "label_placeholder_no_boxes"
+msgstr "Es gibt noch keine Boxen. Besucher sehen dieses Tile nicht."
+
+msgid "label_todo"
+msgstr "Zu erledigen"

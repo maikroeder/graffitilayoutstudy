@@ -1,0 +1,22 @@
+<configure xmlns="http://namespaces.zope.org/zope">
+  <permission
+      id="graffiti.tile_search.add"
+      title="InteraktivTiles: Add SearchTile"
+  />
+  <permission
+      id="graffiti.tile_search.delete"
+      title="InteraktivTiles: Delete SearchTile"
+  />
+  <permission
+      id="graffiti.tile_search.move"
+      title="InteraktivTiles: Move SearchTile"
+  />
+  <permission
+      id="graffiti.tile_search.modify"
+      title="InteraktivTiles: Modify SearchTile"
+  />
+  <permission
+      id="graffiti.tile_search.style"
+      title="InteraktivTiles: Style SearchTile"
+  />
+</configure>

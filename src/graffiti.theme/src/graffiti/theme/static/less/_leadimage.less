@@ -1,0 +1,136 @@
+// Header images of interaktiv.layout (toolbar "Header"): text in the fonts and
+// colors of the site instead of Exo 2 in black and white boxes, and lower
+// heights for all sizes, so that the content of a page still shows up on the
+// first screen. Position, sizes and box colors of the text come from
+// the tiles styleguide (scripts/setup_demo_theme.py).
+//
+// Fonts and colors of the text are variables of the styleguide from v29 on
+// (Plone 6), there the values of the control panel win over these defaults.
+@leadimage_title_font-family: Lato-Bold;
+@leadimage_title_font-color: #FFFFFF;
+@leadimage_description_font-family: Source-Sans-Pro;
+@leadimage_description_font-color: #DAD1B9;
+
+#company-header #company-leadimage .slide .information-container .information {
+  .title {
+    color: @leadimage_title_font-color;
+    font-family: "@{leadimage_title_font-family}";
+    line-height: 1.15;
+    div {
+      padding: 0;
+    }
+  }
+  .description {
+    color: @leadimage_description_font-color;
+    font-family: "@{leadimage_description_font-family}";
+    line-height: 1.4;
+    div {
+      padding: 8px 0 0 0;
+    }
+  }
+}
+
+// interaktiv.layout lets the text run over the full width below 992px, keep a margin
+#company-header #company-leadimage .slide .information-container {
+  @media (max-width: @screen-md) {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
+
+// the button of a slide in the colors of the primary button of the styleguide
+#company-header #company-leadimage .slide .information-container .information .button {
+  padding-top: 24px;
+  a {
+    background-color: @btn-theme-primary_bg-color;
+    border: none;
+    border-radius: @btn-theme-primary_border-radius;
+    color: @btn-theme-primary_color;
+    font-family: "@{global-font-family-bold}";
+    .font-size-px(18);
+    line-height: 44px;
+    padding-left: 22px;
+    padding-right: 22px;
+    &:hover {
+      background-color: @btn-theme-primary_bg-color_hover;
+    }
+  }
+}
+
+// On phones and tablets the text of a header runs over most of the width, there
+// is no room next to it for the motif on the right of the images. There the
+// text goes below the image, and the focus point of the image
+// (scripts/setup_demo_theme.py) keeps the motif in view.
+.leadimageStacked(@imageHeight) {
+  #company-leadimage {
+    height: auto;
+    .slider-wrapper {
+      height: auto;
+      .slick-slide {
+        height: auto;
+        .slide {
+          height: auto;
+          .image {
+            height: ~"@{imageHeight}px";
+          }
+          .information-container {
+            padding-bottom: 28px;
+            padding-top: 20px;
+            position: static;
+            transform: none;
+          }
+        }
+      }
+    }
+  }
+}
+
+// "big" is 900px high in interaktiv.layout, more than a screen
+body .header-image-size-0 {
+  @media (min-width: @screen-sm-max) {
+    .leadimageSize(540, 0, 0);
+  }
+  @media (min-width: @screen-sm-min) and (max-width: @screen-sm-max) {
+    .leadimageStacked(320);
+  }
+  @media (max-width: @screen-xs-max) {
+    .leadimageStacked(240);
+  }
+}
+
+body .header-image-size-1 {
+  @media (min-width: @screen-sm-max) {
+    .leadimageSize(400, 0, 0);
+  }
+  @media (min-width: @screen-sm-min) and (max-width: @screen-sm-max) {
+    .leadimageStacked(280);
+  }
+  @media (max-width: @screen-xs-max) {
+    .leadimageStacked(220);
+  }
+}
+
+body .header-image-size-2 {
+  @media (min-width: @screen-sm-max) {
+    .leadimageSize(280, 0, 0);
+  }
+  @media (min-width: @screen-sm-min) and (max-width: @screen-sm-max) {
+    .leadimageStacked(220);
+  }
+  @media (max-width: @screen-xs-max) {
+    .leadimageStacked(180);
+  }
+}
+
+// interaktiv.layout lays a slanted white edge over the header image of front
+// pages, that is pages named "startseite" or "frontpage". The edge is an SVG
+// for 1920px: on wider screens a second copy of it starts, and it hides the
+// stripe below the header. The demo site has a straight edge on every page.
+body.section-startseite,
+body.section-startseite-arbeitskopie,
+body.section-frontpage,
+body.section-frontpage-arbeitskopie {
+  #company-leadimage .header-border {
+    display: none;
+  }
+}

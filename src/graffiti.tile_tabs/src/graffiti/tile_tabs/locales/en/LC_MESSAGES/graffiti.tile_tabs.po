@@ -1,0 +1,50 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: graffiti.tile_tabs\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+"Language-Code: en\n"
+"Language-Name: English\n"
+"Preferred-Encodings: utf-8 latin1\n"
+"Domain: graffiti.tile_tabs\n"
+
+msgid "label_TileTabs"
+msgstr "Tab lists"
+
+msgid "help_TileTabs"
+msgstr "Placeholder that shows several lists in tabs"
+
+msgid "label_title"
+msgstr "Title"
+
+msgid "label_placeholder"
+msgstr "Tab lists"
+
+msgid "label_placeholder_help"
+msgstr "This area is filled automatically. The tabs can only be switched outside the editor."
+
+msgid "label_no_tabs"
+msgstr "No tabs. Visitors do not see this tile."
+
+msgid "label_no_rows"
+msgstr "No entries"
+
+msgid "label_column_title"
+msgstr "Title"
+
+msgid "label_column_type"
+msgstr "Type"
+
+msgid "label_column_modified"
+msgstr "Changed"
+
+msgid "label_tab_recent"
+msgstr "Recently changed"
+
+msgid "label_tab_mine"
+msgstr "Created by me"
+
+msgid "label_tab_folder"
+msgstr "In this folder"

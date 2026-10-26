@@ -1,0 +1,17 @@
+<html xmlns:i18n="http://xml.zope.org/namespaces/i18n" i18n:domain="graffiti.tile_tabs" lang="en">
+<tal:tile metal:use-macro="python: view.get_tile_view_macro()">
+  <div class="tile-content tile-tabs-content tile-placeholder" metal:fill-slot="tile_content"
+       tal:define="tabs python: view.get_tabs()">
+    <p class="tile-placeholder-label">
+      <strong i18n:translate="label_placeholder">Tab lists</strong>
+      <span i18n:translate="label_placeholder_help">This area is filled automatically. The tabs can only be switched outside the editor.</span>
+    </p>
+    <p class="tile-placeholder-info" tal:condition="tabs">
+      <span tal:repeat="tab tabs" class="tile-placeholder-tab">${tab/title} (${python: len(tab['rows'])})</span>
+    </p>
+    <p class="tile-placeholder-info" tal:condition="not: tabs" i18n:translate="label_no_tabs">
+      No tabs. Visitors do not see this tile.
+    </p>
+  </div>
+</tal:tile>
+</html>
