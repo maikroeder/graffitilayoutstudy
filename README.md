@@ -9,17 +9,18 @@ design guidelines.
 
 ```
 install.sh                all steps of the install howto, in order
-bootstrap.sh              howto step 2: venv + bin/buildout + upstream Graffiti checkout, symlinks into src/
+bootstrap.sh              howto step 2: venv + bin/buildout
 stage.cfg                 howto step 3 (gitignored): extends buildout.d/standalone.cfg, Apple Silicon pins
 _stage-settings.cfg       local instance settings (port 8080, admin/admin)
 buildout.cfg              plain entry point -> buildout.d/standalone.cfg
-buildout.d/               copied from Graffiti main (Plone 5.2.2, Python 3.8)
+buildout.d/               from Graffiti main (Plone 5.2.2, Python 3.8)
   base/sources.cfg        mr.developer pins for all interaktiv.* packages; develop/eggs incl. openheidelberg.*
 package.json, Gruntfile.js, pre.js, post.js    node side of the update_styleguide buildout part
+src/graffiti.*, src/interaktiv.cronjob, src/interaktiv.workingcopy
+                          vendored from Graffiti main, commit c3740f1 (2026-10-26); do not edit
+src/interaktiv.*          all other tiles editor packages: checked out by mr.developer, gitignored
 src/openheidelberg.layout        site layout (theme, tile page layouts, design tokens)
 src/openheidelberg.tile_events   OpenHeidelberg-specific tile
-upstream/graffiti         (gitignored) Graffiti main; src/graffiti.*, interaktiv.cronjob, interaktiv.workingcopy
-                          are symlinked into src/ by bootstrap.sh
 docs/design-guidelines.md placeholder for the input design guidelines
 ```
 
@@ -39,8 +40,7 @@ line tools, `node`/`npm`, SSH access to `code.interaktiv.de` (the `interaktiv.*`
 `package-json-interaktiv-merge` are cloned from there).
 
 Deviations from the howto, which assumes a git worktree of the Graffiti repo itself: this is a separate
-repo, so step 1 is replaced by cloning Graffiti into `upstream/graffiti` and symlinking its packages into
-`src/`; `stage.cfg` omits `nope.paperwork`; `package.json` carries the howto's step 5a `get_package` fix;
+repo, so step 1 is replaced by vendoring Graffiti's `src/` into this repo's `src/`; `stage.cfg` omits `nope.paperwork`; `package.json` carries the howto's step 5a `get_package` fix;
 `_stage-settings.cfg` is local (port 8080) rather than Graffiti's stage settings. Solr is not set up (the
 howto's "Not covered").
 

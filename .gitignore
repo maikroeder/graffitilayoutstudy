@@ -29,3 +29,37 @@ buildout.d/.plone.versioncheck.cache
 # Machine-specific buildout config (recreated per the install howto)
 /stage.cfg
 /package-lock.json
+
+# mr.developer checkouts of the interaktiv.* packages (src/interaktiv.cronjob and
+# src/interaktiv.workingcopy are vendored and tracked)
+src/interaktiv.framework
+src/interaktiv.layout
+src/interaktiv.fonts
+src/interaktiv.image_focus
+src/interaktiv.migrator
+src/interaktiv.recipe.solr
+src/interaktiv.basetiles
+src/interaktiv.buildinfo
+src/interaktiv.tile_audio
+src/interaktiv.tile_breadcrumbs
+src/interaktiv.tile_button
+src/interaktiv.tile_collapse
+src/interaktiv.tile_collection
+src/interaktiv.tile_contact
+src/interaktiv.tile_files
+src/interaktiv.tile_forms
+src/interaktiv.tile_icon
+src/interaktiv.tile_iframe
+src/interaktiv.tile_image
+src/interaktiv.tile_line
+src/interaktiv.tile_map
+src/interaktiv.tile_news
+src/interaktiv.tile_slider
+src/interaktiv.tile_spacer
+src/interaktiv.tile_subheadline
+src/interaktiv.tile_text
+src/interaktiv.tile_timeline
+src/interaktiv.tile_video
+src/interaktiv.tilepage_versioning
+/src/interaktiv.theme/
+/var/_styleguide.less

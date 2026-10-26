@@ -2,7 +2,7 @@
   "name": "graffiti",
   "version": "0.0.1",
   "repository": "https://code.interaktiv.de/interaktiv/graffiti",
-  "license": "UNLICENSED",
+  "license": "BSD-3-Clause",
   "devDependencies": {
     "@mojotech/raml2html-slate-theme": "^2.3.2",
     "api-designer": "^0.4.1",
@@ -87,6 +87,7 @@
       "graffiti.tile_dashboard",
       "graffiti.tile_view",
       "graffiti.tile_tabs",
+      "graffiti.tile_button",
       "interaktiv.workingcopy"
     ],
     "javascript_lib_files": [
