@@ -1,0 +1,36 @@
+# Generated Files
+*.mo
+*.pyc
+*.egg
+*.egg-info/
+.eggs/
+__pycache__/
+
+/.installed.cfg
+/.mr.developer.cfg
+/.env
+/.venv
+/develop-eggs
+/eggs
+/bin
+/parts
+/var/*
+/builds
+/node_modules
+/download-cache/
+
+# Upstream Graffiti checkout and mr.developer checkouts of interaktiv.* packages
+/upstream/
+/src/interaktiv.*
+
+# Versioncheck
+.plone.versioncheck.tracked.json
+buildout.d/.plone.versioncheck.cache
+
+.DS_Store
+.idea/
+
+# Machine-specific buildout config (recreated per the install howto)
+/stage.cfg
+/src/graffiti.*
+/package-lock.json
