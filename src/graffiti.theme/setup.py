@@ -1,6 +1,6 @@
 from os import path
 
-from setuptools import find_namespace_packages, setup
+from setuptools import find_packages, setup
 
 # Package metadata
 NAME = 'graffiti.theme'
@@ -45,7 +45,7 @@ setup(
     author_email=EMAIL,
     url=URL,
     license='BSD-3-Clause',
-    packages=find_namespace_packages('src'),
+    packages=find_packages('src'),
     # keeps the graffiti namespace working next to the other graffiti packages on Plone 5.2
     namespace_packages=['graffiti'],
     package_dir={'': 'src'},

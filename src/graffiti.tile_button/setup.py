@@ -1,6 +1,6 @@
 from os import path
 
-from setuptools import find_namespace_packages, setup
+from setuptools import find_packages, setup
 
 # Package metadata
 NAME = 'graffiti.tile_button'
@@ -53,7 +53,7 @@ setup(
     author_email=EMAIL,
     url=URL,
     license='BSD-3-Clause',
-    packages=find_namespace_packages('src'),
+    packages=find_packages('src'),
     # needed by z3c.autoinclude on Plone 5.2 to find the package inside the namespace
     namespace_packages=['graffiti'],
     package_dir={'': 'src'},
