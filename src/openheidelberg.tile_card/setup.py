@@ -1,6 +1,6 @@
 from os import path
 
-from setuptools import find_namespace_packages
+from setuptools import find_packages
 from setuptools import setup
 
 NAME = 'openheidelberg.tile_card'
@@ -42,7 +42,7 @@ setup(
     ],
     keywords='',
     author='Maik Röder',
-    packages=find_namespace_packages('src'),
+    packages=find_packages('src'),
     namespace_packages=['openheidelberg'],
     package_dir={'': 'src'},
     include_package_data=True,
