@@ -1,0 +1,14 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+    i18n_domain="openheidelberg.tile_events">
+
+    <genericsetup:registerProfile
+        name="default"
+        title="openheidelberg.tile_events"
+        directory="profiles/default"
+        description="Installs the openheidelberg.tile_events package"
+        provides="Products.GenericSetup.interfaces.EXTENSION"
+    />
+
+</configure>

@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<schema name="plone" version="1.5">
+
+  <uniqueKey>UID</uniqueKey>
+
+  <types>
+    <!-- https://solr.apache.org/guide/8_11/field-types-included-with-solr.html -->
+    <!-- parts/solr/example/example-DIH/solr/solr/conf/managed-schema -->
+
+    <!-- Default Field Types -->
+    <fieldType name="long" class="solr.LongPointField" docValues="true"/>
+    <fieldType name="boolean" class="solr.BoolField" sortMissingLast="true"/>
+    <fieldType name="date" class="solr.DatePointField" docValues="true"/>
+    <fieldType name="string" class="solr.StrField" sortMissingLast="true"/>
+
+    <!-- BBB support for existing schemas based on collective.solr -->
+    <fieldType name="integer" class="solr.IntPointField" docValues="true" />
+
+    <!-- Text Type with Tokenizer and Filters -->
+    <fieldType name="text" class="solr.TextField" positionIncrementGap="100">
+      <analyzer type="index">
+        <charFilter class="solr.MappingCharFilterFactory" mapping="mapping-FoldToASCII.txt"/>
+        <tokenizer class="solr.StandardTokenizerFactory"/>
+        <filter class="solr.SynonymGraphFilterFactory" synonyms="synonyms.txt" ignoreCase="true" expand="false"/>
+        <filter class="solr.StopFilterFactory" ignoreCase="true" words="stopwords.txt" format="snowball" />
+        <filter class="solr.WordDelimiterGraphFilterFactory"
+              splitOnCaseChange="1"
+              splitOnNumerics="1"
+              stemEnglishPossessive="1"
+              generateWordParts="1"
+              generateNumberParts="1"
+              catenateWords="1"
+              catenateNumbers="1"
+              catenateAll="0"
+              preserveOriginal="0"/>
+        <!-- filter class="solr.PatternCaptureGroupFilterFactory" pattern="(\d\d.\d\d).\d\d\d\d" preserve_original="true" / -->
+        <filter class="solr.DictionaryCompoundWordTokenFilterFactory" minWordSize="5" minSubwordSize="4" maxSubwordSize="15" onlyLongestMatch="true" dictionary="german-common-nouns.txt" />
+        <filter class="solr.LowerCaseFilterFactory"/>
+        <!-- filter class="solr.ReversedWildcardFilterFactory" withOriginal="true"
+                maxPosAsterisk="2" maxPosQuestion="1" minTrailing="2" maxFractionAsterisk="0"/ -->
+        <filter class="solr.FlattenGraphFilterFactory" />
+      </analyzer>
+      <analyzer type="query">
+        <charFilter class="solr.MappingCharFilterFactory" mapping="mapping-FoldToASCII.txt"/>
+        <tokenizer class="solr.StandardTokenizerFactory"/>
+        <filter class="solr.SynonymGraphFilterFactory" synonyms="synonyms.txt" ignoreCase="true" expand="true"/>
+        <filter class="solr.StopFilterFactory" ignoreCase="true" words="stopwords.txt" format="snowball" />
+        <filter class="solr.WordDelimiterGraphFilterFactory"
+              splitOnCaseChange="1"
+              splitOnNumerics="1"
+              stemEnglishPossessive="1"
+              generateWordParts="1"
+              generateNumberParts="1"
+              catenateWords="0"
+              catenateNumbers="0"
+              catenateAll="0"
+              preserveOriginal="0"/>
+        <!-- filter class="solr.PatternCaptureGroupFilterFactory" pattern="(\d\d.\d\d).\d\d\d\d" preserve_original="true" / -->
+        <filter class="solr.DictionaryCompoundWordTokenFilterFactory" minWordSize="5" minSubwordSize="4" maxSubwordSize="15" onlyLongestMatch="true" dictionary="german-common-nouns.txt" />
+        <filter class="solr.LowerCaseFilterFactory"/>
+      </analyzer>
+    </fieldType>
+
+    <!-- Text type that anchors on both ends and is basically a more forgiving "exact match" -->
+    <fieldType name="text_lr" class="solr.TextField" positionIncrementGap="100">
+      <analyzer>
+        <charFilter class="solr.PatternReplaceCharFilterFactory"
+          pattern="^(.*)$" replacement="AAAA $1 ZZZZ" />
+        <tokenizer class="solr.ICUTokenizerFactory"/>
+          <filter class="solr.ICUFoldingFilterFactory"/>
+      </analyzer>
+    </fieldType>
+
+    <!-- Text type that anchors on left end and is basically a more forgiving "exact match" -->
+    <fieldType name="text_l" class="solr.TextField" positionIncrementGap="100">
+      <analyzer>
+        <charFilter class="solr.PatternReplaceCharFilterFactory"
+          pattern="^(.*)$" replacement="AAAA $1" />
+        <tokenizer class="solr.ICUTokenizerFactory"/>
+          <filter class="solr.ICUFoldingFilterFactory"/>
+      </analyzer>
+    </fieldType>
+
+  </types>
+
+  <fields>
+    <!-- https://solr.apache.org/guide/8_11/defining-fields.html -->
+    <field name="id"                           type="string" indexed="true" stored="true" multiValued="false" />
+    <field name="_version_"                    type="long" indexed="true" stored="true" multiValued="false" />
+
+    <!-- Fields Plone -->
+    <field name="allowedRolesAndUsers"         type="string" indexed="true" stored="true" multiValued="true" />
+    <field name="privacyStatusGroupsAndUsers"  type="string" indexed="true" stored="true" multiValued="true" />
+    <field name="created"                      type="date" indexed="true" stored="true" multiValued="false" />
+    <field name="Creator"                      type="string" indexed="true" stored="true" multiValued="false" />
+    <field name="Date"                         type="date" indexed="true" stored="true" multiValued="false" />
+    <field name="default"                      type="text" indexed="true" stored="false" multiValued="true" />
+    <field name="Description"                  type="text" indexed="true" stored="true" multiValued="false" />
+    <field name="effective"                    type="date" indexed="true" stored="true" multiValued="false" />
+    <field name="exclude_from_nav"             type="boolean" indexed="true" stored="true" multiValued="false" />
+    <field name="expires"                      type="date" indexed="true" stored="true" multiValued="false" />
+    <field name="getIcon"                      type="string" indexed="false" stored="true" multiValued="false" />
+    <field name="getId"                        type="string" indexed="false" stored="true" multiValued="false" />
+    <field name="getRemoteUrl"                 type="string" indexed="false" stored="true" multiValued="false" />
+    <field name="is_default_page"              type="boolean" indexed="true" stored="true" multiValued="false" />
+    <field name="is_folderish"                 type="boolean" indexed="true" stored="true" multiValued="false" />
+    <field name="Language"                     type="string" indexed="true" stored="true" multiValued="false" />
+    <field name="modified"                     type="date" indexed="true" stored="true" multiValued="false" />
+    <field name="object_provides"              type="string" indexed="true" stored="true" multiValued="true" />
+    <field name="path_depth"                   type="integer" indexed="true" stored="true" multiValued="false" />
+    <field name="path_parents"                 type="string" indexed="true" stored="true" multiValued="true" />
+    <field name="path_string"                  type="string" indexed="false" stored="true" multiValued="false" />
+    <field name="portal_type"                  type="string" indexed="true" stored="true" multiValued="false" />
+    <field name="review_state"                 type="string" indexed="true" stored="true" multiValued="false" />
+    <field name="SearchableText"               type="text" indexed="true" stored="true" multiValued="false" />
+    <field name="searchwords"                  type="string" indexed="true" stored="true" multiValued="true" />
+    <field name="showinsearch"                 type="boolean" indexed="true" stored="true" multiValued="false" />
+    <field name="Subject"                      type="string" indexed="true" stored="true" multiValued="true" />
+    <field name="Title"                        type="text" indexed="true" stored="true" multiValued="false" />
+    <field name="Type"                         type="string" indexed="true" stored="true" multiValued="false" />
+    <field name="UID"                          type="string" indexed="true" stored="true" multiValued="false" required="true" />
+
+    <!-- Fields Graffiti / Additional Indexes -->
+    <field name="is_workingcopy"               type="boolean" indexed="true" stored="true" multiValued="false" />
+    <field name="last_editor_id"               type="string" indexed="true" stored="true" multiValued="false" />
+    <field name="last_editor_fullname"         type="string" indexed="true" stored="true" multiValued="false" />
+    <field name="icon_name"                    type="string" indexed="true" stored="true" multiValued="false" />
+    <field name="title_solr"                   type="string" indexed="true" stored="true" multiValued="false" />
+    <field name="title_exact"                  type="text_lr" indexed="true" stored="false" multiValued="false"/>
+    <field name="title_exact_start"            type="text_l" indexed="true" stored="false" multiValued="false"/>
+    <field name="division"                     type="string" indexed="true" stored="true" multiValued="true" />
+    <field name="current_voter"                type="string" indexed="true" stored="true" multiValued="true" />
+    <field name="voters"                       type="string" indexed="true" stored="true" multiValued="true" />
+    <field name="special_role_users"           type="string" indexed="true" stored="true" multiValued="true" />
+    <field name="next_check"                   type="date" indexed="true" stored="true" multiValued="false" />
+    <field name="reviewers"                    type="string" indexed="true" stored="true" multiValued="true" />
+    <field name="current_archive_approvers"    type="string" indexed="true" stored="true" multiValued="true" />
+    <field name="managed_documents"            type="string" indexed="true" stored="true" multiValued="true" />
+
+    <!-- Fields Graffiti / Metadata -->
+    <field name="document_type"                type="string" indexed="true" stored="true" multiValued="false" />
+    <field name="beteiligte_gremien"           type="string" indexed="true" stored="true" multiValued="true" />
+    <field name="beteiligte_rollen"            type="string" indexed="true" stored="true" multiValued="true" />
+    <field name="dokumentenkategorie"          type="string" indexed="true" stored="true" multiValued="false" />
+    <field name="geschaeftskritikalitaet"      type="string" indexed="true" stored="true" multiValued="false" />
+    <field name="priorisierte_quellen"         type="string" indexed="true" stored="true" multiValued="true" />
+    <field name="kategorie"                    type="string" indexed="true" stored="true" multiValued="false" />
+    <field name="prozesstyp"                   type="string" indexed="true" stored="true" multiValued="false" />
+    <field name="regulatorische_anforderungen" type="string" indexed="true" stored="true" multiValued="true" />
+    <field name="pruefungsrelevant_fuer"       type="string" indexed="true" stored="true" multiValued="true" />
+    <field name="schlagwoerter"                type="string" indexed="true" stored="true" multiValued="true" />
+    <field name="zeitkritikalitaet"            type="string" indexed="true" stored="true" multiValued="false" />
+    <field name="standort"                     type="string" indexed="true" stored="true" multiValued="true" />
+
+    <!-- Fields Graffiti / Graffiti -->
+    <field name="prozesszuordnung"             type="string" indexed="true" stored="true" multiValued="true" />
+    <field name="unit"                         type="string" indexed="true" stored="true" multiValued="false" />
+    <field name="is_sfixo_relevant"            type="boolean" indexed="true" stored="true" multiValued="false" />
+    <field name="ism_relevant"                 type="boolean" indexed="true" stored="true" multiValued="false" />
+    <field name="scope"                        type="string" indexed="true" stored="true" multiValued="true" />
+    <field name="privacy_status"               type="string" indexed="true" stored="true" multiValued="false" />
+    <field name="document_responsible"         type="string" indexed="true" stored="true" multiValued="true" />
+    <field name="org_consultant"               type="string" indexed="true" stored="true" multiValued="true" />
+
+    <!-- Fields Graffiti / Migration -->
+    <field name="old_path"                     type="string" indexed="true" stored="true" multiValued="false" />
+    <field name="old_uid"                      type="string" indexed="true" stored="true" multiValued="false" />
+    <field name="old_intid"                    type="string" indexed="true" stored="true" multiValued="false" />
+
+    <!-- CopyFields Plone -->
+    <copyField source="Title" dest="default"/>
+    <copyField source="Description" dest="default"/>
+    <copyField source="Subject" dest="default"/>
+    <copyField source="default" dest="SearchableText"/>
+
+    <!-- CopyFields GRAFFITI -->
+    <copyField source="Title" dest="title_solr" />
+    <copyField source="Title" dest="title_exact"/>
+    <copyField source="Title" dest="title_exact_start"/>
+  </fields>
+
+</schema>

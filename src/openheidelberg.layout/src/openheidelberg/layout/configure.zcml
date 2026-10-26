@@ -1,0 +1,14 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+    i18n_domain="openheidelberg.layout">
+
+    <genericsetup:registerProfile
+        name="default"
+        title="openheidelberg.layout"
+        directory="profiles/default"
+        description="Installs the openheidelberg.layout package"
+        provides="Products.GenericSetup.interfaces.EXTENSION"
+    />
+
+</configure>
