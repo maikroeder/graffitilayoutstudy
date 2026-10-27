@@ -35,3 +35,12 @@ The image sits in a fixed 16:9 frame (`aspect-ratio`) and is cropped with `objec
 one row stay equally tall whatever the image proportions. The description is clamped to four lines. The action
 link stretches over the whole card (`::after`), so the card as a whole is the click target, which gives
 news-style grids a single primary action per card. The image scale is `@@images/image/large`.
+
+## Plain CSS bundle
+
+`static/css/tile.css` holds the same rules as `static/less/tile.less`. It is registered as the Plone bundle
+`openheidelberg-tile-card` (`profiles/default/registry.xml`), served from the resource directory
+`++resource++openheidelberg.tile_card/css/tile.css` without compilation, so a reload shows edits without
+buildout or Grunt. The bundle adds one `<link>` per page (not per tile) and only on tiles pages. Grunt still
+compiles `tile.less` into `style.css`, so the rules exist twice: keep the two files in sync, or whichever stylesheet
+loads last wins.

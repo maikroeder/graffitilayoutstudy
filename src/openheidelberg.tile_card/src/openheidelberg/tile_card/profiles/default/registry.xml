@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<registry>
+    <!-- One stylesheet <link> per page (not per tile), only on tiles pages. The browser
+         caches it across pages. compile=False: the file is served as it is. -->
+    <records prefix="plone.bundles/openheidelberg-tile-card"
+             interface="Products.CMFPlone.interfaces.IBundleRegistry">
+        <value key="enabled">True</value>
+        <value key="compile">False</value>
+        <value key="csscompilation">++resource++openheidelberg.tile_card/css/tile.css</value>
+        <value key="expression">python: getattr(context, 'portal_type', '') == 'TilePage'</value>
+        <value key="depends">plone</value>
+        <value key="last_compilation">2026-10-27 09:00:00</value>
+    </records>
+</registry>

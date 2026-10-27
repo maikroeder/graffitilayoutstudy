@@ -1,7 +1,14 @@
 <configure
     xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
     xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
     i18n_domain="openheidelberg.tile_card">
+
+    <!-- plain CSS, served live: ++resource++openheidelberg.tile_card/css/tile.css -->
+    <browser:resourceDirectory
+        name="openheidelberg.tile_card"
+        directory="static"
+    />
 
     <include file="permissions.zcml" />
     <include package=".views" />
