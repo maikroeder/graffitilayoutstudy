@@ -6,10 +6,11 @@
     flex-direction: column;
     height: 100%;
     background: #fff;
-    border: 1px solid #d9d9d9;
-    border-radius: 4px;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
-    overflow: hidden;
+    border: 1px solid #e3e3e3;
+    border-radius: 10px;
+    // two layers: a tight contact shadow and a wide soft one for depth
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.10), 0 6px 16px rgba(0, 0, 0, 0.10);
+    overflow: hidden; // also clips the image to the rounded corners
   }
   // Fixed 16:9 frame: cards of different images stay equally tall side by side,
   // the image is cropped (not distorted) to fill the frame.
@@ -56,7 +57,7 @@
     display: inline-block;
     padding: 0.4em 1em;
     border: 1px solid currentColor;
-    border-radius: 3px;
+    border-radius: 6px; // a bit tighter than the 10px card corner
     text-decoration: none;
 
     // the single primary action covers the whole card, so the card as a whole is the click target
