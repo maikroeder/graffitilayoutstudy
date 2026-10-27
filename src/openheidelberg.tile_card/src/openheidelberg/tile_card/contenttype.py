@@ -5,6 +5,7 @@ from interaktiv.basetiles.contenttypes.basetile import BaseTile
 from interaktiv.basetiles.contenttypes.basetile import IBaseTile
 from interaktiv.basetiles.stubs import TilePermissions
 from openheidelberg.tile_card import _
+from openheidelberg.tile_card.vocabularies.orientation import DEFAULT_ICON_ORIENTATION
 from plone.app.vocabularies.catalog import CatalogSource
 from z3c.relationfield.schema import RelationChoice
 from zope.interface import implementer
@@ -19,6 +20,9 @@ class ITileCard(IBaseTile):
         image_alt=TilePermissions.MODIFY,
         link_href=TilePermissions.MODIFY,
         link_label=TilePermissions.MODIFY,
+        link_show_button=TilePermissions.MODIFY,
+        card_icon=TilePermissions.MODIFY,
+        card_icon_orientation=TilePermissions.MODIFY,
         link_new_window=TilePermissions.MODIFY,
     ))
 
@@ -58,6 +62,16 @@ class ITileCard(IBaseTile):
         required=False,
     )
 
+    link_show_button = schema.Bool(
+        title=_('label_card_link_show_button', default='Show the action button'),
+        description=_(
+            'help_card_link_show_button',
+            default='Off: no button; the title becomes the link and the whole card stays clickable.'
+        ),
+        default=True,
+        required=False,
+    )
+
     link_label = schema.TextLine(
         title=_('label_card_link_label', default='Action label'),
         required=False,
@@ -66,6 +80,25 @@ class ITileCard(IBaseTile):
     link_new_window = schema.Bool(
         title=_('label_card_link_new_window', default='Open in a new window'),
         default=False,
+        required=False,
+    )
+
+
+    card_icon = schema.Choice(
+        title=_('label_card_icon', default='Icon'),
+        description=_(
+            'help_card_icon',
+            default='Shown beside the title and the description, spanning both.'
+        ),
+        default='',
+        source='interaktiv.basetiles.vocabularies.icon_fonts.icon_fonts',
+        required=False,
+    )
+
+    card_icon_orientation = schema.Choice(
+        title=_('label_card_icon_orientation', default='Icon position'),
+        default=DEFAULT_ICON_ORIENTATION,
+        source='openheidelberg.tile_card.vocabularies.icon_orientations',
         required=False,
     )
 

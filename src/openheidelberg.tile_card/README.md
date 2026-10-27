@@ -15,7 +15,13 @@ Portal type `TileCard`, tile id `openheidelberg_tile_card`, label "Card". Fields
 
 - `title` (required), `description` (short text)
 - `image` (relation to an Image) and `image_alt`
-- one primary action: `link_href` (full URL or a path starting with `/`), `link_label`, `link_new_window`
+- one primary action: `link_href` (full URL or a path starting with `/`), `link_label`, `link_new_window`, `link_show_button`.
+  With `link_show_button` off (default on) there is no button: the title becomes the link and the whole card stays
+  clickable. Cards created before the option existed keep their button.
+- an optional icon (`card_icon`, from the icon fonts of interaktiv.basetiles and its font families) and
+  `card_icon_orientation` (`left`, the default, `right`, or `title`). `left`/`right` put the icon in a column beside the title and the
+  description together, spanning both; `title` puts it beside the title only, with the description below
+  starting at the icon's left edge. The "Edit card" dialog has an "Icon" tab for it.
 
 Editing happens in a small modal ("Edit card" in the tile's tool bar, page `@@configure_tilecard_modal`) that
 saves through the generic `update_content` API of interaktiv.basetiles. Background, padding, vertical

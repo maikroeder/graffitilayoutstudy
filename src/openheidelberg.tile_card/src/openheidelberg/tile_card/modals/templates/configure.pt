@@ -16,8 +16,32 @@
     </ul>
   </div>
 
+  <div class="interaktivbasetiles-modal-topbar">
+    <div class="row">
+      <div class="col-md-12 modal-navigation">
+        <div id="modal-tabs-wrapper">
+          <ul class="nav-tabs" role="tablist">
+            <li role="presentation" class="general active">
+              <a role="tab" data-toggle="tab" href="#tab-card-general" aria-controls="tab-card-general"
+                 data-type="general" i18n:translate="label_tab_general">Content</a>
+            </li>
+            <li role="presentation" class="icon">
+              <a role="tab" data-toggle="tab" href="#tab-card-icon" aria-controls="tab-card-icon"
+                 data-type="icon" i18n:translate="label_tab_icon">Icon</a>
+            </li>
+          </ul>
+          <script>
+            if (typeof navigationActiveLine === 'function') { navigationActiveLine('.nav-tabs'); }
+          </script>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <div class="interaktivbasetiles-modal-content container">
-    <form class="modal-edit-form">
+    <form class="modal-edit-form tab-content">
+      <div role="tabpanel" class="tab-pane tab-general active" id="tab-card-general">
+
       <div class="modal-content modal-content-row">
 
         <div class="row modal-content-row form-group">
@@ -65,6 +89,18 @@
         </div>
 
         <div class="row modal-content-row form-group">
+          <div class="col-md-4"><label for="card-link-show-button" i18n:translate="label_card_link_show_button">Show the action button</label></div>
+          <div class="col-md-8 field">
+            <select id="card-link-show-button" name="link_show_button" class="field-input select"
+                    tal:define="show python: view.tile.get('link_show_button', None) is not False">
+              <option value="true" tal:attributes="selected python: 'selected' if show else None" i18n:translate="label_yes">Yes</option>
+              <option value="false" tal:attributes="selected python: None if show else 'selected'" i18n:translate="label_no">No</option>
+            </select>
+            <p class="discreet" i18n:translate="help_card_link_show_button">Off: no button; the title becomes the link and the whole card stays clickable.</p>
+          </div>
+        </div>
+
+        <div class="row modal-content-row form-group">
           <div class="col-md-4"><label for="card-link-label" i18n:translate="label_card_link_label">Action label</label></div>
           <div class="col-md-8 field">
             <input type="text" id="card-link-label" name="link_label" class="field-input text"
@@ -83,6 +119,47 @@
         </div>
 
       </div>
+      </div>
+
+      <div role="tabpanel" class="tab-pane tab-icon" id="tab-card-icon">
+        <div class="modal-content modal-content-row">
+
+          <div class="row modal-content-row form-group">
+            <div class="col-md-4"><label for="card-icon-orientation" i18n:translate="label_card_icon_orientation">Icon position</label></div>
+            <div class="col-md-8 field">
+              <select id="card-icon-orientation" name="card_icon_orientation" class="field-input select">
+                <option tal:repeat="o python: view.get_icon_orientations()" value="${o/id}"
+                        tal:attributes="selected python: 'selected' if o['id'] == view.get_selected_icon_orientation() else None">${o/title}</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="row modal-content-row no-icon-row">
+            <div class="col-md-12">
+              <div class="no-icon-wrapper">
+                <input type="radio" name="card_icon" value="" title="No icon"
+                       tal:attributes="checked python: not view.tile.get('card_icon', '')" />
+                <span i18n:translate="label_no_icon">No icon</span>
+              </div>
+            </div>
+          </div>
+
+          <tal:icon_groups repeat="icon_group view/get_selectable_icon_groups">
+            <div class="row modal-content-row">
+              <div class="col-md-12">
+                <p class="caption" tal:content="python: icon_group['title']"></p>
+                <tal:selectable_icons repeat="icon python: icon_group['icons']">
+                  <input type="radio" class="icon-selector ${python: icon['icon_class']}"
+                         name="card_icon" value="${python: icon['icon_class']}" title="${python: icon['title']}"
+                         tal:attributes="checked python: icon['icon_class'] == view.tile.get('card_icon', '')" />
+                </tal:selectable_icons>
+              </div>
+            </div>
+          </tal:icon_groups>
+
+        </div>
+      </div>
+
       <input type="hidden" value="${python: view.tile['id']}" name="id" />
     </form>
     <div class="spinner"></div>

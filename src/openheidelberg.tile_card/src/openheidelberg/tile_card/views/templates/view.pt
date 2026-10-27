@@ -1,15 +1,25 @@
 <tal:translate i18n:domain="openheidelberg.tile_card">
 <tal:tile metal:use-macro="python: view.get_tile_view_macro()">
   <div class="tile-content tile-card-content" metal:fill-slot="tile_content"
-       tal:define="image python: view.get_image(); link python: view.get_link()">
+       tal:define="image python: view.get_image(); link python: view.get_link(); icon python: view.get_icon(); orientation python: view.get_icon_orientation()">
     <article class="card">
       <figure class="card-image" tal:condition="python: image">
         <img src="${image/url}" alt="${image/alt}" loading="lazy" />
       </figure>
       <div class="card-body">
-        <h3 class="card-title">${python: view.tile.get('title', '')}</h3>
-        <p class="card-description" tal:condition="python: view.tile.get('description')">${python: view.tile.get('description')}</p>
-        <p class="card-action" tal:condition="python: link">
+        <div class="card-main" data-icon-orientation="${orientation}">
+          <i class="card-icon ${icon}" aria-hidden="true" tal:condition="python: icon" />
+          <div class="card-text">
+            <h3 class="card-title">
+              <a class="card-link card-link-plain" href="${link/href}"
+                 tal:condition="python: link and not link['show_button']"
+                 tal:attributes="target python: link['target'] or None; rel python: link['rel'] or None">${python: view.tile.get('title', '')}</a>
+              <tal:plain condition="python: not link or link['show_button']">${python: view.tile.get('title', '')}</tal:plain>
+            </h3>
+            <p class="card-description" tal:condition="python: view.tile.get('description')">${python: view.tile.get('description')}</p>
+          </div>
+        </div>
+        <p class="card-action" tal:condition="python: link and link['show_button']">
           <a class="card-link" href="${link/href}"
              tal:attributes="target python: link['target'] or None; rel python: link['rel'] or None">${link/label}</a>
         </p>

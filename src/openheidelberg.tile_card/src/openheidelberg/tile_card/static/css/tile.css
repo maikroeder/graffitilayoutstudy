@@ -203,7 +203,7 @@
 
 /* teaser length: at most four lines, so cards in a row stay balanced */
 .tile-card .card-description {
-  margin: 0 0 1em;
+  margin: 0;
   display: -webkit-box;
   -webkit-line-clamp: 4;
   -webkit-box-orient: vertical;
@@ -212,6 +212,17 @@
 
 .tile-card .card-action {
   margin: auto 0 0;
+  padding-top: 1em;
+}
+
+/* Theme p margins (ID selector) would add space below the last text line. Spacing to the
+   button comes from the action's padding, so cards without a button end at the card padding. */
+#content-core .tile-card .card-description {
+  margin-bottom: 0;
+}
+
+#content-core .tile-card .card-action {
+  padding-top: 1em;
 }
 
 /* The action. Barceloneta styles every link in the content area with
@@ -247,6 +258,99 @@
 #content-core .tile-card .card-link:focus-visible {
   outline: 2px solid var(--card-accent, #337ab7);
   outline-offset: 2px;
+}
+
+/* Without the button the title is the link: plain text colour, no border, underlined while
+   the card is hovered. The ::after below still makes the whole card the click target. */
+.tile-card .card-link.card-link-plain,
+#content-core .tile-card .card-link.card-link-plain {
+  display: inline;
+  padding: 0;
+  color: inherit;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  text-decoration: none;
+}
+
+.tile-card .card:hover .card-link.card-link-plain,
+#content-core .tile-card .card:hover .card-link.card-link-plain,
+.tile-card .card-link.card-link-plain:hover,
+#content-core .tile-card .card-link.card-link-plain:hover,
+.tile-card .card-link.card-link-plain:focus,
+#content-core .tile-card .card-link.card-link-plain:focus {
+  color: var(--card-accent, #337ab7);
+  background: transparent;
+  border: 0;
+  text-decoration: underline;
+}
+
+/* Icon column. The icon sits beside the title and the description together and spans both
+   vertically; data-icon-orientation="right" puts it behind the text. The icon column has a fixed
+   width and the gap keeps the text clear of it. */
+.tile-card .card-main {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.25em;
+}
+
+.tile-card .card-main .card-text {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.tile-card .card-icon {
+  flex: 0 0 1.25rem;
+  width: 1.25rem;
+  font-size: 1.25rem;
+  font-style: normal;
+  line-height: 1;
+  text-align: center;
+}
+
+/* The theme gives h3 a top margin (ID selector); drop it so the title and the
+   icon both start at the card padding, the same distance as from the left edge. */
+#content-core .tile-card .card-title {
+  margin-top: 0;
+}
+
+.tile-card .card-main[data-icon-orientation="right"] .card-icon {
+  order: 2;
+}
+
+/* "title": the icon sits beside the title only; the description starts below, at the icon's
+   left edge. card-text is flattened (display: contents) so title and description can be placed
+   on the same grid as the icon. */
+.tile-card .card-main[data-icon-orientation="title"] {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: start;
+  gap: 0 1em;
+}
+
+.tile-card .card-main[data-icon-orientation="title"] .card-text {
+  display: contents;
+}
+
+.tile-card .card-main[data-icon-orientation="title"] .card-icon {
+  grid-column: 1;
+  grid-row: 1;
+  width: auto;
+}
+
+.tile-card .card-main[data-icon-orientation="title"] .card-title,
+#content-core .tile-card .card-main[data-icon-orientation="title"] .card-title {
+  grid-column: 2;
+  grid-row: 1;
+  min-width: 0;
+  margin-bottom: 0;
+}
+
+.tile-card .card-main[data-icon-orientation="title"] .card-description,
+#content-core .tile-card .card-main[data-icon-orientation="title"] .card-description {
+  grid-column: 1 / -1;
+  grid-row: 2;
+  margin-top: 1em;
 }
 
 /* the single primary action covers the whole card, so the card as a whole is the click target */

@@ -5,7 +5,9 @@ from typing import Optional
 
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from interaktiv.basetiles.views.basetile import BaseTileView
+from interaktiv.framework import vocabulary as framework_vocabulary
 from openheidelberg.tile_card import _
+from openheidelberg.tile_card.vocabularies.orientation import DEFAULT_ICON_ORIENTATION
 
 
 class TileCardView(BaseTileView):
@@ -36,19 +38,41 @@ class TileCardView(BaseTileView):
         if not label:
             label = self.context.translate(_('label_card_default_action', default='Read more'))
         new_window = bool(self.tile.get('link_new_window', False))
+        show_button = self.tile.get('link_show_button', None)
+        if show_button is None:
+            show_button = True  # cards created before the option existed keep their button
         return {
             'href': href,
             'label': label,
+            'show_button': bool(show_button),
             'target': '_blank' if new_window else '',
             'rel': 'noopener' if new_window else '',
         }
+
+    def get_icon(self) -> str:
+        """CSS class of the chosen icon; empty if none is set or the value is not a known icon."""
+        value = self.tile.get('card_icon', '') or ''
+        if not value:
+            return ''
+        vocab = framework_vocabulary.get_vocabulary(ident='TileCard', field='card_icon')
+        if value in vocab.by_value:
+            return vocab.getTerm(value).value
+        if value in vocab.by_token:
+            return vocab.getTermByToken(value).value
+        return ''
+
+    def get_icon_orientation(self) -> str:
+        value = self.tile.get('card_icon_orientation', None)
+        if value in ('left', 'right', 'title'):
+            return value
+        return DEFAULT_ICON_ORIENTATION
 
     def get_available_tile_actions(self) -> List[Dict]:
         actions = super().get_available_tile_actions()
         return self.append_tile_action(actions=actions, action={
             'action_id': 'configure_tilecard_modal',
             'data_modal': '/configure_tilecard_modal',
-            'data_modal_size': 'md',
+            'data_modal_size': 'lg',
             'data_modal_request': json.dumps({'id': self.tile.get('id')}),
             'data_modal_params': json.dumps({
                 'tagClass': 'configure_tilecard_modal',

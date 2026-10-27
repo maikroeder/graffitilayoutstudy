@@ -4,7 +4,10 @@ from typing import List
 import plone.api as api
 from Products.Five.browser import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
+from interaktiv.basetiles.vocabularies.icon_fonts import get_selectable_icon_groups
 from interaktiv.framework import form
+from openheidelberg.tile_card.vocabularies.orientation import DEFAULT_ICON_ORIENTATION
+from openheidelberg.tile_card.vocabularies.orientation import ICON_ORIENTATIONS
 from zExceptions import NotFound
 
 try:
@@ -53,3 +56,17 @@ class ConfigureModalView(BrowserView):
                 'selected': uid == selected,
             })
         return result
+
+    def get_selectable_icon_groups(self) -> list:
+        local_roles = api.user.get_roles(obj=self.context)
+        return get_selectable_icon_groups(local_roles=local_roles)
+
+    @staticmethod
+    def get_icon_orientations() -> list:
+        return ICON_ORIENTATIONS
+
+    def get_selected_icon_orientation(self) -> str:
+        value = self.tile.get('card_icon_orientation', None)
+        if value in ('left', 'right'):
+            return value
+        return DEFAULT_ICON_ORIENTATION
