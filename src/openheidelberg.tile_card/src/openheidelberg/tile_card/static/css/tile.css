@@ -1,5 +1,5 @@
-/* Card tile, plain CSS served live from the resource directory.
-   Same rules as ../less/tile.less (which Grunt still compiles into style.css). */
+/* Card tile, plain CSS served live from the resource directory as the Plone bundle
+   openheidelberg-tile-card. There is no LESS source: Grunt does not compile this file. */
 
 .tile-card .card {
   position: relative;

@@ -38,9 +38,7 @@ news-style grids a single primary action per card. The image scale is `@@images/
 
 ## Plain CSS bundle
 
-`static/css/tile.css` holds the same rules as `static/less/tile.less`. It is registered as the Plone bundle
-`openheidelberg-tile-card` (`profiles/default/registry.xml`), served from the resource directory
-`++resource++openheidelberg.tile_card/css/tile.css` without compilation, so a reload shows edits without
-buildout or Grunt. The bundle adds one `<link>` per page (not per tile) and only on tiles pages. Grunt still
-compiles `tile.less` into `style.css`, so the rules exist twice: keep the two files in sync, or whichever stylesheet
-loads last wins.
+`static/css/tile.css` is the only stylesheet of the tile (there is no LESS file in this branch). It is registered as
+the Plone bundle `openheidelberg-tile-card` (`profiles/default/registry.xml`) and served from the resource directory
+`++resource++openheidelberg.tile_card/css/tile.css` without compilation, so a reload shows edits without buildout or
+Grunt. The bundle adds one `<link>` per page (not per tile) and only on tiles pages.
