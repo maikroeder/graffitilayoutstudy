@@ -20,12 +20,12 @@ Portal type `TileCard`, tile id `openheidelberg_tile_card`, label "Card". Fields
 Editing happens in a small modal ("Edit card" in the tile's tool bar, page `@@configure_tilecard_modal`) that
 saves through the generic `update_content` API of interaktiv.basetiles. Background, padding, vertical
 alignment and anchor come from the basetiles behaviors. The card boundary (border and soft shadow) is defined in
-`static/less/tile.less`.
+`static/css/tile.css`.
 
 ## Activate after an update
 
 Because the add-on was already installed as a dependency of `openheidelberg.policy`, run
-`./bin/buildout -c stage.cfg` (LESS and JS are collected by the Grunt part), restart `bin/instance fg`, then
+`./bin/buildout -c stage.cfg` (the Grunt part collects the modal JS), restart `bin/instance fg`, then
 re-apply the profile `openheidelberg.tile_card:default` (Site Setup, Add-ons, or ZMI `portal_setup`, Import,
 profile `openheidelberg.tile_card`). The tile registration happens in the profile's post handler.
 
