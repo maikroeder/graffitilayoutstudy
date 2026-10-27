@@ -14,6 +14,160 @@
   overflow: hidden; /* also clips the image to the rounded corners */
 }
 
+/* Equal-width cards with a gap. The tile padding is written inline by the editor (0 by
+   default) and the row gives every tile the same width W/n, so the gap is made from margins on
+   the card. With gap g and n columns, card i (0-based) gets margin-left i*g/n and margin-right
+   (n-1-i)*g/n: every card is then (W - (n-1)*g)/n wide, the first card stays flush with the
+   page text and the last one with the right edge of the row. Set --card-gap on a row or a
+   parent to change the gap. Defined for rows of 2 to 6 columns (class columns-N). */
+
+.tile-row.columns-2 .tile-card:nth-child(1) .card {
+  margin-left: calc(var(--card-gap, 24px) * 0 / 2);
+  margin-right: calc(var(--card-gap, 24px) * 1 / 2);
+}
+
+.tile-row.columns-2 .tile-card:nth-child(2) .card {
+  margin-left: calc(var(--card-gap, 24px) * 1 / 2);
+  margin-right: calc(var(--card-gap, 24px) * 0 / 2);
+}
+
+.tile-row.columns-3 .tile-card:nth-child(1) .card {
+  margin-left: calc(var(--card-gap, 24px) * 0 / 3);
+  margin-right: calc(var(--card-gap, 24px) * 2 / 3);
+}
+
+.tile-row.columns-3 .tile-card:nth-child(2) .card {
+  margin-left: calc(var(--card-gap, 24px) * 1 / 3);
+  margin-right: calc(var(--card-gap, 24px) * 1 / 3);
+}
+
+.tile-row.columns-3 .tile-card:nth-child(3) .card {
+  margin-left: calc(var(--card-gap, 24px) * 2 / 3);
+  margin-right: calc(var(--card-gap, 24px) * 0 / 3);
+}
+
+.tile-row.columns-4 .tile-card:nth-child(1) .card {
+  margin-left: calc(var(--card-gap, 24px) * 0 / 4);
+  margin-right: calc(var(--card-gap, 24px) * 3 / 4);
+}
+
+.tile-row.columns-4 .tile-card:nth-child(2) .card {
+  margin-left: calc(var(--card-gap, 24px) * 1 / 4);
+  margin-right: calc(var(--card-gap, 24px) * 2 / 4);
+}
+
+.tile-row.columns-4 .tile-card:nth-child(3) .card {
+  margin-left: calc(var(--card-gap, 24px) * 2 / 4);
+  margin-right: calc(var(--card-gap, 24px) * 1 / 4);
+}
+
+.tile-row.columns-4 .tile-card:nth-child(4) .card {
+  margin-left: calc(var(--card-gap, 24px) * 3 / 4);
+  margin-right: calc(var(--card-gap, 24px) * 0 / 4);
+}
+
+.tile-row.columns-5 .tile-card:nth-child(1) .card {
+  margin-left: calc(var(--card-gap, 24px) * 0 / 5);
+  margin-right: calc(var(--card-gap, 24px) * 4 / 5);
+}
+
+.tile-row.columns-5 .tile-card:nth-child(2) .card {
+  margin-left: calc(var(--card-gap, 24px) * 1 / 5);
+  margin-right: calc(var(--card-gap, 24px) * 3 / 5);
+}
+
+.tile-row.columns-5 .tile-card:nth-child(3) .card {
+  margin-left: calc(var(--card-gap, 24px) * 2 / 5);
+  margin-right: calc(var(--card-gap, 24px) * 2 / 5);
+}
+
+.tile-row.columns-5 .tile-card:nth-child(4) .card {
+  margin-left: calc(var(--card-gap, 24px) * 3 / 5);
+  margin-right: calc(var(--card-gap, 24px) * 1 / 5);
+}
+
+.tile-row.columns-5 .tile-card:nth-child(5) .card {
+  margin-left: calc(var(--card-gap, 24px) * 4 / 5);
+  margin-right: calc(var(--card-gap, 24px) * 0 / 5);
+}
+
+.tile-row.columns-6 .tile-card:nth-child(1) .card {
+  margin-left: calc(var(--card-gap, 24px) * 0 / 6);
+  margin-right: calc(var(--card-gap, 24px) * 5 / 6);
+}
+
+.tile-row.columns-6 .tile-card:nth-child(2) .card {
+  margin-left: calc(var(--card-gap, 24px) * 1 / 6);
+  margin-right: calc(var(--card-gap, 24px) * 4 / 6);
+}
+
+.tile-row.columns-6 .tile-card:nth-child(3) .card {
+  margin-left: calc(var(--card-gap, 24px) * 2 / 6);
+  margin-right: calc(var(--card-gap, 24px) * 3 / 6);
+}
+
+.tile-row.columns-6 .tile-card:nth-child(4) .card {
+  margin-left: calc(var(--card-gap, 24px) * 3 / 6);
+  margin-right: calc(var(--card-gap, 24px) * 2 / 6);
+}
+
+.tile-row.columns-6 .tile-card:nth-child(5) .card {
+  margin-left: calc(var(--card-gap, 24px) * 4 / 6);
+  margin-right: calc(var(--card-gap, 24px) * 1 / 6);
+}
+
+.tile-row.columns-6 .tile-card:nth-child(6) .card {
+  margin-left: calc(var(--card-gap, 24px) * 5 / 6);
+  margin-right: calc(var(--card-gap, 24px) * 0 / 6);
+}
+
+/* Stacked rows. When a row breaks into one column (the row options break-on-mobile up to 767px,
+   break-on-tablet from 768px to 991px, as in the platform's own stylesheet) the staggered side
+   margins above would shift the cards sideways. The platform pads stacked tiles by 15px
+   itself and gives each tile a 15px bottom margin, so the cards drop their side margins and
+   get the rest of the gap (--card-gap minus those 15px) as bottom margin instead. The extra
+   :nth-child(n) only raises the specificity to that of the rules above; order decides. */
+@media (max-width: 767px) {
+  .tile-row.break-on-mobile .tile-card:nth-child(n) .card {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .tile-row.break-on-mobile .tile-card:nth-child(n):not(:last-child) .card {
+    margin-bottom: calc(var(--card-gap, 24px) - 15px);
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  .tile-row.break-on-tablet .tile-card:nth-child(n) .card {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .tile-row.break-on-tablet .tile-card:nth-child(n):not(:last-child) .card {
+    margin-bottom: calc(var(--card-gap, 24px) - 15px);
+  }
+}
+
+/* Equal height. The editor's vertical alignment "top" (the default) stops the tile content
+   from stretching to the height of the row, so a percentage height on the card does not
+   resolve and a card with a short text stays short. Cards always stretch; the selector is as
+   specific as the editor's own rule. */
+.is-tilepage .tile-page .tile-row .tile.tile-card.tile-valign-top .tile-content,
+.is-tilepage .tile-page .tile-row .tile.tile-card.tile-valign-center .tile-content,
+.is-tilepage .tile-page .tile-row .tile.tile-card.tile-valign-bottom .tile-content {
+  align-self: stretch;
+}
+
+.tile-card .tile-card-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.tile-card .card {
+  flex: 1 1 auto;
+}
+
 /* Fixed 16:9 frame: cards of different images stay equally tall side by side,
    the image is cropped (not distorted) to fill the frame. */
 .tile-card .card-image {
@@ -60,16 +214,44 @@
   margin: auto 0 0;
 }
 
-.tile-card .card-link {
+/* The action. Barceloneta styles every link in the content area with
+   "#content-core a { border-bottom: 1px solid #ccc }" and removes that border on hover, which
+   left a grey lower border as the only part of the button reacting. The id selector below
+   outranks it, so all four sides are one border and the whole button reacts. Hover and focus
+   are taken from the card (the link's ::after covers it), not only from the link itself. */
+.tile-card .card-link,
+#content-core .tile-card .card-link {
   display: inline-block;
   padding: 0.4em 1em;
-  border: 1px solid currentColor;
+  color: var(--card-accent, #337ab7);
+  background-color: transparent;
+  border: 1px solid var(--card-accent, #337ab7);
   border-radius: 6px; /* a bit tighter than the 10px card corner */
+  text-decoration: none;
+  transition: background-color 0.15s, color 0.15s, border-color 0.15s;
+}
+
+.tile-card .card:hover .card-link,
+#content-core .tile-card .card:hover .card-link,
+.tile-card .card-link:hover,
+#content-core .tile-card .card-link:hover,
+.tile-card .card-link:focus,
+#content-core .tile-card .card-link:focus {
+  color: #fff;
+  background-color: var(--card-accent, #337ab7);
+  border: 1px solid var(--card-accent, #337ab7);
   text-decoration: none;
 }
 
+.tile-card .card-link:focus-visible,
+#content-core .tile-card .card-link:focus-visible {
+  outline: 2px solid var(--card-accent, #337ab7);
+  outline-offset: 2px;
+}
+
 /* the single primary action covers the whole card, so the card as a whole is the click target */
-.tile-card .card-link::after {
+.tile-card .card-link::after,
+#content-core .tile-card .card-link::after {
   content: '';
   position: absolute;
   top: 0;
