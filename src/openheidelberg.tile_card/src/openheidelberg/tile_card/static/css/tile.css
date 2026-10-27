@@ -312,6 +312,7 @@
    icon both start at the card padding, the same distance as from the left edge. */
 #content-core .tile-card .card-title {
   margin-top: 0;
+  margin-bottom: .75em;
 }
 
 .tile-card .card-main[data-icon-orientation="right"] .card-icon {
@@ -350,7 +351,7 @@
 #content-core .tile-card .card-main[data-icon-orientation="title"] .card-description {
   grid-column: 1 / -1;
   grid-row: 2;
-  margin-top: 1em;
+  margin-top: 11px; /* 4px less than the 15px title gap of the other layouts: the icon row is 4px taller than the title line */
 }
 
 /* the single primary action covers the whole card, so the card as a whole is the click target */
@@ -362,4 +363,18 @@
   right: 0;
   bottom: 0;
   left: 0;
+}
+
+/* The theme changes its typography at 768px and below: html font-size 12px, h3 weight 600,
+   font-size 1.3125rem, line-height 24px (24px line box against a 15px icon). The cards follow
+   the theme; these two adjustments keep the icon on the title's first line and the title to
+   description distance at the same value in the "title" layout as in the left/right layouts. */
+@media (max-width: 768px) {
+  .tile-card .card-icon {
+    margin-top: 4px;
+  }
+
+  #content-core .tile-card .card-main[data-icon-orientation="title"] .card-description {
+    margin-top: 12px;
+  }
 }
