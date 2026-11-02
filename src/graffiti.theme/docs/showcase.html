@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="de" xml:lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Showcase – Tiles Editor — Graffiti</title>
+
+  <style>
+    :root {
+      --hero-bg: #000064;
+      --plone-navy: #0c1844;
+      --plone-blue: #0a5ee7;
+      --plone-coral: #f4644d;
+      --page-bg: #f1f4f9;
+      --card-bg: #ffffff;
+      --card-inner-bg: #f9fafc;
+      --card-border: #e6eaf0;
+      --text-primary: #12192c;
+      --text-secondary: #5a657d;
+      --sidebar-width: 195px;
+      --sidebar-collapsed-width: 54px;
+      --sidebar-bg: #eef1f6;
+      --sidebar-active-bg: #ffffff;
+      --shadow-section: 0 10px 30px rgba(12, 24, 68, 0.06), 0 2px 6px rgba(12, 24, 68, 0.04);
+      --shadow-card: 0 4px 14px rgba(12, 24, 68, 0.05), 0 1px 3px rgba(12, 24, 68, 0.03);
+      --shadow-card-hover: 0 10px 24px rgba(12, 24, 68, 0.11), 0 3px 8px rgba(12, 24, 68, 0.06);
+      --shadow-search: 0 8px 24px rgba(0, 0, 100, 0.18), 0 2px 6px rgba(0, 0, 100, 0.10);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      min-height: 100vh;
+      background-color: var(--page-bg);
+      font-family: "Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", Arial, sans-serif;
+      color: var(--text-primary);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body#visual-portal-wrapper {
+      padding-left: var(--sidebar-width);
+      transition: padding-left 0.25s ease;
+    }
+
+    body#visual-portal-wrapper.toolbar-collapsed {
+      padding-left: var(--sidebar-collapsed-width);
+    }
+
+    #edit-zone {
+      position: fixed;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      width: var(--sidebar-width);
+      background-color: var(--sidebar-bg);
+      border-right: 1px solid #d8dee9;
+      z-index: 1050;
+      display: flex;
+      flex-direction: column;
+      transition: width 0.25s ease;
+      user-select: none;
+    }
+
+    body.toolbar-collapsed #edit-zone {
+      width: var(--sidebar-collapsed-width);
+    }
+
+    .plone-toolbar-container {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      padding-top: 14px;
+    }
+
+    .plone-toolbar-main {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .plone-toolbar-main > li {
+      position: relative;
+      margin: 2px 0;
+    }
+
+    .plone-toolbar-main > li > a {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 13px 20px;
+      color: #1e293b;
+      font-size: 14.5px;
+      font-weight: 500;
+      text-decoration: none;
+      white-space: nowrap;
+      overflow: hidden;
+      transition: background-color 0.15s ease, color 0.15s ease;
+    }
+
+    .plone-toolbar-main > li > a:hover {
+      background-color: rgba(255, 255, 255, 0.65);
+    }
+
+    .plone-toolbar-main > li.active > a {
+      background-color: var(--sidebar-active-bg);
+      color: var(--hero-bg);
+      font-weight: 600;
+      border-left: 4px solid #1d63b8;
+      padding-left: 16px;
+    }
+
+    .toolbar-icon {
+      width: 22px;
+      height: 22px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      color: #2b4c7e;
+    }
+
+    .showcase-page-wrapper {
+      width: 100%;
+      margin: 0;
+      padding: 0 0 56px 0;
+    }
+
+    .showcase-hero {
+      position: relative;
+      width: 100%;
+      height: 402px;
+      background-color: var(--hero-bg);
+      color: #ffffff;
+      overflow: hidden;
+    }
+
+    .showcase-hero-inner {
+      position: relative;
+      width: 100%;
+      max-width: 1180px;
+      height: 100%;
+      margin: 0 auto;
+      padding: 0 32px;
+    }
+
+    .hero-graffiti-logo-wrap {
+      position: absolute;
+      top: 0;
+      left: 32px;
+      width: 248px;
+      height: 286px;
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    .hero-graffiti-logo-wrap svg {
+      width: 248px;
+      height: 286px;
+      display: block;
+    }
+
+    .hero-plone-logo-wrap {
+      position: absolute;
+      top: 18px;
+      right: 32px;
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    .hero-plone-logo-wrap svg {
+      width: 390px;
+      max-width: 34vw;
+      height: auto;
+      display: block;
+    }
+
+    .hero-title-block {
+      position: absolute;
+      top: 196px;
+      left: 304px;
+      z-index: 3;
+    }
+
+    .hero-title-row {
+      display: flex;
+      align-items: center;
+    }
+
+    .hero-title-block h1 {
+      margin: 0;
+      font-size: 86px;
+      font-weight: 500;
+      letter-spacing: 0.01em;
+      line-height: 1;
+      color: #ffffff;
+    }
+
+    .hero-orange-line-right {
+      position: absolute;
+      top: 268px;
+      left: 568px;
+      right: -100vw;
+      height: 6.5px;
+      background-color: var(--plone-coral);
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    .hero-title-block p.hero-subtitle {
+      margin: 14px 0 0 2px;
+      font-size: 27px;
+      font-weight: 400;
+      color: #ffffff;
+      letter-spacing: 0.005em;
+      white-space: nowrap;
+    }
+
+    .showcase-search-container {
+      position: relative;
+      z-index: 10;
+      max-width: 1180px;
+      margin: -34px auto 30px auto;
+      padding: 0 32px;
+    }
+
+    #searchbar form#search {
+      display: flex;
+      align-items: center;
+      background-color: #ffffff;
+      border-radius: 12px;
+      padding: 7px 8px 7px 20px;
+      box-shadow: var(--shadow-search);
+      border: 1.5px solid #1e295e;
+      transition: box-shadow 0.2s ease, border-color 0.2s ease;
+    }
+
+    #searchbar form#search:focus-within {
+      box-shadow: 0 12px 32px rgba(0, 0, 100, 0.26);
+      border-color: #1d63b8;
+    }
+
+    .search-lupe-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #1e295e;
+      margin-right: 14px;
+      flex-shrink: 0;
+    }
+
+    #search-input {
+      display: flex;
+      align-items: center;
+      flex: 1;
+      position: relative;
+    }
+
+    #searchableText {
+      width: 100%;
+      height: 46px;
+      border: none;
+      outline: none;
+      font-size: 16.5px;
+      color: var(--text-primary);
+      background: transparent;
+      padding-right: 36px;
+    }
+
+    #searchableText::placeholder {
+      color: #475569;
+    }
+
+    #clear-search {
+      position: absolute;
+      right: 12px;
+      cursor: pointer;
+      color: #94a3b8;
+      font-size: 18px;
+      display: none;
+      line-height: 1;
+      padding: 4px;
+    }
+
+    #clear-search:hover {
+      color: var(--text-primary);
+    }
+
+    #searchbar-submit {
+      background-color: #16224f;
+      color: #ffffff;
+      border: none;
+      border-radius: 7px;
+      height: 46px;
+      padding: 0 38px;
+      font-size: 16px;
+      font-weight: 500;
+      cursor: pointer;
+      flex-shrink: 0;
+      transition: background-color 0.15s ease, transform 0.1s ease;
+    }
+
+    #searchbar-submit:hover {
+      background-color: #213270;
+    }
+
+    #searchbar-submit:active {
+      transform: translateY(1px);
+    }
+
+    .showcase-sections-wrapper {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 0 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .showcase-section-box {
+      background-color: var(--card-bg);
+      border-radius: 12px;
+      padding: 22px 26px 24px 26px;
+      box-shadow: var(--shadow-section);
+      border: 1px solid rgba(226, 232, 240, 0.85);
+    }
+
+    .showcase-section-title {
+      margin: 0 0 16px 0;
+      font-size: 19.5px;
+      font-weight: 600;
+      color: var(--text-primary);
+      letter-spacing: -0.01em;
+    }
+
+    .showcase-cards-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      align-items: stretch;
+    }
+
+    .showcase-card {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      background-color: #ffffff;
+      border: 1px solid var(--card-border);
+      border-radius: 10px;
+      padding: 16px 18px 12px 18px;
+      text-decoration: none;
+      color: var(--text-primary);
+      box-shadow: var(--shadow-card);
+      transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+      min-height: 118px;
+    }
+
+    a.showcase-card:hover {
+      transform: translateY(-2px);
+      border-color: #cbd5e1;
+      box-shadow: var(--shadow-card-hover);
+    }
+
+    .showcase-card-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      min-height: 44px;
+      margin-bottom: 6px;
+    }
+
+    .showcase-card-icon {
+      width: 24px;
+      height: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      color: #1d55cc;
+      margin-top: 1px;
+    }
+
+    .showcase-card-title {
+      margin: 0;
+      font-size: 16px;
+      font-weight: 600;
+      line-height: 1.28;
+      color: var(--text-primary);
+    }
+
+    .showcase-card-desc {
+      margin: 0;
+      font-size: 13.5px;
+      line-height: 1.42;
+      color: var(--text-secondary);
+      padding-right: 18px;
+    }
+
+    .showcase-card-footer {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      margin-top: 4px;
+    }
+
+    .showcase-card-arrow {
+      font-size: 16px;
+      line-height: 1;
+      color: #475569;
+      transition: transform 0.18s ease, color 0.18s ease;
+    }
+
+    a.showcase-card:hover .showcase-card-arrow {
+      transform: translateX(4px);
+      color: var(--hero-bg);
+    }
+
+    @media (max-width: 1100px) {
+      .showcase-cards-grid {
+        grid-template-columns: 1fr;
+      }
+      .showcase-card-header {
+        min-height: 0;
+      }
+      .hero-plone-logo-wrap svg {
+        width: 260px;
+      }
+      .hero-title-block h1 {
+        font-size: 68px;
+      }
+      .hero-orange-line-right {
+        left: 510px;
+      }
+      .hero-title-block p.hero-subtitle {
+        font-size: 22px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      body#visual-portal-wrapper {
+        padding-left: var(--sidebar-collapsed-width);
+      }
+      #edit-zone {
+        width: var(--sidebar-collapsed-width);
+      }
+      #edit-zone .plone-toolbar-main > li > a span:not(.toolbar-icon) {
+        display: none;
+      }
+      .showcase-hero {
+        height: auto;
+        padding: 24px 0 60px 0;
+      }
+      .hero-graffiti-logo-wrap {
+        position: relative;
+        left: 0;
+        margin-bottom: 12px;
+      }
+      .hero-plone-logo-wrap {
+        top: 16px;
+        right: 16px;
+      }
+      .hero-title-block {
+        position: relative;
+        top: 0;
+        left: 0;
+      }
+      .hero-orange-line-right {
+        display: none;
+      }
+      .hero-title-block p.hero-subtitle {
+        white-space: normal;
+      }
+    }
+  </style>
+</head>
+
+<body id="visual-portal-wrapper" class="frontend icons-on plone-toolbar-expanded plone-toolbar-left plone-toolbar-left-expanded portaltype-tilepage section-willkommen-zu-graffiti">
+
+  <div id="edit-zone" role="toolbar" class="pat-toolbar">
+    <div class="plone-toolbar-container">
+      <nav>
+        <ul class="plone-toolbar-main">
+          <li id="contentview-edit">
+            <a href="https://graffiti.stage.interaktiv.de/willkommen-zu-graffiti/edit" target="_blank" rel="noopener" title="Bearbeiten">
+              <span class="toolbar-icon">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                </svg>
+              </span>
+              <span>Bearbeiten</span>
+            </a>
+          </li>
+
+          <li id="plone-contentmenu-factories">
+            <a href="https://graffiti.stage.interaktiv.de/willkommen-zu-graffiti/folder_factories" target="_blank" rel="noopener" title="Hinzufügen">
+              <span class="toolbar-icon">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                </svg>
+              </span>
+              <span>Hinzufügen</span>
+            </a>
+          </li>
+
+          <li id="contentview-tiles-edit-settings" class="active">
+            <a href="https://graffiti.stage.interaktiv.de/willkommen-zu-graffiti/edit?settings" target="_blank" rel="noopener" title="Seitenkonfiguration">
+              <span class="toolbar-icon">
+              </span>
+              <span>Seiten-<br/>konfiguration</span>
+            </a>
+          </li>
+
+          <li id="plone-contentmenu-workflow">
+            <a href="https://graffiti.stage.interaktiv.de/willkommen-zu-graffiti/content_status_history" target="_blank" rel="noopener" title="Status: Entwurf">
+              <span class="toolbar-icon" style="color: #ea580c;">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="3"/>
+                </svg>
+              </span>
+              <span>Status:<br/>Entwurf</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+
+  <main class="showcase-page-wrapper">
+
+    <section class="showcase-hero">
+      <div class="showcase-hero-inner">
+
+        <div class="hero-graffiti-logo-wrap">
+          <svg viewBox="0 0 248 286" width="248" height="286" xmlns="http://www.w3.org/2000/svg" aria-label="Graffiti Logo" role="img">
+          </svg>
+        </div>
+
+        <!-- Oben rechts: Original blaues Plone-Logo als Vektor-SVG -->
+        <div class="hero-plone-logo-wrap">
+          <svg viewBox="0 0 438 81" width="390" height="72" xmlns="http://www.w3.org/2000/svg" aria-label="Plone Logo" role="img">
+          </svg>
+        </div>
+
+        <div class="hero-title-block">
+          <div class="hero-title-row">
+            <h1>Showcase</h1>
+          </div>
+          <p class="hero-subtitle"></p>
+        </div>
+
+        <div class="hero-orange-line-right"></div>
+
+      </div>
+    </section>
+
+    <section class="showcase-search-container">
+      <div id="1i3wy12og5u3" class="tile-search">
+        <div id="searchbar">
+          <form id="search" name="search" method="get" action="https://graffiti.stage.interaktiv.de/showcase/suche" target="_blank">
+            <div class="search-lupe-icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              </svg>
+            </div>
+            <div id="search-input">
+              <input type="text"
+                     name="SearchableText"
+                     title="Website durchsuchen"
+                     id="searchableText"
+                     placeholder="Suchbegriff, Dokument oder Thema eingeben"
+                     autocomplete="off" />
+              <div id="clear-search" title="Suchbegriff löschen">✕</div>
+            </div>
+            <button id="searchbar-submit" name="searchbar-submit" class="submit" title="Suche starten" type="submit">
+              Suchen
+            </button>
+            <input name="_authenticator" type="hidden" value="" />
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <div class="showcase-sections-wrapper">
+
+      <section id="jcoasidhc8wg" class="showcase-section-box" aria-labelledby="3cj47quy0dhx">
+        <h2 id="3cj47quy0dhx" class="showcase-section-title">Showcase Section 1</h2>
+
+        <div class="showcase-cards-grid">
+
+          <a id="showcase1-card"
+             class="showcase-card"
+             href="https://graffiti.stage.interaktiv.de/showcase1"
+             target="_blank"
+             rel="noopener">
+            <div>
+              <div class="showcase-card-header">
+                <div class="showcase-card-icon">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1d55cc" stroke-width="1.9" stroke-linecap="square" stroke-linejoin="miter">
+                  </svg>
+                </div>
+                <h3 class="showcase-card-title">Showcase 1 Title</h3>
+              </div>
+              <p class="showcase-card-desc">Showcase 1 Description</p>
+            </div>
+            <div class="showcase-card-footer">
+              <span class="showcase-card-arrow">→</span>
+            </div>
+          </a>
+
+          <a id="showcase2-card"
+             class="showcase-card"
+             href="https://graffiti.stage.interaktiv.de/showcase2"
+             target="_blank"
+             rel="noopener">
+            <div>
+              <div class="showcase-card-header">
+                <div class="showcase-card-icon">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1d55cc" stroke-width="1.9" stroke-linecap="square" stroke-linejoin="miter">
+                  </svg>
+                </div>
+                <h3 class="showcase-card-title">Showcase 2 Title</h3>
+              </div>
+              <p class="showcase-card-desc">Showcase 2 Description</p>
+            </div>
+            <div class="showcase-card-footer">
+              <span class="showcase-card-arrow">→</span>
+            </div>
+          </a>
+
+          <a id="showcase3-card"
+             class="showcase-card"
+             href="https://graffiti.stage.interaktiv.de/showcase3"
+             target="_blank"
+             rel="noopener">
+            <div>
+              <div class="showcase-card-header">
+                <div class="showcase-card-icon">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1d55cc" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  </svg>
+                </div>
+                <h3 class="showcase-card-title">Showcase 3 Title</h3>
+              </div>
+              <p class="showcase-card-desc">Showcase 3 Description</p>
+            </div>
+            <div class="showcase-card-footer">
+              <span class="showcase-card-arrow">→</span>
+            </div>
+          </a>
+
+        </div>
+      </section>
+
+      <section id="fdjf4d8sfyq2" class="showcase-section-box" aria-labelledby="jiuh87wrefh3">
+        <h2 id="jiuh87wrefh3" class="showcase-section-title">Showcase Section 2</h2>
+
+        <div class="showcase-cards-grid">
+
+          <a id="showcase4-card"
+             class="showcase-card"
+             href="https://graffiti.stage.interaktiv.de/showcase4"
+             target="_blank"
+             rel="noopener">
+            <div>
+              <div class="showcase-card-header">
+                <div class="showcase-card-icon">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  </svg>
+                </div>
+                <h3 class="showcase-card-title">Showcase 5 Title</h3>
+              </div>
+              <p class="showcase-card-desc">Showcase 5 Description</p>
+            </div>
+            <div class="showcase-card-footer">
+              <span class="showcase-card-arrow">→</span>
+            </div>
+          </a>
+
+          <a id="showcase5-card"
+             class="showcase-card"
+             href="https://graffiti.stage.interaktiv.de/showcase5"
+             target="_blank"
+             rel="noopener">
+            <div>
+              <div class="showcase-card-header">
+                <div class="showcase-card-icon">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1d55cc" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  </svg>
+                </div>
+                <h3 class="showcase-card-title">Showcase 6 Title</h3>
+              </div>
+              <p class="showcase-card-desc">Showcase 6 Description</p>
+            </div>
+            <div class="showcase-card-footer">
+              <span class="showcase-card-arrow">→</span>
+            </div>
+          </a>
+
+          <a id="showcase6-card"
+             class="showcase-card"
+             href="https://graffiti.stage.interaktiv.de/showcase6"
+             target="_blank"
+             rel="noopener">
+            <div>
+              <div class="showcase-card-header">
+                <div class="showcase-card-icon">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1d55cc" stroke-width="1.9" stroke-linecap="square" stroke-linejoin="miter">
+                  </svg>
+                </div>
+                <h3 class="showcase-card-title">Showcase 6 Title</h3>
+              </div>
+              <p class="showcase-card-desc">Showcase 6 Description</p>
+            </div>
+            <div class="showcase-card-footer">
+              <span class="showcase-card-arrow">→</span>
+            </div>
+          </a>
+
+        </div>
+      </section>
+
+      <section id="d6cc50bt08gv" class="showcase-section-box" aria-labelledby="h8u7i737b98n">
+        <h2 id="h8u7i737b98n" class="showcase-section-title">Showcase Section 3</h2>
+
+        <div class="showcase-cards-grid">
+
+          <a id="showcase7-card"
+             class="showcase-card"
+             href="https://graffiti.stage.interaktiv.de/showcase7"
+             target="_blank"
+             rel="noopener">
+            <div>
+              <div class="showcase-card-header">
+                <div class="showcase-card-icon">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1d55cc" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  </svg>
+                </div>
+                <h3 class="showcase-card-title">Showcase 7 Title</h3>
+              </div>
+              <p class="showcase-card-desc">Showcase 7 Description</p>
+            </div>
+            <div class="showcase-card-footer">
+              <span class="showcase-card-arrow">→</span>
+            </div>
+          </a>
+
+          <a id="showcase8-card"
+             class="showcase-card"
+             href="https://graffiti.stage.interaktiv.de/showcase8"
+             target="_blank"
+             rel="noopener">
+            <div>
+              <div class="showcase-card-header">
+                <div class="showcase-card-icon">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1d55cc" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+                  </svg>
+                </div>
+                <h3 class="showcase-card-title">Showcase 8 Title</h3>
+              </div>
+              <p class="showcase-card-desc">Showcase 8 Description</p>
+            </div>
+            <div class="showcase-card-footer">
+              <span class="showcase-card-arrow">→</span>
+            </div>
+          </a>
+
+          <a id="showcase9-card"
+             class="showcase-card"
+             href="https://graffiti.stage.interaktiv.de/showcase9"
+             target="_blank"
+             rel="noopener">
+            <div>
+              <div class="showcase-card-header">
+                <div class="showcase-card-icon">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1d55cc" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+                  </svg>
+                </div>
+                <h3 class="showcase-card-title">Showcase 9 Title</h3>
+              </div>
+              <p class="showcase-card-desc">Showcase 9 Description</p>
+            </div>
+            <div class="showcase-card-footer">
+              <span class="showcase-card-arrow">→</span>
+            </div>
+          </a>
+
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      var searchForm = document.getElementById('search');
+      var searchInput = document.getElementById('searchableText');
+      var clearBtn = document.getElementById('clear-search');
+
+      if (searchInput && clearBtn) {
+        searchInput.addEventListener('input', function () {
+          clearBtn.style.display = this.value.length > 0 ? 'block' : 'none';
+        });
+
+        clearBtn.addEventListener('click', function () {
+          searchInput.value = '';
+          clearBtn.style.display = 'none';
+          searchInput.focus();
+        });
+
+        searchInput.addEventListener('keydown', function (event) {
+          if (event.key === 'Enter') {
+            event.preventDefault();
+            searchForm.submit();
+          }
+        });
+      }
+    });
+  </script>
+</body>
+</html>
