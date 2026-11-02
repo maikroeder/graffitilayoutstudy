@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<!-- Shared theme file of site-layout and default-tiles-layout. Starting point: authenticated.html of interaktiv.theme
+     (anonymous.html differs only by the toolbar placeholders and the plone-compiled.css link; see frame.xml). -->
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>[Title]</title>
+  <link id="favicon" rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="stylesheet" href="/++plone++static/plone-compiled.css">
+  <link rel="stylesheet" href="/++theme++barceloneta/less/barceloneta-compiled.css">
+  <link rel="stylesheet" type="text/css" href="/@@static-files?file=style.css"/>
+  <script src="/@@static-files?file=libs.js"></script>
+  <script src="/@@static-files?file=script.js"></script>
+</head>
+<body>
+  <section id="portal-toolbar"></section>
+
+  <div class="outer-wrapper">
+    <div class="inner-wrapper">
+
+      <div id="fontfamilies"></div>
+
+      <header id="company-header"></header>
+
+      <div id="company-content" class="container-fluid main-content-wrapper">
+        <div class="row status-message-row set-max-width">
+          <aside id="global_statusmessage" class="container"></aside>
+          <aside id="above-content" class="container"></aside>
+        </div>
+        <nav class="breadcrumbs container"></nav>
+        <main id="main-container" class="row">
+          <div id="column1-container"></div>
+          <div id="content-container"></div>
+          <div id="reply-wrapper"></div>
+          <div id="column2-container"></div>
+        </main>
+
+      </div>
+
+      <div id="spinner">
+        <div class="spinner-box">
+          Wird geladen
+        </div>
+        <div class="loader">
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+      <div id="tiles-editor-panel"></div>
+
+      <footer id="company-footer">
+        <div id="tilepagefooter-container"></div>
+        <div class="portlets"></div>
+        <div id="social-media-site-actions">
+          <div id="inner-wrapper">
+            <div id="footer-copyright"></div>
+            <div id="site-actions"></div>
+          </div>
+        </div>
+        <div id="plone-analytics"></div>
+      </footer>
+
+    </div>
+  </div>
+</body>
+</html>

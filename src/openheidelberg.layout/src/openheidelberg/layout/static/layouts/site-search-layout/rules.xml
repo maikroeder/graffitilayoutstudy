@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Layout "site-search-layout" (landing page of the site root). Stage 0: the theme file only, no rule copies anything from the Plone page, so
+  everything of Plone's output is dropped (Diazo's default). Each later step adds one rule for
+  one region; see the layout matrix in README.md.
+-->
+<rules xmlns="http://namespaces.plone.org/diazo"
+       xmlns:css="http://namespaces.plone.org/diazo/css">
+
+    <theme href="++theme++openheidelberg.layout/layouts/site-search-layout/site-search-layout.html" />
+
+    <!-- partial renderings (tiles editor, ajax) carry no full page: leave them alone -->
+    <notheme css:if-not-content="#visual-portal-wrapper" />
+
+</rules>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Head and body of the real page, toolbar. Copied from rules_anonymous.xml / rules_authenticated.xml of
+  interaktiv.theme; the one theme file site.html holds both variants, the differences are rules here.
+-->
+<rules xmlns="http://namespaces.plone.org/diazo"
+       xmlns:css="http://namespaces.plone.org/diazo/css"
+       xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+
+    <rules css:if-content="#portal-top">
+        <copy attributes="*" css:content="html" css:theme="html"/>
+        <copy attributes="*" css:content="body" css:theme="body"/>
+        <before css:content="base" css:theme="title"/>
+        <replace css:content="title" css:theme="title"/>
+        <after css:content="head meta" css:theme-children="head"  />
+        <drop css:content="head link[rel='apple-touch-icon']"/>
+        <drop css:content="head link[rel='shortcut icon']"/>
+        <before css:content="head script" css:theme-children="head"/>
+    </rules>
+
+    <!-- Anonymous: the theme file's own plone-compiled.css link stays, the toolbar placeholders are not needed -->
+    <rules css:if-content="body.userrole-anonymous">
+        <drop css:theme="#portal-toolbar" />
+        <drop css:theme="#tiles-editor-panel" />
+        <replace css:theme="#anonymous-actions"
+                 css:content-children="#portal-personaltools-wrapper"
+                 css:if-not-content=".ajax_load"/>
+        <drop attributes="data-pat-tinymce"
+              content="//body[contains(concat(' ',@class,' '),' userrole-anonymous ')]"/>
+    </rules>
+
+    <!-- Authenticated: all head links of the real page (they include plone-compiled.css), toolbar, tiles editor panel -->
+    <rules css:if-not-content="body.userrole-anonymous">
+        <drop theme="/html/head/link[@href='/++plone++static/plone-compiled.css']" />
+        <rules css:if-content="#portal-top">
+            <before css:content="head link" css:theme-children="head"  />
+        </rules>
+        <replace css:theme="#portal-toolbar" css:content-children="#edit-bar" css:if-not-content=".ajax_load" />
+        <replace css:content-children="#tiles-editor-panel"
+                 css:theme-children="#tiles-editor-panel" />
+    </rules>
+
+</rules>

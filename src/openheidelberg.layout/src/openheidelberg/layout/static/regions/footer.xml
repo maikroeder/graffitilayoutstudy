@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Footer. From rules_default.xml of interaktiv.theme. -->
+<rules xmlns="http://namespaces.plone.org/diazo"
+       xmlns:css="http://namespaces.plone.org/diazo/css"
+       xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+
+    <!-- Footer Portlets -->
+    <rules css:if-content="body.tilepagefooter-enabled">
+        <replace css:content="#tilepagefooter-container" css:theme="#tilepagefooter-container" />
+    </rules>
+    <rules css:if-not-content="body.tilepagefooter-enabled">
+        <replace css:content-children="#portal-footer-wrapper>.row>div" css:theme-children="#company-footer>.portlets" />
+        <replace if-content="//div[@id='content-portlets']"
+                 content-children="//div[@id='content-portlets']"
+                 theme-children="//div[@id='portlets']" />
+        <drop if-content="not(//div[@id='content-portlets'])"
+              theme="//div[@id='portlets']" />
+    </rules>
+
+    <!-- Footer -->
+    <replace css:content="#company-footer #portal-siteactions" css:theme-children="#site-actions" />
+    <!-- Footer: Copyright -->
+    <replace css:content="#company-footer #copyright" css:theme-children="#footer-copyright" />
+
+</rules>

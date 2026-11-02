@@ -1,0 +1,98 @@
+# openheidelberg.layout
+
+Page layouts for the OpenHeidelberg site on top of Plone's `main_template`: a Diazo theme with one theme file
+per layout, and a behavior that lets a TilePage choose its layout.
+
+Status: structure in place, checked offline with the Diazo compiler on a Plone-like test page (see "Checked");
+not yet installed or run in Plone.
+
+## Layouts
+
+| Id | Used by | What it is |
+|---|---|---|
+| `site-search-layout` | the TilePage that is the default page of the site root (automatic) | landing page for the search; stage 0: "Hello world!" |
+| `default-tiles-layout` | the editorial tile pages `/editing` and `/exploring` (field `page_layout`) | the site look without search, breadcrumbs and document actions |
+| `site-layout` | every other page that main_template renders (no body class; the fallback) | the full site look, starting from the current look of interaktiv.theme |
+
+Portlet columns are not part of the new layouts (the content area is always full width).
+
+## Files in `static/`
+
+- `rules.xml`: the dispatcher, exactly one branch per page (iframe views and everything not switched on stay on
+  `interaktiv.theme`).
+- `site.html`: the one theme file of `site-layout` and `default-tiles-layout` (copy of `authenticated.html` of
+  interaktiv.theme).
+- `frame.xml`: head, body attributes, toolbar (anonymous and authenticated variants).
+- `regions/*.xml`: one rule file per region (`header`, `statusmessage`, `breadcrumbs`, `content`, `footer`,
+  `common`), cut from `rules_default.xml` of interaktiv.theme. `regions/omitted-in-default-tiles.xml` lists what
+  `default-tiles-layout` leaves out.
+- `layouts/<id>/rules.xml`: which of these files a layout includes. `layouts/site-search-layout/` has its own
+  theme file.
+
+## How a page gets its layout
+
+- The behavior `openheidelberg.layout.page_layout` (added to the TilePage FTI by the profile) adds the field
+  `page_layout` (`site-search-layout`, `default-tiles-layout`, or empty).
+- `layout_policy.py` subclasses the TilePage layout policy of interaktiv.basetiles and adds the body class
+  `layout-<id>`. A TilePage without a value that is the default page of the site root gets
+  `layout-site-search-layout`.
+- The two explicit layouts apply in view mode only; in edit mode the tiles editor stays on `interaktiv.theme`.
+- `site-layout` is switched on by the theme parameter `site_layout_enabled` (`manifest.cfg`). For now it is on
+  only for a browser that has the cookie `openheidelberg_layout=new` (set it in the browser console:
+  `document.cookie = 'openheidelberg_layout=new; path=/'`; delete it to go back). The cut-over for all visitors
+  is a one-line change of that expression to `python:'1'`.
+
+The registration of the layout policy replaces the one of interaktiv.basetiles (same discriminators, in
+`overrides.zcml`, which z3c.autoinclude loads for Plone add-ons).
+
+## Setting a layout
+
+Open the TilePage, then "Page" (Page configuration, `edit?settings`) in the toolbar; the field "Page layout" is in
+the "Default" fieldset. Choose `Default tiles layout` for the editorial pages (`/editing`, `/exploring`) or
+`Site search layout`, then save and look at the page in view mode (not Edit). Empty means: the default page of the
+site root gets `site-search-layout`, every other TilePage keeps the standard theme. The plain Edit link opens the
+tiles editor, which has no form fields.
+
+## Pitfalls
+
+- The behavior schema `IPageLayout` has to provide `IFormFieldProvider` (`alsoProvides` at the end of
+  `interfaces.py`). Without it the behavior is registered, listed as enabled on the TilePage type, and still left
+  out of the add and edit forms, without any message.
+- Python and ZCML changes need a restart of the instance; changes in `static/` are served from disk.
+
+## Layout matrix
+
+Each cell: `live` (rule included, copy of the current look), `empty` (no rule, not built yet), `omitted` (left
+out by design), `dummy` (designer's text). Update it in the same commit as the rule.
+
+| Region | site-search-layout | default-tiles-layout | site-layout |
+|---|---|---|---|
+| frame (head, bundles, body attributes) | empty | live | live |
+| toolbar | empty | live | live |
+| header (logo, navigation) | empty | live | live |
+| search | - (centrepiece, planned) | omitted | empty (Plone's `#portal-searchbox` exists but the current theme does not copy it) |
+| status messages | empty | live | live |
+| breadcrumbs | empty | omitted | live |
+| document actions | empty | omitted | live |
+| content | dummy ("Hello world!") | live | live |
+| portlet columns | omitted | omitted | omitted |
+| footer | empty | live | live |
+
+"live" means the rules of interaktiv.theme were copied; nothing is restyled yet.
+
+## Checked
+
+With the Diazo compiler (offline, interaktiv's rules replaced by a stub, a fake Plone page): site-search view shows
+only "Hello world!"; the default-tiles view shows header, content and toolbar but not search, breadcrumbs or
+document actions; the site layout shows all of them when switched on and falls back to the stub when not;
+edit-mode pages and iframe views fall back. Inside Plone (2026-10-31, as admin, local site): the site root renders the TilePage `search-layout` with only "Hello world!" and the body class `layout-site-search-layout`; the field "Page layout" appears in Page configuration after the `IFormFieldProvider` fix. Not checked inside Plone: the rendering of `default-tiles-layout` and `site-layout`, the cookie preview, anonymous view of the front page. The selectors for search (`#portal-searchbox`), document actions
+(`#content .documentActions`) and breadcrumbs (`#portal-breadcrumbs`) were checked against the unthemed
+front page of the running site on 2026-10-31.
+
+Planned centre of the site-search-layout: a search box, in the style of a plain search engine page.
+
+## Install
+
+Part of `openheidelberg.policy`'s dependencies; apply the profile `openheidelberg.layout:default`. It enables
+the theme `openheidelberg.layout`, which includes the rules of `interaktiv.theme` for every other page.
+Uninstall re-enables `interaktiv.theme`.

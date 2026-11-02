@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Content area: the viewlets above the content and the content itself. From rules_default.xml of
+  interaktiv.theme, without the portlet columns: the width is always the full one (col-sm-12).
+  Tile pages get the extra class no-padding as before.
+-->
+<rules xmlns="http://namespaces.plone.org/diazo"
+       xmlns:css="http://namespaces.plone.org/diazo/css"
+       xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+
+    <replace css:content="#viewlet-above-content" css:theme="#above-content" />
+    <!-- the breadcrumbs have their own region (breadcrumbs.xml) -->
+    <drop css:content="#viewlet-above-content #portal-breadcrumbs" />
+    <replace css:theme="#content-container" method="raw">
+        <xsl:variable name="padding">
+          <xsl:if css:test="body.is-tilepage"> no-padding</xsl:if>
+        </xsl:variable>
+        <div class="col-xs-12 col-sm-12{$padding}">
+          <xsl:apply-templates css:select="#content" />
+            <div class="reply-wrapper">
+              <xsl:apply-templates css:select="footer .discussion" />
+              <xsl:apply-templates css:select="footer .reply" />
+            </div>
+        </div>
+    </replace>
+
+</rules>

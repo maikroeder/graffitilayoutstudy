@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Layout "default-tiles-layout": the editorial tile pages (/editing, /exploring). The site look without
+  search, breadcrumbs and document actions (see regions/omitted-in-default-tiles.xml).
+-->
+<rules xmlns="http://namespaces.plone.org/diazo"
+       xmlns:css="http://namespaces.plone.org/diazo/css"
+       xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+       xmlns:xi="http://www.w3.org/2001/XInclude">
+
+    <notheme css:if-not-content="#visual-portal-wrapper" />
+    <theme href="++theme++openheidelberg.layout/site.html" />
+
+    <xi:include href="++theme++openheidelberg.layout/frame.xml" />
+    <xi:include href="++theme++openheidelberg.layout/regions/common.xml" />
+    <xi:include href="++theme++openheidelberg.layout/regions/header.xml" />
+    <xi:include href="++theme++openheidelberg.layout/regions/statusmessage.xml" />
+    <xi:include href="++theme++openheidelberg.layout/regions/content.xml" />
+    <xi:include href="++theme++openheidelberg.layout/regions/footer.xml" />
+    <xi:include href="++theme++openheidelberg.layout/regions/omitted-in-default-tiles.xml" />
+
+</rules>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Fonts, stickybar, cookie hint, analytics. From rules_default.xml of interaktiv.theme. -->
+<rules xmlns="http://namespaces.plone.org/diazo"
+       xmlns:css="http://namespaces.plone.org/diazo/css"
+       xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+
+    <!-- Font Families -->
+    <replace css:content-children="#fontfamilies"
+             css:theme-children="#fontfamilies" />
+
+    <!-- Stickybar -->
+    <prepend theme="/html/body" css:if-content="#company-stickybar">
+        <xsl:attribute name="class"><xsl:value-of select="/html/body/@class"/> stickybar-enabled</xsl:attribute>
+    </prepend>
+
+    <!-- Google Analytics JavaScript -->
+    <replace css:content-children="footer #plone-analytics" css:theme-children="footer #plone-analytics" />
+    <!-- Cookie Aknowledgment -->
+    <before css:theme="#company-header" css:content="#cookie-hint"/>
+    <!-- Stickybar-->
+    <before css:theme="#company-header" css:content="#company-stickybar"/>
+
+</rules>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  What default-tiles-layout leaves out: search, breadcrumbs, document actions.
+  The breadcrumbs are simply not included (breadcrumbs.xml); their empty placeholder is dropped from
+  the theme. Search and document actions are parts of Plone's output and are dropped from the content.
+
+  Selectors checked against the unthemed page (?diazo.off=1) of the running site on 2026-10-31:
+    search            div#portal-searchbox inside header#portal-top > div#portal-header (the current
+                      interaktiv theme does not copy it at all, so today nothing shows)
+    document actions  div.documentActions inside div#viewlet-below-content-body inside article#content
+-->
+<rules xmlns="http://namespaces.plone.org/diazo"
+       xmlns:css="http://namespaces.plone.org/diazo/css"
+       xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+
+    <drop css:theme="nav.breadcrumbs" />
+
+    <!-- search (a future search region of site-layout copies this; here it stays out) -->
+    <drop css:content="#portal-searchbox" />
+
+    <!-- document actions -->
+    <drop css:content="#content .documentActions" />
+
+</rules>

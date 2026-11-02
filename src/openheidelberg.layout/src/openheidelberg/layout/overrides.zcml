@@ -1,0 +1,16 @@
+<configure
+        xmlns="http://namespaces.zope.org/zope"
+        xmlns:browser="http://namespaces.zope.org/browser">
+
+    <!-- Same registration as in interaktiv.basetiles/views/configure.zcml, with a subclass that
+         adds the body class layout-<id>. -->
+    <browser:page
+            for="interaktiv.basetiles.contenttypes.tilepage.ITilePage"
+            name="plone_layout"
+            class="openheidelberg.layout.layout_policy.OpenHeidelbergTilePageLayoutPolicy"
+            permission="zope.Public"
+            layer="interaktiv.basetiles.interfaces.IInteraktivBasetilesLayer"
+            allowed_interface="plone.app.layout.globals.interfaces.ILayoutPolicy"
+    />
+
+</configure>
