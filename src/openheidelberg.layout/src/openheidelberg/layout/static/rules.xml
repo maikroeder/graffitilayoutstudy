@@ -11,24 +11,37 @@
 
   The body classes layout-<id> and view-mode / edit-mode are set on TilePages by layout_policy.py
   and interaktiv.basetiles. Pages that are not TilePages carry none of them.
+
+  Diazo has no "else", so the last two branches repeat the negation of what the ones before them test.
 -->
 <rules xmlns="http://namespaces.plone.org/diazo"
        xmlns:css="http://namespaces.plone.org/diazo/css"
        xmlns:xi="http://www.w3.org/2001/XInclude">
 
-    <rules if-content="contains(concat(' ',normalize-space(//body/@class),' '),' layout-site-search-layout ') and contains(concat(' ',normalize-space(//body/@class),' '),' view-mode ') and not(//*[contains(concat(' ',normalize-space(@class),' '),' iframe-view ')])">
-        <xi:include href="++theme++openheidelberg.layout/layouts/site-search-layout/rules.xml" />
+    <rules css:if-not-content=".iframe-view">
+
+        <rules css:if-content="body.layout-site-search-layout.view-mode">
+            <xi:include href="++theme++openheidelberg.layout/layouts/site-search-layout/rules.xml" />
+        </rules>
+
+        <rules css:if-content="body.layout-default-tiles-layout.view-mode">
+            <xi:include href="++theme++openheidelberg.layout/layouts/default-tiles-layout/rules.xml" />
+        </rules>
+
+        <rules css:if-not-content="body.layout-site-search-layout.view-mode, body.layout-default-tiles-layout.view-mode">
+
+            <rules if-content="string($site_layout_enabled) = '1'" css:if-not-content="body.edit-mode">
+                <xi:include href="++theme++openheidelberg.layout/layouts/site-layout/rules.xml" />
+            </rules>
+
+            <rules if-content="string($site_layout_enabled) != '1' or //body[contains(concat(' ',normalize-space(@class),' '),' edit-mode ')]">
+                <xi:include href="++theme++interaktiv.theme/rules.xml" />
+            </rules>
+
+        </rules>
     </rules>
 
-    <rules if-content="contains(concat(' ',normalize-space(//body/@class),' '),' layout-default-tiles-layout ') and contains(concat(' ',normalize-space(//body/@class),' '),' view-mode ') and not(//*[contains(concat(' ',normalize-space(@class),' '),' iframe-view ')])">
-        <xi:include href="++theme++openheidelberg.layout/layouts/default-tiles-layout/rules.xml" />
-    </rules>
-
-    <rules if-content="string($site_layout_enabled) = '1' and not(contains(concat(' ',normalize-space(//body/@class),' '),' edit-mode ')) and not(contains(concat(' ',normalize-space(//body/@class),' '),' layout-site-search-layout ') and contains(concat(' ',normalize-space(//body/@class),' '),' view-mode ')) and not(contains(concat(' ',normalize-space(//body/@class),' '),' layout-default-tiles-layout ') and contains(concat(' ',normalize-space(//body/@class),' '),' view-mode ')) and not(//*[contains(concat(' ',normalize-space(@class),' '),' iframe-view ')])">
-        <xi:include href="++theme++openheidelberg.layout/layouts/site-layout/rules.xml" />
-    </rules>
-
-    <rules if-content="not(contains(concat(' ',normalize-space(//body/@class),' '),' layout-site-search-layout ') and contains(concat(' ',normalize-space(//body/@class),' '),' view-mode ')) and not(contains(concat(' ',normalize-space(//body/@class),' '),' layout-default-tiles-layout ') and contains(concat(' ',normalize-space(//body/@class),' '),' view-mode ')) and not(string($site_layout_enabled) = '1' and not(contains(concat(' ',normalize-space(//body/@class),' '),' edit-mode ')) and not(contains(concat(' ',normalize-space(//body/@class),' '),' layout-site-search-layout ') and contains(concat(' ',normalize-space(//body/@class),' '),' view-mode ')) and not(contains(concat(' ',normalize-space(//body/@class),' '),' layout-default-tiles-layout ') and contains(concat(' ',normalize-space(//body/@class),' '),' view-mode '))) or //*[contains(concat(' ',normalize-space(@class),' '),' iframe-view ')]">
+    <rules css:if-content=".iframe-view">
         <xi:include href="++theme++interaktiv.theme/rules.xml" />
     </rules>
 
