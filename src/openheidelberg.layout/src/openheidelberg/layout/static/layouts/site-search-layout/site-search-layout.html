@@ -1,11 +1,177 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="utf-8">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>OpenHeidelberg</title>
+  <title>[Title]</title>
+  <link id="favicon" rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="stylesheet" href="/++plone++static/plone-compiled.css">
+  <link rel="stylesheet" href="/++theme++barceloneta/less/barceloneta-compiled.css">
+  <link rel="stylesheet" type="text/css" href="/@@static-files?file=style.css"/>
+  <link rel="stylesheet" href="layouts/site-search-layout/site-search.css">
+  <script src="/@@static-files?file=libs.js"></script>
+  <script src="/@@static-files?file=script.js"></script>
+  <script src="layouts/site-search-layout/site-search.js"></script>
 </head>
 <body class="layout-site-search-layout">
-  <main id="site-search">Hello world!</main>
+  <section id="portal-toolbar"></section>
+
+  <main class="showcase-page-wrapper" id="site-search">
+
+    <section class="showcase-hero">
+      <div class="showcase-hero-inner">
+
+        <div class="hero-graffiti-logo-wrap">
+          <svg viewBox="0 0 248 286" width="248" height="286" xmlns="http://www.w3.org/2000/svg" aria-label="Graffiti Logo" role="img" overflow="visible">
+            <!-- Line: comes from the top edge at the middle of the logo, behind the editor window, out below it,
+                 bends into the horizontal (y = 268 .. 274.5, the height of .hero-orange-line-right) and ends at
+                 the right edge of this svg. -->
+            <defs>
+              <filter id="ln-glow-wide" filterUnits="userSpaceOnUse" x="-100" y="-100" width="450" height="500"><feGaussianBlur stdDeviation="5"/></filter>
+              <filter id="ln-glow-near" filterUnits="userSpaceOnUse" x="-100" y="-100" width="450" height="500"><feGaussianBlur stdDeviation="1.8"/></filter>
+              <path id="ln-line" d="M124 -1 V232 C124 258 138 271.25 164 271.25 H248" fill="none" stroke-linecap="round"/>
+            </defs>
+            <use href="#ln-line" stroke="#19e6c8" stroke-width="19" stroke-opacity="0.55" filter="url(#ln-glow-wide)"/>
+            <use href="#ln-line" stroke="#19e6c8" stroke-width="12.5" filter="url(#ln-glow-near)"/>
+            <use href="#ln-line" stroke="#19e6c8" stroke-width="6.5"/>
+            <use href="#ln-line" stroke="#eafffb" stroke-width="2.5"/>
+
+            <!-- Stylised tiles editor: window with title bar, a grid of tiles, one tile selected -->
+            <rect x="16" y="20" width="216" height="216" rx="12" fill="#0c1844" stroke="#ffffff" stroke-opacity="0.85" stroke-width="2"/>
+            <path d="M16 44 V32 a12 12 0 0 1 12 -12 H220 a12 12 0 0 1 12 12 V44 Z" fill="#16224f"/>
+            <circle cx="32" cy="32" r="4" fill="#f4644d"/>
+            <circle cx="44" cy="32" r="4" fill="#ffd166"/>
+            <circle cx="56" cy="32" r="4" fill="#19e6c8"/>
+
+            <!-- row 1: wide tile (heading and text lines), small tile (icon) -->
+            <rect x="28" y="56" width="112" height="72" rx="6" fill="#0a5ee7"/>
+            <rect x="40" y="68" width="64" height="8" rx="2" fill="#ffffff"/>
+            <rect x="40" y="86" width="88" height="5" rx="2" fill="#ffffff" fill-opacity="0.7"/>
+            <rect x="40" y="97" width="72" height="5" rx="2" fill="#ffffff" fill-opacity="0.7"/>
+            <rect x="40" y="108" width="80" height="5" rx="2" fill="#ffffff" fill-opacity="0.7"/>
+            <rect x="148" y="56" width="72" height="72" rx="6" fill="#f4644d"/>
+            <circle cx="184" cy="84" r="12" fill="none" stroke="#ffffff" stroke-width="3"/>
+            <rect x="164" y="106" width="40" height="5" rx="2" fill="#ffffff" fill-opacity="0.85"/>
+
+            <!-- row 2: three tiles; the middle one is selected (dashed outline, corner handles) -->
+            <rect x="28" y="136" width="56" height="88" rx="6" fill="#ffffff" fill-opacity="0.92"/>
+            <rect x="36" y="146" width="40" height="40" rx="4" fill="#0a5ee7" fill-opacity="0.35"/>
+            <rect x="36" y="196" width="32" height="5" rx="2" fill="#0c1844" fill-opacity="0.7"/>
+            <rect x="36" y="207" width="40" height="5" rx="2" fill="#0c1844" fill-opacity="0.4"/>
+
+            <rect x="96" y="136" width="56" height="88" rx="6" fill="#1d55cc"/>
+            <rect x="96" y="136" width="56" height="88" rx="6" fill="none" stroke="#ffffff" stroke-width="2" stroke-dasharray="5 4"/>
+            <rect x="92" y="132" width="8" height="8" fill="#ffffff"/>
+            <rect x="148" y="132" width="8" height="8" fill="#ffffff"/>
+            <rect x="92" y="220" width="8" height="8" fill="#ffffff"/>
+            <rect x="148" y="220" width="8" height="8" fill="#ffffff"/>
+            <rect x="104" y="148" width="40" height="8" rx="2" fill="#ffffff"/>
+            <rect x="104" y="164" width="32" height="5" rx="2" fill="#ffffff" fill-opacity="0.7"/>
+
+            <rect x="164" y="136" width="56" height="88" rx="6" fill="#19e6c8"/>
+            <rect x="172" y="146" width="40" height="8" rx="2" fill="#0c1844"/>
+            <rect x="172" y="162" width="32" height="5" rx="2" fill="#0c1844" fill-opacity="0.6"/>
+            <rect x="172" y="173" width="40" height="5" rx="2" fill="#0c1844" fill-opacity="0.6"/>
+          </svg>
+        </div>
+
+        <!-- Oben rechts: Original blaues Plone-Logo als Vektor-SVG -->
+        <div class="hero-plone-logo-wrap">
+          <svg viewBox="0 0 438 81" width="390" height="72" preserveAspectRatio="xMaxYMid meet" xmlns="http://www.w3.org/2000/svg" aria-label="Graffiti" role="img" overflow="visible">
+            <defs>
+              <filter id="gl-glow-wide" filterUnits="userSpaceOnUse" x="-120" y="-120" width="700" height="320"><feGaussianBlur stdDeviation="5"/></filter>
+              <filter id="gl-glow-near" filterUnits="userSpaceOnUse" x="-120" y="-120" width="700" height="320"><feGaussianBlur stdDeviation="1.8"/></filter>
+              <g id="gl-word" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M86 22 C70 6 30 10 26 38 C23 60 52 68 70 52 C76 46 74 40 70 38 H52"/><path d="M98 60 L106 32 M104 40 C110 30 124 28 130 36"/><path d="M168 38 C152 28 134 40 136 54 C138 66 156 64 162 50 L158 62 C162 64 168 62 172 56"/><path d="M222 12 C206 6 196 22 196 40 L190 62 C188 70 180 70 180 64 M182 38 H222"/><path d="M262 12 C246 6 236 22 236 40 L230 62 C228 70 220 70 220 64 M222 38 H262"/><path d="M290 36 L282 60 M296 20 L297 22"/><path d="M326 14 L316 54 C315 62 322 63 332 58 M308 34 H340"/><path d="M360 36 L352 60 M366 20 L367 22"/></g>
+              <g id="gl-swoosh" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M30 72 C130 68 260 78 380 62"/></g>
+              <g id="gl-can-body" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 74 V36 Q21 28 28 25 H34 Q41 28 41 36 V74 Q41 78 37 78 H25 Q21 78 21 74 Z"/>
+              </g>
+              <g id="gl-can-top" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="24" y="17" width="14" height="8" rx="2"/>
+                <path d="M31 11.5 V14.5"/>
+              </g>
+              <g id="gl-can-line" fill="none" stroke-linecap="round">
+                <path d="M34 37 V68"/>
+              </g>
+              <g id="gl-spray-a" fill="none" stroke-linecap="round">
+                <path d="M44 9.5 L44.5 9.1"/><path d="M52 6.5 L52.5 6.1"/><path d="M50 14.5 L50.5 14.1"/><path d="M59 10.5 L59.5 10.1"/><path d="M57 18.5 L57.5 18.1"/><path d="M66 7.5 L66.5 7.1"/><path d="M72 3.5 L72.5 3.1"/><path d="M74 13 L74.5 12.6"/>
+              </g>
+            </defs>
+
+            <!-- neon sign in graffiti-tag lettering: tube colour with a glow, white-hot core -->
+            <g transform="matrix(1 0 -0.249 1.08 68.4 -4)">
+              <use href="#gl-swoosh" stroke="#ff6a52" stroke-width="19.0" stroke-opacity="0.55" filter="url(#gl-glow-wide)"/>
+              <use href="#gl-swoosh" stroke="#ff6a52" stroke-width="12.5" filter="url(#gl-glow-near)"/>
+              <use href="#gl-swoosh" stroke="#ff6a52" stroke-width="8.0"/>
+              <use href="#gl-swoosh" stroke="#fff1ee" stroke-width="3.0"/>
+              <use href="#gl-word" stroke="#19e6c8" stroke-width="19.0" stroke-opacity="0.55" filter="url(#gl-glow-wide)"/>
+              <use href="#gl-word" stroke="#19e6c8" stroke-width="12.5" filter="url(#gl-glow-near)"/>
+              <use href="#gl-word" stroke="#19e6c8" stroke-width="8.0"/>
+              <use href="#gl-word" stroke="#eafffb" stroke-width="3.0"/>
+            </g>
+            <g transform="translate(-10 0) rotate(14 31 76)">
+              <use href="#gl-can-body" stroke="#19e6c8" stroke-width="13.3" stroke-opacity="0.55" filter="url(#gl-glow-wide)"/>
+              <use href="#gl-can-body" stroke="#19e6c8" stroke-width="8.8" filter="url(#gl-glow-near)"/>
+              <use href="#gl-can-body" stroke="#19e6c8" stroke-width="5.6"/>
+              <use href="#gl-can-body" stroke="#eafffb" stroke-width="2.1"/>
+              <use href="#gl-can-top" stroke="#19e6c8" stroke-width="13.3" stroke-opacity="0.55" filter="url(#gl-glow-wide)"/>
+              <use href="#gl-can-top" stroke="#19e6c8" stroke-width="8.8" filter="url(#gl-glow-near)"/>
+              <use href="#gl-can-top" stroke="#19e6c8" stroke-width="5.6"/>
+              <use href="#gl-can-top" stroke="#eafffb" stroke-width="2.1"/>
+              <use href="#gl-can-line" stroke="#ff6a52" stroke-width="13.3" stroke-opacity="0.55" filter="url(#gl-glow-wide)"/>
+              <use href="#gl-can-line" stroke="#ff6a52" stroke-width="8.8" filter="url(#gl-glow-near)"/>
+              <use href="#gl-can-line" stroke="#ff6a52" stroke-width="5.6"/>
+              <use href="#gl-can-line" stroke="#fff1ee" stroke-width="2.1"/>
+              <use href="#gl-spray-a" stroke="#19e6c8" stroke-width="15.2" stroke-opacity="0.55" filter="url(#gl-glow-wide)"/>
+              <use href="#gl-spray-a" stroke="#19e6c8" stroke-width="10.0" filter="url(#gl-glow-near)"/>
+              <use href="#gl-spray-a" stroke="#19e6c8" stroke-width="6.4"/>
+              <use href="#gl-spray-a" stroke="#eafffb" stroke-width="2.4"/>
+            </g>
+          </svg>
+        </div>
+
+        <div class="hero-title-block">
+          <div class="hero-title-row">
+            <h1 id="hero-title">OpenHeidelberg</h1>
+          </div>
+          <p class="hero-subtitle" id="hero-subtitle"></p>
+        </div>
+
+        <div class="hero-orange-line-right"></div>
+
+      </div>
+    </section>
+
+    <section class="showcase-search-container">
+      <div id="searchbar">
+        <form id="search" name="search" method="get" action="@@search">
+          <div class="search-lupe-icon" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35"/>
+            </svg>
+          </div>
+          <div id="search-input">
+            <input type="text"
+                   name="SearchableText"
+                   title="Website durchsuchen"
+                   id="searchableText"
+                   placeholder="Suchbegriff, Dokument oder Thema eingeben"
+                   autocomplete="off" />
+            <div id="clear-search" title="Suchbegriff löschen">✕</div>
+          </div>
+          <button id="searchbar-submit" name="searchbar-submit" class="submit" title="Suche starten" type="submit">
+            Suchen
+          </button>
+        </form>
+      </div>
+    </section>
+
+    <!-- the tiles of the page: sections of cards -->
+    <div id="start-content" class="showcase-sections-wrapper"></div>
+
+  </main>
+
+  <div id="tiles-editor-panel"></div>
 </body>
 </html>

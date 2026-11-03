@@ -1,15 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-  Layout "site-search-layout" (landing page of the site root). Stage 0: the theme file only, no rule copies anything from the Plone page, so
-  everything of Plone's output is dropped (Diazo's default). Each later step adds one rule for
-  one region; see the layout matrix in README.md.
+  Layout "site-search-layout" (landing page of the site root). Step S1: the hero of the showcase study.
+  The theme file holds the static hero (logos, lines); title and subtitle come from the page:
+  the title is the part of <title> before " — site name", the subtitle is the description meta tag.
+  Nothing else of Plone's output is copied yet; see the layout matrix in README.md.
 -->
 <rules xmlns="http://namespaces.plone.org/diazo"
-       xmlns:css="http://namespaces.plone.org/diazo/css">
+       xmlns:css="http://namespaces.plone.org/diazo/css"
+       xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+       xmlns:xi="http://www.w3.org/2001/XInclude">
 
     <theme href="++theme++openheidelberg.layout/layouts/site-search-layout/site-search-layout.html" />
 
     <!-- partial renderings (tiles editor, ajax) carry no full page: leave them alone -->
     <notheme css:if-not-content="#visual-portal-wrapper" />
+
+    <!-- head, body attributes, toolbar (logged in) -->
+    <xi:include href="++theme++openheidelberg.layout/frame.xml" />
+
+    <!-- hero title: page title without the " — site title" suffix -->
+    <replace css:theme-children="#hero-title">
+        <xsl:value-of select="normalize-space(substring-before(concat(//title, ' —'), ' —'))" />
+    </replace>
+
+    <!-- hero subtitle: description of the page -->
+    <replace css:theme-children="#hero-subtitle">
+        <xsl:value-of select="//meta[@name='description']/@content" />
+    </replace>
+
+    <!-- the tiles of the page, below the search -->
+    <replace css:theme-children="#start-content" css:content-children="#content-core" />
 
 </rules>

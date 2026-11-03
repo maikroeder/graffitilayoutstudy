@@ -1,0 +1,280 @@
+/*
+  Start page layout (body.layout-site-search-layout): the hero of the showcase study.
+  Taken from graffiti.theme/docs/showcase.html; every selector is scoped to the layout body class so that
+  no other page is touched. Sizes and offsets are unchanged.
+*/
+body.layout-site-search-layout {
+  --hero-bg: #000064;
+  --page-bg: #f1f4f9;
+  --text-primary: #12192c;
+  margin: 0;
+  min-height: 100vh;
+  background-color: var(--page-bg);
+  font-family: "Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", Arial, sans-serif;
+  color: var(--text-primary);
+  -webkit-font-smoothing: antialiased;
+}
+
+.layout-site-search-layout *,
+.layout-site-search-layout *::before,
+.layout-site-search-layout *::after {
+  box-sizing: border-box;
+}
+
+.layout-site-search-layout .showcase-page-wrapper {
+  width: 100%;
+  margin: 0;
+  padding: 0 0 56px 0;
+}
+
+.layout-site-search-layout .showcase-hero {
+  position: relative;
+  width: 100%;
+  height: 402px;
+  background-color: var(--hero-bg);
+  color: #ffffff;
+  overflow: hidden;
+}
+
+.layout-site-search-layout .showcase-hero-inner {
+  position: relative;
+  width: 100%;
+  max-width: 1180px;
+  height: 100%;
+  margin: 0 auto;
+  padding: 0 32px;
+}
+
+/* the neon glow reaches beyond the viewBox: Barceloneta and style.css set "svg:not(:root) { overflow: hidden }",
+   which beats the attribute overflow="visible" of the svgs and cuts off the outermost pixel rows */
+.layout-site-search-layout .showcase-hero svg {
+  overflow: visible;
+}
+
+.layout-site-search-layout .hero-graffiti-logo-wrap {
+  position: absolute;
+  top: 0;
+  left: 32px;
+  width: 248px;
+  height: 286px;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.layout-site-search-layout .hero-graffiti-logo-wrap svg {
+  width: 248px;
+  height: 286px;
+  display: block;
+}
+
+.layout-site-search-layout .hero-plone-logo-wrap {
+  position: absolute;
+  top: 18px;
+  right: 32px;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.layout-site-search-layout .hero-plone-logo-wrap svg {
+  width: 390px;
+  max-width: 34vw;
+  height: auto;
+  display: block;
+}
+
+.layout-site-search-layout .hero-title-block {
+  position: absolute;
+  top: 196px;
+  left: 304px;
+  z-index: 3;
+}
+
+.layout-site-search-layout .hero-title-row {
+  display: flex;
+  align-items: center;
+}
+
+.layout-site-search-layout .hero-title-block h1 {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 86px;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  line-height: 1;
+  color: #ffffff;
+}
+
+.layout-site-search-layout .hero-orange-line-right {
+  position: absolute;
+  top: 268px;
+  left: 568px;
+  right: -100vw;
+  height: 6.5px;
+  /* neon tube: teal body, white-hot core, glow like the Graffiti sign */
+  background: linear-gradient(to bottom, #19e6c8 0, #19e6c8 2px, #eafffb 2px, #eafffb 4px, #19e6c8 5px);
+  border-radius: 3.25px 0 0 3.25px;
+  box-shadow: 0 0 3.6px 3px #19e6c8, 0 0 10px 6.25px rgba(25, 230, 200, 0.55);
+  z-index: 2;
+  pointer-events: none;
+}
+
+.layout-site-search-layout .hero-title-block p.hero-subtitle {
+  margin: 14px 0 0 2px;
+  font-size: 27px;
+  font-weight: 400;
+  color: #ffffff;
+  letter-spacing: 0.005em;
+  white-space: nowrap;
+}
+
+/* search block (between hero and content) */
+.layout-site-search-layout {
+  --shadow-search: 0 8px 24px rgba(0, 0, 100, 0.18), 0 2px 6px rgba(0, 0, 100, 0.10);
+}
+
+.layout-site-search-layout .showcase-search-container {
+  position: relative;
+  z-index: 10;
+  max-width: 1180px;
+  margin: -34px auto 30px auto;
+  padding: 0 32px;
+}
+
+.layout-site-search-layout #searchbar form#search {
+  display: flex;
+  align-items: center;
+  background-color: #ffffff;
+  border-radius: 12px;
+  padding: 7px 8px 7px 20px;
+  box-shadow: var(--shadow-search);
+  border: 1.5px solid #1e295e;
+  transition: box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.layout-site-search-layout #searchbar form#search:focus-within {
+  box-shadow: 0 12px 32px rgba(0, 0, 100, 0.26);
+  border-color: #1d63b8;
+}
+
+.layout-site-search-layout .search-lupe-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #1e295e;
+  margin-right: 14px;
+  flex-shrink: 0;
+}
+
+.layout-site-search-layout #search-input {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  position: relative;
+}
+
+.layout-site-search-layout #searchableText {
+  width: 100%;
+  height: 46px;
+  border: none;
+  outline: none;
+  font-size: 16.5px;
+  color: var(--text-primary);
+  background: transparent;
+  padding-right: 36px;
+}
+
+.layout-site-search-layout #searchableText::placeholder {
+  color: #475569;
+}
+
+.layout-site-search-layout #clear-search {
+  position: absolute;
+  right: 12px;
+  cursor: pointer;
+  color: #94a3b8;
+  font-size: 18px;
+  display: none;
+  line-height: 1;
+  padding: 4px;
+}
+
+.layout-site-search-layout #clear-search:hover {
+  color: var(--text-primary);
+}
+
+.layout-site-search-layout #searchbar-submit {
+  background-color: #16224f;
+  color: #ffffff;
+  border: none;
+  border-radius: 7px;
+  height: 46px;
+  padding: 0 38px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: background-color 0.15s ease, transform 0.1s ease;
+}
+
+.layout-site-search-layout #searchbar-submit:hover {
+  background-color: #213270;
+}
+
+.layout-site-search-layout #searchbar-submit:active {
+  transform: translateY(1px);
+}
+
+/* content below the search: the sections of the page */
+.layout-site-search-layout .showcase-sections-wrapper {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 32px;
+}
+
+.layout-site-search-layout .showcase-sections-wrapper #content {
+  margin: 0;
+  padding: 0;
+}
+
+@media (max-width: 1100px) {
+  .layout-site-search-layout .hero-plone-logo-wrap svg {
+    width: 260px;
+  }
+  .layout-site-search-layout .hero-title-block h1 {
+    font-size: 68px;
+  }
+  .layout-site-search-layout .hero-orange-line-right {
+    left: 510px;
+  }
+  .layout-site-search-layout .hero-title-block p.hero-subtitle {
+    font-size: 22px;
+  }
+}
+
+@media (max-width: 768px) {
+  .layout-site-search-layout .showcase-hero {
+    height: auto;
+    padding: 24px 0 60px 0;
+  }
+  .layout-site-search-layout .hero-graffiti-logo-wrap {
+    position: relative;
+    left: 0;
+    margin-bottom: 12px;
+  }
+  .layout-site-search-layout .hero-plone-logo-wrap {
+    top: 16px;
+    right: 16px;
+  }
+  .layout-site-search-layout .hero-title-block {
+    position: relative;
+    top: 0;
+    left: 0;
+  }
+  .layout-site-search-layout .hero-orange-line-right {
+    display: none;
+  }
+  .layout-site-search-layout .hero-title-block p.hero-subtitle {
+    white-space: normal;
+  }
+}

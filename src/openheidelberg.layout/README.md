@@ -10,7 +10,7 @@ not yet installed or run in Plone.
 
 | Id | Used by | What it is |
 |---|---|---|
-| `site-search-layout` | the TilePage that is the default page of the site root (automatic) | landing page for the search; stage 0: "Hello world!" |
+| `site-search-layout` | the TilePage that is the default page of the site root (automatic) | landing page of the site; the start page of the showcase study (docs/showcase.html in graffiti.theme): hero, search, then the tiles of the page |
 | `default-tiles-layout` | the editorial tile pages `/editing` and `/exploring` (field `page_layout`) | the site look without search, breadcrumbs and document actions |
 | `site-layout` | every other page that main_template renders (no body class; the fallback) | the full site look, starting from the current look of interaktiv.theme |
 
@@ -69,12 +69,13 @@ out by design), `dummy` (designer's text). Update it in the same commit as the r
 |---|---|---|---|
 | frame (head, bundles, body attributes) | empty | live | live |
 | toolbar | empty | live | live |
-| header (logo, navigation) | empty | live | live |
-| search | - (centrepiece, planned) | omitted | empty (Plone's `#portal-searchbox` exists but the current theme does not copy it) |
+| hero (logos, lines, title, subtitle) | live (static in the theme file; title from `<title>`, subtitle from `meta[name=description]`) | - | - |
+| header (logo, navigation) | omitted (no header on the start page) | live | live |
+| search | live (form in the theme file, action `@@search`, field `SearchableText`; clear button in `site-search.js`) | omitted | empty (Plone's `#portal-searchbox` exists but the current theme does not copy it) |
 | status messages | empty | live | live |
 | breadcrumbs | empty | omitted | live |
 | document actions | empty | omitted | live |
-| content | dummy ("Hello world!") | live | live |
+| content | live (children of `#content-core` in `#start-content`; the sections and cards are tiles) | live | live |
 | portlet columns | omitted | omitted | omitted |
 | footer | empty | live | live |
 
@@ -89,7 +90,9 @@ edit-mode pages and iframe views fall back. Inside Plone (2026-10-31, as admin, 
 (`#content .documentActions`) and breadcrumbs (`#portal-breadcrumbs`) were checked against the unthemed
 front page of the running site on 2026-10-31.
 
-Planned centre of the site-search-layout: a search box, in the style of a plain search engine page.
+Start page (2026-11-02, as admin, local site, in the browser pane): `/` shows hero, search and three sections with three cards each; sizes of icon, card title, card description and card were measured in the DOM against `docs/showcase.html` and agree. The look of the sections comes from `openheidelberg.tile_card` (`.tile.tile-frame:has(.tile-card)`), the content from `scripts/setup_demo_start_page.py`. Not checked: the anonymous view, widths up to 768 px, status messages.
+
+The dispatcher `static/rules.xml` uses `css:if-content`, `css:if-not-content` and nested `<rules>` like interaktiv.theme; it was compared offline with the earlier XPath version on 60 test pages (no difference); not yet checked inside Plone.
 
 ## Install
 
