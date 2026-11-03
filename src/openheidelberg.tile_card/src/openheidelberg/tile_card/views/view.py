@@ -8,6 +8,7 @@ from interaktiv.basetiles.views.basetile import BaseTileView
 from interaktiv.framework import vocabulary as framework_vocabulary
 from openheidelberg.tile_card import _
 from openheidelberg.tile_card.vocabularies.orientation import DEFAULT_ICON_ORIENTATION
+from openheidelberg.tile_card.vocabularies.svg_icons import read_svg_icon
 
 
 class TileCardView(BaseTileView):
@@ -60,6 +61,10 @@ class TileCardView(BaseTileView):
         if value in vocab.by_token:
             return vocab.getTermByToken(value).value
         return ''
+
+    def get_svg_icon(self) -> str:
+        """Markup of the chosen svg icon; empty if none is set or the name is not a bundled icon."""
+        return read_svg_icon(self.tile.get('card_icon_svg', '') or '')
 
     def get_icon_orientation(self) -> str:
         value = self.tile.get('card_icon_orientation', None)

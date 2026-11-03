@@ -2,6 +2,18 @@
 function initializeConfigureTileCardModal(modal) {
   var $header = modal.$modal.find('.interaktivbasetiles-modal-header');
 
+  // one icon only: choosing a vector icon clears the icon font choice and the other way round
+  modal.$modal.on('change', 'input[name="card_icon_svg"]', function () {
+    if (this.value) {
+      modal.$modal.find('input[name="card_icon"][value=""]').prop('checked', true);
+    }
+  });
+  modal.$modal.on('change', 'input[name="card_icon"]', function () {
+    if (this.value) {
+      modal.$modal.find('input.card-svg-icon-none').prop('checked', true);
+    }
+  });
+
   modal.$modal.on('click', '.modal-action-save', function (e) {
     e.preventDefault();
     e.stopPropagation();

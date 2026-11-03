@@ -378,3 +378,164 @@
     margin-top: 12px;
   }
 }
+
+/* ===== Card section =====================================================================
+   A frame (TileFrame) that contains cards is shown as a section: a white box with a heading
+   and the cards in equal columns. The frame itself is the platform's own tile; this package
+   owns the look, so editors get the same box wherever they put cards into a frame, and the
+   start page of the site (scripts/setup_demo_start_page.py) needs no style values on the frame.
+   Sizes follow the study page docs/showcase.html of graffiti.theme (.showcase-section-box and
+   .showcase-card). Needs :has(), which all current browsers have. */
+
+.tile.tile-frame:has(.tile-card) {
+  --card-gap: 20px;
+  box-sizing: border-box;
+  background-color: #ffffff;
+  border: 1px solid rgba(226, 232, 240, 0.85);
+  border-radius: 12px;
+  /* !important: the editor writes the padding of a tile as an inline style (0 by default), which
+     would otherwise empty the box */
+  padding: 22px 26px 24px 26px !important;
+  box-shadow: 0 10px 30px rgba(12, 24, 68, 0.06), 0 2px 6px rgba(12, 24, 68, 0.04);
+}
+
+/* heading of the section: the first text tile above the cards */
+.tile.tile-frame:has(.tile-card) h2 {
+  margin: 0 0 16px 0;
+  padding: 0;
+  font-size: 19.5px;
+  font-weight: 600;
+  line-height: normal;
+  letter-spacing: -0.01em;
+  color: #12192c;
+}
+
+/* cards inside a section: the look of .showcase-card */
+.tile.tile-frame:has(.tile-card) .tile-card .card {
+  min-height: 119.2px;
+  background: #ffffff;
+  border: 1px solid #e6eaf0;
+  border-radius: 10px;
+  box-shadow: 0 4px 14px rgba(12, 24, 68, 0.05), 0 1px 3px rgba(12, 24, 68, 0.03);
+  overflow: visible;
+  transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+}
+
+.tile.tile-frame:has(.tile-card) .tile-card .card:hover {
+  transform: translateY(-2px);
+  border-color: #cbd5e1;
+  box-shadow: 0 10px 24px rgba(12, 24, 68, 0.11), 0 3px 8px rgba(12, 24, 68, 0.06);
+}
+
+.tile.tile-frame:has(.tile-card) .tile-card .card-body {
+  padding: 16px 18px 12px 18px;
+}
+
+.tile.tile-frame:has(.tile-card) .tile-card .card-title,
+#content-core .tile.tile-frame:has(.tile-card) .tile-card .card-title {
+  margin: 0 0 6px 0;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.28;
+  color: #12192c;
+}
+
+.tile.tile-frame:has(.tile-card) .tile-card .card-description,
+#content-core .tile.tile-frame:has(.tile-card) .tile-card .card-description {
+  margin: 0;
+  padding-right: 18px;
+  font-size: 13.5px;
+  line-height: 1.42;
+  color: #5a657d;
+}
+
+/* the arrow at the bottom right of a card without a button */
+.tile.tile-frame:has(.tile-card) .tile-card .card-body::after {
+  content: "\2192";
+  display: block;
+  margin-top: auto;
+  padding-top: 4px;
+  text-align: right;
+  font-size: 16px;
+  line-height: 1;
+  color: #475569;
+  transition: transform 0.18s ease, color 0.18s ease;
+}
+
+.tile.tile-frame:has(.tile-card) .tile-card .card:hover .card-body::after {
+  transform: translateX(4px);
+  color: #000064;
+}
+
+/* ===== Vector icons ======================================================================
+   The bundled svg icons (static/icons/*.svg) are drawn inline with stroke="currentColor", so the colour of the
+   icon is the text colour of its box. They sit in the same column as the icon font icons. */
+.tile-card .card-icon.card-icon-svg {
+  flex: 0 0 24px;
+  width: 24px;
+  height: 24px;
+  margin-top: 1px;
+  font-size: 0;
+  line-height: 0;
+  color: var(--card-icon-color, var(--card-accent, #337ab7));
+}
+
+.tile-card .card-icon.card-icon-svg svg {
+  display: block;
+  width: 24px;
+  height: 24px;
+}
+
+.tile.tile-frame:has(.tile-card) .tile-card .card-icon.card-icon-svg {
+  color: #1d55cc;
+}
+
+/* the picker in the "Edit card" dialog */
+.card-svg-icon-picker {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.card-svg-icon-option {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  margin: 0;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  cursor: pointer;
+  color: #1d55cc;
+}
+
+.card-svg-icon-option input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.card-svg-icon-option:has(input:checked) {
+  border-color: #1d55cc;
+  box-shadow: 0 0 0 2px rgba(29, 85, 204, 0.35);
+  background: #f0f5ff;
+}
+
+/* ===== Card section: details of the showcase ===============================================
+   Icon beside the title: gap 12px; the title row is at least 44px high and the description starts 6px below
+   it, as in .showcase-card-header. Same font stack as the study page. */
+.tile.tile-frame:has(.tile-card) h2,
+.tile.tile-frame:has(.tile-card) .tile-card .card-title,
+.tile.tile-frame:has(.tile-card) .tile-card .card-description {
+  font-family: "Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+.tile.tile-frame:has(.tile-card) .tile-card .card-main[data-icon-orientation="title"] {
+  grid-template-rows: minmax(44px, auto) auto;
+  gap: 6px 12px;
+}
+
+#content-core .tile.tile-frame:has(.tile-card) .tile-card .card-main[data-icon-orientation="title"] .card-description {
+  margin-top: 0;
+}

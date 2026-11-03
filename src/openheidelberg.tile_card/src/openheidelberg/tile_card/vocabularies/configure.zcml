@@ -6,4 +6,10 @@
         provides="zope.schema.interfaces.IVocabularyFactory"
     />
 
+    <utility
+        component="openheidelberg.tile_card.vocabularies.svg_icons.svg_icons"
+        name="openheidelberg.tile_card.vocabularies.svg_icons"
+        provides="zope.schema.interfaces.IVocabularyFactory"
+    />
+
 </configure>

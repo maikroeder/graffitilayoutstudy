@@ -22,6 +22,7 @@ class ITileCard(IBaseTile):
         link_label=TilePermissions.MODIFY,
         link_show_button=TilePermissions.MODIFY,
         card_icon=TilePermissions.MODIFY,
+        card_icon_svg=TilePermissions.MODIFY,
         card_icon_orientation=TilePermissions.MODIFY,
         link_new_window=TilePermissions.MODIFY,
     ))
@@ -95,6 +96,16 @@ class ITileCard(IBaseTile):
         required=False,
     )
 
+    card_icon_svg = schema.Choice(
+        title=_('label_card_icon_svg', default='Vector icon'),
+        description=_(
+            'help_card_icon_svg',
+            default='One of the bundled svg icons; it takes the place of the icon font icon.'
+        ),
+        default='',
+        source='openheidelberg.tile_card.vocabularies.svg_icons',
+        required=False,
+    )
     card_icon_orientation = schema.Choice(
         title=_('label_card_icon_orientation', default='Icon position'),
         default=DEFAULT_ICON_ORIENTATION,

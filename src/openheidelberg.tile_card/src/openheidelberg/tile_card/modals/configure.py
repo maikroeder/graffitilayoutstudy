@@ -8,6 +8,8 @@ from interaktiv.basetiles.vocabularies.icon_fonts import get_selectable_icon_gro
 from interaktiv.framework import form
 from openheidelberg.tile_card.vocabularies.orientation import DEFAULT_ICON_ORIENTATION
 from openheidelberg.tile_card.vocabularies.orientation import ICON_ORIENTATIONS
+from openheidelberg.tile_card.vocabularies.svg_icons import get_svg_icon_names
+from openheidelberg.tile_card.vocabularies.svg_icons import read_svg_icon
 from zExceptions import NotFound
 
 try:
@@ -70,3 +72,11 @@ class ConfigureModalView(BrowserView):
         if value in ('left', 'right'):
             return value
         return DEFAULT_ICON_ORIENTATION
+
+    def get_svg_icons(self) -> list:
+        """The bundled svg icons for the picker: name and markup, the chosen one marked."""
+        selected = self.tile.get('card_icon_svg', '') or ''
+        result = []
+        for name in get_svg_icon_names():
+            result.append({'name': name, 'svg': read_svg_icon(name), 'selected': name == selected})
+        return result

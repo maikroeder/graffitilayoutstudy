@@ -144,6 +144,21 @@
             </div>
           </div>
 
+          <div class="row modal-content-row">
+            <div class="col-md-12">
+              <p class="caption" i18n:translate="label_svg_icons">Vector icons</p>
+              <div class="card-svg-icon-picker">
+                <label class="card-svg-icon-option" tal:repeat="svg_icon view/get_svg_icons" title="${svg_icon/name}">
+                  <input type="radio" name="card_icon_svg" value="${svg_icon/name}"
+                         tal:attributes="checked python: svg_icon['selected']" />
+                  <span tal:content="structure svg_icon/svg"></span>
+                </label>
+                <input type="radio" name="card_icon_svg" value="" class="card-svg-icon-none" hidden="hidden"
+                       tal:attributes="checked python: not view.tile.get('card_icon_svg', '')" />
+              </div>
+            </div>
+          </div>
+
           <tal:icon_groups repeat="icon_group view/get_selectable_icon_groups">
             <div class="row modal-content-row">
               <div class="col-md-12">
