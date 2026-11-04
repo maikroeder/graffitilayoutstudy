@@ -52,11 +52,13 @@
   color: #c0392b;
 }
 
-/* the embedded view tile with the number of documents */
-.layout-default-tiles-layout .documents-count {
+/* the embedded view tile with the number of documents (#content p in the selector: style.css of the theme sets #content p { line-height: 16px }) */
+body.layout-default-tiles-layout #content p.documents-count {
   margin: 0;
   font-family: "Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", Arial, sans-serif;
   font-size: 19.5px;
+  /* the view tile clips its content (overflow: auto) and the theme's line-height of 16px is smaller than the font */
+  line-height: 1.4;
   color: #12192c;
 }
 
