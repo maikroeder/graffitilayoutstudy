@@ -624,3 +624,12 @@
 #content-core .tile.tile-frame:has(.tile-card) .tile-card .card-main[data-icon-orientation="title"] .card-description {
   margin-top: 0;
 }
+
+/* The description starts at the same height whatever the position of the icon: in the other positions the title
+   block is as high as the title row of the "title" layout (44px) plus its 6px gap. */
+.tile.tile-frame:has(.tile-card) .tile-card .card-main:not([data-icon-orientation="title"]) .card-title,
+#content-core .tile.tile-frame:has(.tile-card) .tile-card .card-main:not([data-icon-orientation="title"]) .card-title {
+  box-sizing: border-box;
+  min-height: 44px;
+  margin-bottom: 6px;
+}
