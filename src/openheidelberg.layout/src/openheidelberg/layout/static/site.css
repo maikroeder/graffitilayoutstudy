@@ -405,9 +405,47 @@ footer#company-footer #site-actions li {
 }
 
 .site-setup-bar .site-setup-all > summary {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 0;
+  list-style: none;
   cursor: pointer;
   color: #1d55cc;
+}
+
+.site-setup-bar .site-setup-all > summary::-webkit-details-marker {
+  display: none;
+}
+
+/* sandwich icon in front, wedge behind that turns up when the list is open; both take the text colour */
+.site-setup-bar .site-setup-all > summary::before {
+  content: "";
+  width: 18px;
+  height: 18px;
+  background-color: currentColor;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.4' stroke-linecap='round'%3E%3Cpath d='M4 6h16M4 12h16M4 18h16'/%3E%3C/svg%3E") center / contain no-repeat;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.4' stroke-linecap='round'%3E%3Cpath d='M4 6h16M4 12h16M4 18h16'/%3E%3C/svg%3E") center / contain no-repeat;
+}
+
+.site-setup-bar .site-setup-all > summary::after {
+  content: "";
+  width: 7px;
+  height: 7px;
+  margin: -3px 0 0 2px;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  transform: rotate(45deg);
+  transition: transform 0.15s ease;
+}
+
+.site-setup-bar .site-setup-all[open] > summary::after {
+  margin-top: 3px;
+  transform: rotate(-135deg);
+}
+
+.site-setup-bar .site-setup-all > summary:hover {
+  text-decoration: underline;
 }
 
 .site-setup-bar .site-setup-all[open] {
