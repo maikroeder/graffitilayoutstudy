@@ -125,10 +125,11 @@
         <div class="modal-content modal-content-row">
 
           <!-- vector icon: beside the title; chosen from the icons of the control panel -->
-          <div class="row modal-content-row form-group">
-            <div class="col-md-4"><label for="card-icon-orientation" i18n:translate="label_card_icon_orientation">Position of the vector icon</label></div>
-            <div class="col-md-8 field">
-              <select id="card-icon-orientation" name="card_icon_orientation" class="field-input select">
+          <div class="row modal-content-row">
+            <div class="col-md-12">
+              <p class="caption" id="card-icon-orientation-caption" i18n:translate="label_card_icon_orientation">Position of the vector icon</p>
+              <select id="card-icon-orientation" name="card_icon_orientation" class="field-input select"
+                      aria-labelledby="card-icon-orientation-caption">
                 <option tal:repeat="o python: view.get_icon_orientations()" value="${o/id}"
                         tal:attributes="selected python: 'selected' if o['id'] == view.get_selected_icon_orientation() else None">${o/title}</option>
               </select>
