@@ -467,6 +467,28 @@
   color: #000064;
 }
 
+/* the action icon (icon font) takes the place of the arrow */
+.tile.tile-frame:has(.tile-card) .tile-card .card-body.has-action-icon::after {
+  content: none;
+}
+
+.tile-card .card-action-icon {
+  display: block;
+  margin-top: auto;
+  padding-top: 4px;
+  text-align: right;
+  font-size: 16px;
+  font-style: normal;
+  line-height: 1;
+  color: #475569;
+  transition: transform 0.18s ease, color 0.18s ease;
+}
+
+.tile-card .card:hover .card-action-icon {
+  transform: translateX(4px);
+  color: #000064;
+}
+
 /* ===== Vector icons ======================================================================
    The bundled svg icons (static/icons/*.svg) are drawn inline with stroke="currentColor", so the colour of the
    icon is the text colour of its box. They sit in the same column as the icon font icons. */
@@ -526,11 +548,6 @@
   pointer-events: none;
 }
 
-/* the hidden radio that stands for "no vector icon" must not show up; the modal theme overrides [hidden] */
-.card-svg-icon-picker input.card-svg-icon-none {
-  display: none !important;
-}
-
 .card-svg-icon-option:has(input:checked) {
   border-color: #1d55cc;
   box-shadow: 0 0 0 2px rgba(29, 85, 204, 0.35);
@@ -554,10 +571,11 @@
   margin-top: 0;
 }
 
-/* The "No icon" radio stays checked in the form while a vector icon is chosen (the icon font field
-   is then empty); do not show it as selected. */
-.tab-icon:has(.card-svg-icon-option input:checked) .no-icon-wrapper input:checked::before {
-  background-color: transparent !important;
+/* "no vector icon" option of the picker */
+.card-svg-icon-option-none {
+  font-size: 22px;
+  line-height: 1;
+  color: #5a657d;
 }
 
 /* ===== Card section: details of the showcase ===============================================

@@ -1,0 +1,93 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      metal:use-macro="context/prefs_main_template/macros/master"
+      i18n:domain="openheidelberg.tile_card">
+
+<body>
+<metal:main fill-slot="prefs_configlet_main">
+
+  <h1 class="documentFirstHeading" i18n:translate="label_svg_icons_controlpanel">Card tile vector icons</h1>
+
+  <p class="documentDescription" i18n:translate="help_svg_icons_controlpanel">
+    The vector icons editors can put beside the title of a card. Only plain drawing is accepted: svg, g, path, circle,
+    ellipse, rect, line, polyline, polygon. The icon needs a viewBox; width and height are set by the card. Use
+    currentColor for stroke or fill so that the icon takes the colour of the card.
+  </p>
+
+  <div class="alert alert-danger" role="alert" tal:condition="view/errors">
+    <p tal:repeat="error view/errors" tal:content="error">error</p>
+  </div>
+
+  <table class="listing table" id="tile-card-svg-icons">
+    <thead>
+      <tr>
+        <th i18n:translate="">Preview</th>
+        <th i18n:translate="">Name</th>
+        <th i18n:translate="">Markup</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr tal:repeat="icon view/get_icons">
+        <td class="svg-icon-preview" style="width:48px;color:#1d55cc">
+          <span style="display:block;width:32px;height:32px" tal:content="structure icon/svg"></span>
+        </td>
+        <td><code tal:content="icon/name">name</code></td>
+        <td>
+          <details>
+            <summary i18n:translate="">Show markup</summary>
+            <pre style="white-space:pre-wrap;max-width:50em" tal:content="icon/svg">svg</pre>
+          </details>
+        </td>
+        <td>
+          <form method="post" action="${context/absolute_url}/@@tile-card-svg-icons">
+            <input type="hidden" name="_authenticator" value="${view/authenticator_token}" />
+            <input type="hidden" name="name" value="${icon/name}" />
+            <button type="submit" name="form.button.delete" value="1" class="btn btn-sm btn-danger"
+                    i18n:translate="">Delete</button>
+          </form>
+        </td>
+      </tr>
+      <tr tal:condition="not: view/get_icons">
+        <td colspan="4" i18n:translate="">No icons. Cards offer no vector icons until one is added.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <form method="post" enctype="multipart/form-data" action="${context/absolute_url}/@@tile-card-svg-icons"
+        class="pat-autotoc-none" id="tile-card-svg-icon-add">
+    <input type="hidden" name="_authenticator" value="${view/authenticator_token}" />
+    <h2 i18n:translate="">Add or replace an icon</h2>
+    <div class="mb-3">
+      <label for="svg-name" i18n:translate="">Name</label>
+      <input type="text" id="svg-name" name="name" class="form-control" value="${view/form_name}"
+             maxlength="40" />
+      <div class="form-text" i18n:translate="">Lower-case letters, digits, - and _. An existing name is replaced.</div>
+    </div>
+    <div class="mb-3">
+      <label for="svg-markup" i18n:translate="">Svg markup</label>
+      <textarea id="svg-markup" name="svg" rows="8" class="form-control"
+                tal:content="view/form_svg"></textarea>
+    </div>
+    <div class="mb-3">
+      <label for="svg-file" i18n:translate="">or an .svg file</label>
+      <input type="file" id="svg-file" name="svg_file" accept=".svg,image/svg+xml" class="form-control" />
+      <div class="form-text" i18n:translate="">A file takes precedence over the pasted markup. Without a name, the file name is used.</div>
+    </div>
+    <button type="submit" name="form.button.add" value="1" class="btn btn-primary" i18n:translate="">Save icon</button>
+  </form>
+
+  <form method="post" action="${context/absolute_url}/@@tile-card-svg-icons" class="mt-4"
+        tal:condition="view/get_missing_bundled">
+    <input type="hidden" name="_authenticator" value="${view/authenticator_token}" />
+    <button type="submit" name="form.button.restore" value="1" class="btn btn-secondary">
+      <tal:t i18n:translate="">Add the bundled icons that are missing</tal:t>
+      (<tal:n content="python: ', '.join(view.get_missing_bundled())">book</tal:n>)
+    </button>
+  </form>
+
+</metal:main>
+</body>
+</html>

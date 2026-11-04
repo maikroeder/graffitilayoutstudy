@@ -1,0 +1,15 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    i18n_domain="openheidelberg.tile_card">
+
+    <!-- Control panel: the svg icons of the card tile -->
+    <browser:page
+        name="tile-card-svg-icons"
+        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+        class=".svg_icons.SvgIconsControlPanel"
+        permission="cmf.ManagePortal"
+        layer="openheidelberg.tile_card.interfaces.IOpenHeidelbergTileCardLayer"
+    />
+
+</configure>

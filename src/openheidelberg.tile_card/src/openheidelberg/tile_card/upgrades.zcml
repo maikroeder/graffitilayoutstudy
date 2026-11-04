@@ -1,0 +1,16 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:genericsetup="http://namespaces.zope.org/genericsetup">
+
+    <!-- 0001 -> 0002: the control panel "Card tile vector icons" -->
+    <genericsetup:upgradeSteps
+        profile="openheidelberg.tile_card:default"
+        source="0001"
+        destination="0002">
+        <genericsetup:upgradeDepends
+            title="Register the control panel of the card tile vector icons"
+            import_steps="controlpanel"
+        />
+    </genericsetup:upgradeSteps>
+
+</configure>

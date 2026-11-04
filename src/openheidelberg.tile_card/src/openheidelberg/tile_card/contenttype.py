@@ -86,10 +86,10 @@ class ITileCard(IBaseTile):
 
 
     card_icon = schema.Choice(
-        title=_('label_card_icon', default='Icon'),
+        title=_('label_card_icon', default='Action icon'),
         description=_(
             'help_card_icon',
-            default='Shown beside the title and the description, spanning both.'
+            default='Shown at the bottom right of the card; it takes the place of the arrow.'
         ),
         default='',
         source='interaktiv.basetiles.vocabularies.icon_fonts.icon_fonts',
@@ -100,7 +100,7 @@ class ITileCard(IBaseTile):
         title=_('label_card_icon_svg', default='Vector icon'),
         description=_(
             'help_card_icon_svg',
-            default='One of the bundled svg icons; it takes the place of the icon font icon.'
+            default='One of the vector icons of the control panel; shown beside the title.'
         ),
         default='',
         source='openheidelberg.tile_card.vocabularies.svg_icons',

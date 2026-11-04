@@ -6,10 +6,9 @@
       <figure class="card-image" tal:condition="python: image">
         <img src="${image/url}" alt="${image/alt}" loading="lazy" />
       </figure>
-      <div class="card-body">
+      <div class="card-body ${python: 'has-action-icon' if icon else ''}">
         <div class="card-main" data-icon-orientation="${orientation}">
           <span class="card-icon card-icon-svg" aria-hidden="true" tal:condition="python: svg_icon" tal:content="structure svg_icon"></span>
-          <i class="card-icon ${icon}" aria-hidden="true" tal:condition="python: icon and not svg_icon" />
           <div class="card-text">
             <h3 class="card-title">
               <a class="card-link card-link-plain" href="${link/href}"
@@ -27,6 +26,7 @@
         <p class="card-placeholder discreet"
            tal:condition="python: view.get_edit_mode() and not (image or link or view.tile.get('description'))"
            i18n:translate="label_card_placeholder">Use "Edit card" to add an image, a description and an action.</p>
+        <i class="card-action-icon ${icon}" aria-hidden="true" tal:condition="python: icon" />
       </div>
     </article>
   </div>

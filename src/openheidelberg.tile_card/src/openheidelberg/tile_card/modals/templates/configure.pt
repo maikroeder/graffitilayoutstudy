@@ -124,8 +124,9 @@
       <div role="tabpanel" class="tab-pane tab-icon" id="tab-card-icon">
         <div class="modal-content modal-content-row">
 
+          <!-- vector icon: beside the title; chosen from the icons of the control panel -->
           <div class="row modal-content-row form-group">
-            <div class="col-md-4"><label for="card-icon-orientation" i18n:translate="label_card_icon_orientation">Icon position</label></div>
+            <div class="col-md-4"><label for="card-icon-orientation" i18n:translate="label_card_icon_orientation">Position of the vector icon</label></div>
             <div class="col-md-8 field">
               <select id="card-icon-orientation" name="card_icon_orientation" class="field-input select">
                 <option tal:repeat="o python: view.get_icon_orientations()" value="${o/id}"
@@ -134,27 +135,32 @@
             </div>
           </div>
 
-          <div class="row modal-content-row no-icon-row">
-            <div class="col-md-12">
-              <div class="no-icon-wrapper">
-                <input type="radio" name="card_icon" value="" title="No icon"
-                       tal:attributes="checked python: not view.tile.get('card_icon', '')" />
-                <span i18n:translate="label_no_icon">No icon</span>
-              </div>
-            </div>
-          </div>
-
           <div class="row modal-content-row">
             <div class="col-md-12">
-              <p class="caption" i18n:translate="label_svg_icons">Vector icons</p>
+              <p class="caption" i18n:translate="label_svg_icons">Vector icon</p>
               <div class="card-svg-icon-picker">
+                <label class="card-svg-icon-option card-svg-icon-option-none" title="No vector icon" i18n:attributes="title label_no_svg_icon">
+                  <input type="radio" name="card_icon_svg" value=""
+                         tal:attributes="checked python: not view.tile.get('card_icon_svg', '')" />
+                  <span aria-hidden="true">&#215;</span>
+                </label>
                 <label class="card-svg-icon-option" tal:repeat="svg_icon view/get_svg_icons" title="${svg_icon/name}">
                   <input type="radio" name="card_icon_svg" value="${svg_icon/name}"
                          tal:attributes="checked python: svg_icon['selected']" />
                   <span tal:content="structure svg_icon/svg"></span>
                 </label>
-                <input type="radio" name="card_icon_svg" value="" class="card-svg-icon-none" hidden="hidden"
-                       tal:attributes="checked python: not view.tile.get('card_icon_svg', '')" />
+              </div>
+            </div>
+          </div>
+
+          <!-- font icon: at the bottom right of the card, in the place of the arrow -->
+          <div class="row modal-content-row no-icon-row">
+            <div class="col-md-12">
+              <p class="caption" i18n:translate="label_card_action_icon">Action icon (bottom right, replaces the arrow)</p>
+              <div class="no-icon-wrapper">
+                <input type="radio" name="card_icon" value="" title="No icon"
+                       tal:attributes="checked python: not view.tile.get('card_icon', '')" />
+                <span i18n:translate="label_no_icon">No icon (arrow)</span>
               </div>
             </div>
           </div>

@@ -63,7 +63,7 @@ class TileCardView(BaseTileView):
         return ''
 
     def get_svg_icon(self) -> str:
-        """Markup of the chosen svg icon; empty if none is set or the name is not a bundled icon."""
+        """Markup of the chosen svg icon; empty if none is set or the name is not in the icon registry."""
         return read_svg_icon(self.tile.get('card_icon_svg', '') or '')
 
     def get_icon_orientation(self) -> str:
