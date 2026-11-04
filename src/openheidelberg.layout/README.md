@@ -11,8 +11,8 @@ not yet installed or run in Plone.
 | Id | Used by | What it is |
 |---|---|---|
 | `site-search-layout` | the TilePage that is the default page of the site root (automatic) | landing page of the site; the start page of the showcase study (docs/showcase.html in graffiti.theme): hero, search, then the tiles of the page |
-| `default-tiles-layout` | the editorial tile pages `/editing` and `/exploring` (field `page_layout`) | the site look without search, breadcrumbs and document actions |
-| `site-layout` | every other page that main_template renders (no body class; the fallback) | the full site look, starting from the current look of interaktiv.theme |
+| `default-tiles-layout` | the editorial tile pages `/editing` and `/exploring` (field `page_layout`) | the site look with breadcrumbs and the title of the page, without the search of the header and without document actions; search and dashboard are tiles of the page (`default-tiles.css`) |
+| `site-layout` | every other page that main_template renders in view mode (no body class; the fallback) | the look of `/exploring` for the whole site: slim blue header, breadcrumbs, search bar above the title, content, blue footer (`site.css`) |
 
 Portlet columns are not part of the new layouts (the content area is always full width).
 
@@ -37,10 +37,12 @@ Portlet columns are not part of the new layouts (the content area is always full
   `layout-<id>`. A TilePage without a value that is the default page of the site root gets
   `layout-site-search-layout`.
 - The two explicit layouts apply in view mode only; in edit mode the tiles editor stays on `interaktiv.theme`.
-- `site-layout` is switched on by the theme parameter `site_layout_enabled` (`manifest.cfg`). For now it is on
-  only for a browser that has the cookie `openheidelberg_layout=new` (set it in the browser console:
-  `document.cookie = 'openheidelberg_layout=new; path=/'`; delete it to go back). The cut-over for all visitors
-  is a one-line change of that expression to `python:'1'`.
+- `site-layout` is switched on by the theme parameter `site_layout_enabled` (`manifest.cfg`), since 2026-11-04 for
+  all visitors (`python:'1'`; read at server start). To go back to the cookie preview use
+  `python:'1' if request.cookies.get('openheidelberg_layout') == 'new' else ''` (set the cookie in the browser
+  console: `document.cookie = 'openheidelberg_layout=new; path=/'`), or `python:''` to switch it off.
+- Styles: `site.css` is the shared look of both layouts that use `site.html` (not scoped to a layout);
+  `layouts/default-tiles-layout/default-tiles.css` holds only what the editorial pages add (dashboard, count).
 
 The registration of the layout policy replaces the one of interaktiv.basetiles (same discriminators, in
 `overrides.zcml`, which z3c.autoinclude loads for Plone add-ons).
@@ -70,16 +72,16 @@ out by design), `dummy` (designer's text). Update it in the same commit as the r
 | frame (head, bundles, body attributes) | empty | live | live |
 | toolbar | empty | live | live |
 | hero (logos, lines, title, subtitle) | live (static in the theme file; title from `<title>`, subtitle from `meta[name=description]`) | - | - |
-| header (logo, navigation) | omitted (no header on the start page) | live | live |
-| search | live (form in the theme file, action `@@search`, field `SearchableText`; clear button in `site-search.js`) | omitted | empty (Plone's `#portal-searchbox` exists but the current theme does not copy it) |
+| header | omitted (no header on the start page) | slim (logo left, site actions right; `regions/header-slim.xml`) | slim (same) |
+| search | live (form in the theme file, action `@@search`, field `SearchableText`; clear button in `site-search.js`) | omitted (the search is a tile of the page, styled like the start page) | live (search bar above the title, `regions/search-bar.xml`, same look as the tile) |
 | status messages | empty | live | live |
-| breadcrumbs | empty | omitted | live |
-| document actions | empty | omitted | live |
+| breadcrumbs | empty | live | live |
+| document actions | empty | omitted | live (copied; not restyled) |
 | content | live (children of `#content-core` in `#start-content`; the sections and cards are tiles) | live | live |
 | portlet columns | omitted | omitted | omitted |
-| footer | empty | live | live |
+| footer | empty | live (blue) | live (blue) |
 
-"live" means the rules of interaktiv.theme were copied; nothing is restyled yet.
+"live" means the rules of interaktiv.theme were copied; the header, breadcrumbs, search, title, tables and footer are restyled in `site.css`.
 
 ## Checked
 

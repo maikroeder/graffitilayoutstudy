@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-  Layout "default-tiles-layout": the editorial tile pages (/editing, /exploring). The site look without
-  search, breadcrumbs and document actions (see regions/omitted-in-default-tiles.xml).
+  Layout "default-tiles-layout": the editorial tile pages (/editing, /exploring). The site look with
+  a slim header (regions/header-slim.xml), breadcrumbs and the title of the page, without the search of the header
+  and without document actions (see
+  regions/omitted-in-default-tiles.xml). The search is a tile of the page. The look of the tiles is in
+  default-tiles.css.
 -->
 <rules xmlns="http://namespaces.plone.org/diazo"
        xmlns:css="http://namespaces.plone.org/diazo/css"
@@ -13,8 +16,16 @@
 
     <xi:include href="++theme++openheidelberg.layout/frame.xml" />
     <xi:include href="++theme++openheidelberg.layout/regions/common.xml" />
-    <xi:include href="++theme++openheidelberg.layout/regions/header.xml" />
+    <xi:include href="++theme++openheidelberg.layout/regions/header-slim.xml" />
     <xi:include href="++theme++openheidelberg.layout/regions/statusmessage.xml" />
+    <xi:include href="++theme++openheidelberg.layout/regions/breadcrumbs.xml" />
+    <!-- the title: the tiles page view leaves out the title of Plone, so it comes from the <title> of the page -->
+    <before css:theme="#main-container">
+        <div class="container tiles-page-title">
+            <h1><xsl:value-of select="normalize-space(substring-before(concat(//title, ' —'), ' —'))" /></h1>
+        </div>
+    </before>
+
     <xi:include href="++theme++openheidelberg.layout/regions/content.xml" />
     <xi:include href="++theme++openheidelberg.layout/regions/footer.xml" />
     <xi:include href="++theme++openheidelberg.layout/regions/omitted-in-default-tiles.xml" />

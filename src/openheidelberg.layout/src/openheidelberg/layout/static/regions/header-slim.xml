@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Slim header of default-tiles-layout: on the blue of the hero of the start page, the logo (the neon sign, as a
+  background image of the link in default-tiles.css) on the left and the site actions of Plone (Site Map, Accessibility,
+  Contact) on the right. The navigation of the standard header is left out. The theme element header#company-header
+  stays, so that the rules that put the cookie hint and the stickybar before it (common.xml) still find it.
+-->
+<rules xmlns="http://namespaces.plone.org/diazo"
+       xmlns:css="http://namespaces.plone.org/diazo/css"
+       xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+
+    <replace css:theme-children="header#company-header" method="raw">
+        <div class="slim-header-inner">
+            <a class="slim-header-logo" href="{//a[@id='portal-logo']/@href}">
+                <span class="slim-header-logo-text">Graffiti</span>
+            </a>
+            <nav class="slim-header-actions" aria-label="Site actions">
+                <!-- the unthemed output has the list twice (in #company-footer and in #portal-footer-wrapper); the first is enough -->
+                <xsl:copy-of select="(//ul[@id='portal-siteactions'])[1]" />
+            </nav>
+        </div>
+    </replace>
+
+</rules>

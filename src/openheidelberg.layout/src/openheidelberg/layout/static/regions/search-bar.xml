@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Search bar above the title, for the pages that have no search tile: the same markup and classes as the search
+  tile of graffiti.tile_search (wrapper .tile-search, form .tile-search-form), so site.css styles both alike.
+  The form submits to the site search of the portal; the portal URL is the target of the logo link.
+-->
+<rules xmlns="http://namespaces.plone.org/diazo"
+       xmlns:css="http://namespaces.plone.org/diazo/css"
+       xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+
+    <before css:theme="#main-container" method="raw">
+        <div class="container site-search-bar">
+            <div class="tile-search">
+                <form class="tile-search-form pat-livesearch" role="search"
+                      action="{//a[@id='portal-logo']/@href}/@@search"
+                      data-pat-livesearch="ajaxUrl:{//a[@id='portal-logo']/@href}/@@ajax-search">
+                    <label class="hiddenStructure" for="site-search-bar-input">Search Site</label>
+                    <input class="searchField form-control" id="site-search-bar-input" name="SearchableText"
+                           type="text" value="" placeholder="Search Site" title="Search Site" autocomplete="off" />
+                    <ul class="livesearch-results" style="display: none;"></ul>
+                    <button class="searchButton btn btn-primary" type="submit">Search</button>
+                </form>
+            </div>
+        </div>
+    </before>
+
+</rules>
