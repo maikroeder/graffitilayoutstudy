@@ -4,7 +4,7 @@
   tile of graffiti.tile_search (wrapper .tile-search, form .tile-search-form), so site.css styles both alike.
   The form submits to the site search of the portal; the portal URL is the target of the logo link.
   Not on control panels (pages with the Site Setup portlet, the overview included): searching the content of the site
-  is not what one does there; they get the bar of regions/site-setup.xml instead.
+  is not what one does there; the way back is the Site Setup crumb of regions/breadcrumbs.xml.
 -->
 <rules xmlns="http://namespaces.plone.org/diazo"
        xmlns:css="http://namespaces.plone.org/diazo/css"

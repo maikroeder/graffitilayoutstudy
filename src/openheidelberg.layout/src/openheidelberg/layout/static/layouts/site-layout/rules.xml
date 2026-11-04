@@ -16,8 +16,6 @@
     <xi:include href="++theme++openheidelberg.layout/regions/header-slim.xml" />
     <xi:include href="++theme++openheidelberg.layout/regions/statusmessage.xml" />
     <xi:include href="++theme++openheidelberg.layout/regions/breadcrumbs.xml" />
-    <!-- control panels: way back to the Site Setup, between breadcrumbs and search bar -->
-    <xi:include href="++theme++openheidelberg.layout/regions/site-setup.xml" />
     <!-- search bar between breadcrumbs and title -->
     <xi:include href="++theme++openheidelberg.layout/regions/search-bar.xml" />
     <!-- tile pages: the tiles page view leaves out the title of Plone, so it comes from the <title> of the page -->
