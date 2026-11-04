@@ -9,9 +9,8 @@ function initializeConfigureTileCardModal(modal) {
     }
   });
   modal.$modal.on('change', 'input[name="card_icon"]', function () {
-    if (this.value) {
-      modal.$modal.find('input.card-svg-icon-none').prop('checked', true);
-    }
+    // "No icon" (empty value) clears the vector icon too
+    modal.$modal.find('input.card-svg-icon-none').prop('checked', true);
   });
 
   modal.$modal.on('click', '.modal-action-save', function (e) {
