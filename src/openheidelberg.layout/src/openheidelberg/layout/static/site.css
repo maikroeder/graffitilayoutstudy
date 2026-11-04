@@ -205,6 +205,14 @@ header#company-header::after {
   color: #12192c;
 }
 
+/* The tiles the editor adds get a margin of 0, the tiles of the seeded pages 10px: a heading or a card added by hand sat
+   10px left of the search bar, the dashboard and the view. Text tiles and cards in a row of the page itself (not in a
+   frame, which brings its own padding) take the 10px of the others, whatever margin the editor stored. */
+#tile-page-content > .tile-page > .tile-rows-wrapper > .tile-row > .tiles-wrapper > .tile:is(.tile-text, .tile-card) {
+  margin-left: 10px !important;
+  margin-right: 10px !important;
+}
+
 /* the tabular view of Plone (tabular_view), also inside a view tile: the table of a document list */
 .has-table {
   overflow-x: auto;
