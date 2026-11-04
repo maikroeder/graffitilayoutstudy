@@ -571,6 +571,18 @@
   margin-top: 0;
 }
 
+/* Icon tab of the "Edit card" dialog: air between the headings and the rows. The modal theme gives the captions
+   no space of their own, so the headings sat on the icons above and below. */
+.tab-icon .row.modal-content-row {
+  margin-bottom: 0;
+  padding-bottom: 28px;
+}
+
+.tab-icon p.caption {
+  margin: 0 0 14px;
+  line-height: 1.3;
+}
+
 /* "no vector icon" option of the picker */
 .card-svg-icon-option-none {
   font-size: 22px;
