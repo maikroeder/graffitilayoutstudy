@@ -410,6 +410,12 @@
   color: #12192c;
 }
 
+/* On pages with #content-core the layout's "#content-core h2 { margin: 0 }" wins by its id: the space under the
+   heading has to be set at the same weight. */
+#content-core .tile.tile-frame:has(.tile-card) h2 {
+  margin: 0 0 16px 0;
+}
+
 /* cards inside a section: the look of .showcase-card */
 .tile.tile-frame:has(.tile-card) .tile-card .card {
   min-height: 119.2px;
