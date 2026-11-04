@@ -1,7 +1,7 @@
 <tal:translate i18n:domain="openheidelberg.tile_card">
 <tal:tile metal:use-macro="python: view.get_tile_view_macro()">
   <div class="tile-content tile-card-content" metal:fill-slot="tile_content"
-       tal:define="image python: view.get_image(); link python: view.get_link(); icon python: view.get_icon(); svg_icon python: view.get_svg_icon(); orientation python: view.get_icon_orientation()">
+       tal:define="image python: view.get_image(); link python: view.get_link(); icon python: view.get_icon(); svg_icon python: view.get_svg_icon(); orientation python: view.get_icon_orientation() if svg_icon else 'left'">
     <article class="card">
       <figure class="card-image" tal:condition="python: image">
         <img src="${image/url}" alt="${image/alt}" loading="lazy" />
