@@ -15,7 +15,7 @@ from zExceptions import Forbidden
 
 
 class SvgIconsControlPanel(BrowserView):
-    """Control panel "Card tile vector icons": the svg icons the editors can choose in the card tile.
+    """Control panel "Card tile SVG icons": the svg icons the editors can choose in the card tile.
 
     Actions (POST, with the authenticator token): add or replace an icon (pasted markup or an uploaded .svg file),
     delete an icon, add the bundled icons that are missing. Markup is sanitised before it is stored.

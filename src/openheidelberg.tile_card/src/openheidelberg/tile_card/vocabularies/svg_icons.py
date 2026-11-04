@@ -10,7 +10,7 @@ from zope.component import queryUtility
 from zope.schema.vocabulary import SimpleTerm
 from zope.schema.vocabulary import SimpleVocabulary
 
-# The svg icons of the card tile live in the registry (control panel "Card tile vector icons"): a dict from the
+# The svg icons of the card tile live in the registry (control panel "Card tile SVG icons"): a dict from the
 # name, which is stored in the tile, to the sanitised markup. As long as nothing was saved there, the icons bundled
 # with the package (static/icons/*.svg) are used.
 REGISTRY_RECORD = 'openheidelberg.tile_card.svg_icons'
@@ -50,7 +50,7 @@ def set_svg_icons(icons: Dict[str, str]) -> None:
         registry[REGISTRY_RECORD] = value
         return
     icon_field = field.Dict(
-        title='Card tile vector icons',
+        title='Card tile SVG icons',
         description='Name -> svg markup, edited in the control panel of the card tile.',
         key_type=field.TextLine(),
         value_type=field.Text(),

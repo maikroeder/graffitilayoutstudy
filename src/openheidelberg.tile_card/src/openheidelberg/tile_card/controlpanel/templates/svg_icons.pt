@@ -8,10 +8,10 @@
 <body>
 <metal:main fill-slot="prefs_configlet_main">
 
-  <h1 class="documentFirstHeading" i18n:translate="label_svg_icons_controlpanel">Card tile vector icons</h1>
+  <h1 class="documentFirstHeading" i18n:translate="label_svg_icons_controlpanel">Card tile SVG icons</h1>
 
   <p class="documentDescription" i18n:translate="help_svg_icons_controlpanel">
-    The vector icons editors can put beside the title of a card. Only plain drawing is accepted: svg, g, path, circle,
+    The SVG icons editors can put beside the title of a card. Only plain drawing is accepted: svg, g, path, circle,
     ellipse, rect, line, polyline, polygon. The icon needs a viewBox; width and height are set by the card. Use
     currentColor for stroke or fill so that the icon takes the colour of the card.
   </p>

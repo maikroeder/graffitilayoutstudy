@@ -8,7 +8,7 @@
         source="0001"
         destination="0002">
         <genericsetup:upgradeDepends
-            title="Register the control panel of the card tile vector icons"
+            title="Register the control panel of the card tile SVG icons"
             import_steps="controlpanel"
         />
     </genericsetup:upgradeSteps>
