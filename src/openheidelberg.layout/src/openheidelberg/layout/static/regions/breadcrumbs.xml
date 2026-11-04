@@ -11,7 +11,7 @@
        xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
     <replace css:theme-children="#company-content .breadcrumbs" css:content-children="#portal-breadcrumbs"
-             css:if-not-content="#portal-column-two .portletSiteSetup, #content a#setup-link" />
+             css:if-not-content="#portal-column-two .portletSiteSetup, #content a#setup-link, body.viewpermission-set-own-properties, body.viewpermission-set-own-password" />
 
     <replace css:theme-children="#company-content .breadcrumbs" css:if-content="#portal-column-two .portletSiteSetup, #content a#setup-link"
              method="raw">
@@ -26,6 +26,20 @@
                     <a id="setup-link" class="link-parent" href="{$setup-link/@href}">Site Setup</a>
                 </li>
                 <li id="breadcrumbs-2">
+                    <span id="breadcrumbs-current"><xsl:value-of select="normalize-space((//h1[contains(@class, 'documentFirstHeading')])[1])" /></span>
+                </li>
+            </ol>
+        </div>
+    </replace>
+
+    <!-- The personal pages of a user (personal information, preferences, password): Home / <title of the page> -->
+    <replace css:theme-children="#company-content .breadcrumbs" css:if-content="body.viewpermission-set-own-properties, body.viewpermission-set-own-password" method="raw">
+        <div class="container">
+            <ol aria-labelledby="breadcrumbs-you-are-here">
+                <li id="breadcrumbs-home">
+                    <a href="{//a[@id='portal-logo']/@href}"><i class="interaktiv-icon-basetilestheme-breadcrumb"></i></a>
+                </li>
+                <li id="breadcrumbs-1">
                     <span id="breadcrumbs-current"><xsl:value-of select="normalize-space((//h1[contains(@class, 'documentFirstHeading')])[1])" /></span>
                 </li>
             </ol>
