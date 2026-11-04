@@ -32,4 +32,7 @@
         </div>
     </replace>
 
+    <!-- The control panel templates repeat the link as a button above the heading; it is now the middle crumb. -->
+    <drop css:content="#content a#setup-link" css:if-content="#portal-column-two .portletSiteSetup" />
+
 </rules>
