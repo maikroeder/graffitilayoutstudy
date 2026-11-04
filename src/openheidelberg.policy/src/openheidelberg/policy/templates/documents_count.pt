@@ -1,0 +1,4 @@
+<p class="documents-count" xmlns:tal="http://xml.zope.org/namespaces/tal">
+  <strong class="documents-count-number">${python: view.count()}</strong>
+  documents in the site for you to explore.
+</p>

@@ -15,6 +15,8 @@ REQUIRES_PLONE_VERSION = '5.2.2'
 # Additional package requires
 REQUIRED = [
     'graffiti.policy',
+    'graffiti.tile_dashboard',
+    'graffiti.tile_view',
     'openheidelberg.tile_card',
 
     'setuptools',

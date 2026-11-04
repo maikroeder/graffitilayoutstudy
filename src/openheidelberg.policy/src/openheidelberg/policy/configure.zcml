@@ -2,6 +2,7 @@
         xmlns="http://namespaces.zope.org/zope"
         xmlns:five="http://namespaces.zope.org/five"
         xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+        xmlns:browser="http://namespaces.zope.org/browser"
         i18n_domain="openheidelberg.policy">
 
     <five:registerPackage package="." initialize=".initialize"/>
@@ -23,6 +24,29 @@
             description="Uninstalls the openheidelberg.policy add-on."
             provides="Products.GenericSetup.interfaces.EXTENSION"
             post_handler="openheidelberg.policy.setuphandlers.uninstall"
+    />
+
+    <!-- the browser layer (profiles/default/browserlayer.xml) makes these more specific than the defaults of Graffiti -->
+    <adapter
+            factory=".providers.TaggedCollectionBoxesProvider"
+            for="interaktiv.basetiles.contenttypes.tilepage.ITilePage
+                 .interfaces.IOpenHeidelbergPolicyLayer"
+            provides="graffiti.tile_dashboard.interfaces.IDashboardBoxesProvider"
+    />
+
+    <adapter
+            factory=".providers.ProjectViewsProvider"
+            for="interaktiv.basetiles.contenttypes.tilepage.ITilePage
+                 .interfaces.IOpenHeidelbergPolicyLayer"
+            provides="graffiti.tile_view.interfaces.IEmbeddableViewsProvider"
+    />
+
+    <browser:page
+            name="documents-count"
+            for="*"
+            class=".views.DocumentsCountView"
+            permission="zope2.View"
+            layer=".interfaces.IOpenHeidelbergPolicyLayer"
     />
 
 </configure>
