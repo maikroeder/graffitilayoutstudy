@@ -159,9 +159,9 @@
             <div class="col-md-12">
               <p class="caption" i18n:translate="label_card_action_icon">Action icon (bottom right, replaces the arrow)</p>
               <div class="no-icon-wrapper">
-                <input type="radio" name="card_icon" value="" title="No icon"
+                <input type="radio" name="card_icon" value="" title="Default arrow icon"
                        tal:attributes="checked python: not view.tile.get('card_icon', '')" />
-                <span i18n:translate="label_no_icon">No icon (arrow)</span>
+                <span i18n:translate="label_no_icon">Default arrow icon (<span class="card-default-arrow" aria-hidden="true" i18n:name="arrow">&#8594;</span>)</span>
               </div>
             </div>
           </div>
