@@ -11,19 +11,19 @@
        xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
     <replace css:theme-children="#company-content .breadcrumbs" css:content-children="#portal-breadcrumbs"
-             css:if-not-content="#portal-column-two .portletSiteSetup" />
+             css:if-not-content="#portal-column-two .portletSiteSetup, #content a#setup-link" />
 
-    <replace css:theme-children="#company-content .breadcrumbs" css:if-content="#portal-column-two .portletSiteSetup"
+    <replace css:theme-children="#company-content .breadcrumbs" css:if-content="#portal-column-two .portletSiteSetup, #content a#setup-link"
              method="raw">
         <xsl:variable name="setup-link"
-                      select="(//*[@id='portal-column-two']//*[contains(@class, 'portletSiteSetup')]//a[contains(@href, '@@overview-controlpanel')])[1]" />
+                      select="(//*[@id='portal-column-two']//*[contains(@class, 'portletSiteSetup')]//a[contains(@href, '@@overview-controlpanel')] | //*[@id='content']//a[@id='setup-link'])[1]" />
         <div class="container">
             <ol aria-labelledby="breadcrumbs-you-are-here">
                 <li id="breadcrumbs-home">
                     <a href="{//a[@id='portal-logo']/@href}"><i class="interaktiv-icon-basetilestheme-breadcrumb"></i></a>
                 </li>
                 <li id="breadcrumbs-1">
-                    <a id="setup-link" class="link-parent" href="{$setup-link/@href}"><xsl:value-of select="normalize-space($setup-link)" /></a>
+                    <a id="setup-link" class="link-parent" href="{$setup-link/@href}">Site Setup</a>
                 </li>
                 <li id="breadcrumbs-2">
                     <span id="breadcrumbs-current"><xsl:value-of select="normalize-space((//h1[contains(@class, 'documentFirstHeading')])[1])" /></span>
@@ -33,6 +33,6 @@
     </replace>
 
     <!-- The control panel templates repeat the link as a button above the heading; it is now the middle crumb. -->
-    <drop css:content="#content a#setup-link" css:if-content="#portal-column-two .portletSiteSetup" />
+    <drop css:content="#content a#setup-link" css:if-content="#portal-column-two .portletSiteSetup, #content a#setup-link" />
 
 </rules>

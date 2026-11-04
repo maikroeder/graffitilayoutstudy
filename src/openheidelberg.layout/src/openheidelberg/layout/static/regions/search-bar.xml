@@ -10,7 +10,7 @@
        xmlns:css="http://namespaces.plone.org/diazo/css"
        xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
-    <before css:theme="#main-container" css:if-not-content=".portletSiteSetup" method="raw">
+    <before css:theme="#main-container" css:if-not-content=".portletSiteSetup, #content a#setup-link" method="raw">
         <div class="container site-search-bar">
             <div class="tile-search">
                 <form class="tile-search-form pat-livesearch" role="search"
