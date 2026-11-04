@@ -5,7 +5,7 @@ from interaktiv.framework.vocabulary import VocabularyOption
 from openheidelberg.tile_card import _
 from zope.schema.vocabulary import SimpleVocabulary
 
-DEFAULT_ICON_ORIENTATION: str = 'left'
+DEFAULT_ICON_ORIENTATION: str = 'title'
 
 ICON_ORIENTATIONS: List[VocabularyOption] = [
     {
