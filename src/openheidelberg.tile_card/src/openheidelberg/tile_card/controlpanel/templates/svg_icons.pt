@@ -20,11 +20,17 @@
     <p tal:repeat="error view/errors" tal:content="error">error</p>
   </div>
 
+  <style>
+    #tile-card-svg-icons .svg-icon-preview span { display: block; width: 32px; height: 32px; }
+    #tile-card-svg-icons .svg-icon-preview svg { display: block; width: 100%; height: 100%; }
+  </style>
+
   <table class="listing table" id="tile-card-svg-icons">
     <thead>
       <tr>
         <th i18n:translate="">Preview</th>
         <th i18n:translate="">Name</th>
+        <th i18n:translate="">Used on</th>
         <th i18n:translate="">Markup</th>
         <th></th>
       </tr>
@@ -32,9 +38,18 @@
     <tbody>
       <tr tal:repeat="icon view/get_icons">
         <td class="svg-icon-preview" style="width:48px;color:#1d55cc">
-          <span style="display:block;width:32px;height:32px" tal:content="structure icon/svg"></span>
+          <span tal:content="structure icon/svg"></span>
         </td>
         <td><code tal:content="icon/name">name</code></td>
+        <td>
+          <ul class="list-unstyled mb-0" tal:condition="icon/used_on">
+            <li tal:repeat="page icon/used_on">
+              <a href="${page/url}" tal:content="page/title">page</a>
+              <span class="text-muted">(${page/mode})</span>
+            </li>
+          </ul>
+          <span class="text-muted" tal:condition="not: icon/used_on" i18n:translate="">not used</span>
+        </td>
         <td>
           <details>
             <summary i18n:translate="">Show markup</summary>
@@ -46,12 +61,14 @@
             <input type="hidden" name="_authenticator" value="${view/authenticator_token}" />
             <input type="hidden" name="name" value="${icon/name}" />
             <button type="submit" name="form.button.delete" value="1" class="btn btn-sm btn-danger"
+                    tal:attributes="disabled python: 'disabled' if icon['used_on'] else None;
+                                    title python: 'Used by cards: remove it there first' if icon['used_on'] else None"
                     i18n:translate="">Delete</button>
           </form>
         </td>
       </tr>
       <tr tal:condition="not: view/get_icons">
-        <td colspan="4" i18n:translate="">No icons. Cards offer no vector icons until one is added.</td>
+        <td colspan="5" i18n:translate="">No icons. Cards offer no vector icons until one is added.</td>
       </tr>
     </tbody>
   </table>

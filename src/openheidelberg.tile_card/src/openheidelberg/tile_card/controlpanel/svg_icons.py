@@ -1,6 +1,7 @@
 from Products.Five.browser import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from openheidelberg.tile_card import _
+from openheidelberg.tile_card.controlpanel.usage import find_svg_icon_usage
 from openheidelberg.tile_card.svg_sanitizer import SvgError
 from openheidelberg.tile_card.svg_sanitizer import check_name
 from openheidelberg.tile_card.svg_sanitizer import sanitize_svg
@@ -35,10 +36,17 @@ class SvgIconsControlPanel(BrowserView):
     def authenticator_token(self) -> str:
         return createToken()
 
+    def get_usage(self) -> dict:
+        """Icon name -> pages that use it; read once per request."""
+        if not hasattr(self, '_usage'):
+            self._usage = find_svg_icon_usage(self.context)
+        return self._usage
+
     def get_icons(self) -> list:
+        usage = self.get_usage()
         result = []
         for name, markup in get_svg_icons().items():
-            result.append({'name': name, 'svg': markup})
+            result.append({'name': name, 'svg': markup, 'used_on': usage.get(name, [])})
         return result
 
     def get_missing_bundled(self) -> list:
@@ -95,6 +103,12 @@ class SvgIconsControlPanel(BrowserView):
     def delete(self, name: str) -> None:
         icons = get_svg_icons()
         if name not in icons:
+            return
+        used_on = self.get_usage().get(name, [])
+        if used_on:
+            # the template disables the button; this is the check that counts
+            self.message(_('Icon "${name}" is used by ${count} page(s) and can not be deleted.',
+                           mapping={'name': name, 'count': str(len(used_on))}), 'error')
             return
         del icons[name]
         set_svg_icons(icons)
