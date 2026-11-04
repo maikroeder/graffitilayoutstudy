@@ -13,4 +13,15 @@
         />
     </genericsetup:upgradeSteps>
 
+    <!-- 0002 -> 0003: the control panel moves to its own section "Mosaik Tiles" -->
+    <genericsetup:upgradeSteps
+        profile="openheidelberg.tile_card:default"
+        source="0002"
+        destination="0003">
+        <genericsetup:upgradeDepends
+            title="Move the card tile control panel to the section Mosaik Tiles"
+            import_steps="controlpanel"
+        />
+    </genericsetup:upgradeSteps>
+
 </configure>
