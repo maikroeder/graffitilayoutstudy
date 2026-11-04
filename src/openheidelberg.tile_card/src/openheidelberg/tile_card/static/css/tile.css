@@ -515,10 +515,20 @@
   color: #1d55cc;
 }
 
-.card-svg-icon-option input {
-  position: absolute;
+/* The modal theme styles every radio as a 18px box with a margin and position: relative. In the picker the
+   radio is only the state holder of the label: out of the flow, so the svg is centred in the 44px box. */
+.card-svg-icon-option input[type="radio"] {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  margin: 0 !important;
   opacity: 0;
   pointer-events: none;
+}
+
+/* the hidden radio that stands for "no vector icon" must not show up; the modal theme overrides [hidden] */
+.card-svg-icon-picker input.card-svg-icon-none {
+  display: none !important;
 }
 
 .card-svg-icon-option:has(input:checked) {

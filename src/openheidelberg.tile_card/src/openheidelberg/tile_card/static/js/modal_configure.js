@@ -8,7 +8,9 @@ function initializeConfigureTileCardModal(modal) {
       modal.$modal.find('input[name="card_icon"][value=""]').prop('checked', true);
     }
   });
-  modal.$modal.on('change', 'input[name="card_icon"]', function () {
+  // click, not change: while a vector icon is chosen "No icon" is already checked in the form, so clicking it
+  // fires no change event
+  modal.$modal.on('click', 'input[name="card_icon"]', function () {
     // "No icon" (empty value) clears the vector icon too
     modal.$modal.find('input.card-svg-icon-none').prop('checked', true);
   });
