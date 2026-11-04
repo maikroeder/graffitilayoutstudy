@@ -608,8 +608,8 @@
 }
 
 /* ===== Card section: details of the showcase ===============================================
-   Icon beside the title: gap 12px; the title row is at least 44px high and the description starts 6px below
-   it, as in .showcase-card-header. Same font stack as the study page. */
+   Icon beside the title: gap 12px; the title row is at least 24px high and the description starts 8px below
+   it. Same font stack as the study page. */
 .tile.tile-frame:has(.tile-card) h2,
 .tile.tile-frame:has(.tile-card) .tile-card .card-title,
 .tile.tile-frame:has(.tile-card) .tile-card .card-description {
@@ -617,8 +617,13 @@
 }
 
 .tile.tile-frame:has(.tile-card) .tile-card .card-main[data-icon-orientation="title"] {
-  grid-template-rows: minmax(44px, auto) auto;
-  gap: 6px 12px;
+  grid-template-rows: minmax(24px, auto) auto;
+  gap: 8px 12px;
+}
+
+/* the theme's bottom margin of h3 would add to the row of the title */
+.tile.tile-frame:has(.tile-card) .tile-card .card-main[data-icon-orientation="title"] .card-title {
+  margin-bottom: 0;
 }
 
 #content-core .tile.tile-frame:has(.tile-card) .tile-card .card-main[data-icon-orientation="title"] .card-description {
@@ -626,10 +631,10 @@
 }
 
 /* The description starts at the same height whatever the position of the icon: in the other positions the title
-   block is as high as the title row of the "title" layout (44px) plus its 6px gap. */
+   block is as high as the title row of the "title" layout (24px) plus its 8px gap. */
 .tile.tile-frame:has(.tile-card) .tile-card .card-main:not([data-icon-orientation="title"]) .card-title,
 #content-core .tile.tile-frame:has(.tile-card) .tile-card .card-main:not([data-icon-orientation="title"]) .card-title {
   box-sizing: border-box;
-  min-height: 44px;
-  margin-bottom: 6px;
+  min-height: 24px;
+  margin-bottom: 8px;
 }
