@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Layout "site-edit-layout": edit mode (tile editor, edit forms). The frame of the site, that is slim header,
+  breadcrumbs, blue footer, around the editor. No search bar and no extra title: the editor and the edit form bring
+  their own. Content, tiles editor panel and toolbar as in site-layout.
+-->
+<rules xmlns="http://namespaces.plone.org/diazo"
+       xmlns:css="http://namespaces.plone.org/diazo/css"
+       xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+       xmlns:xi="http://www.w3.org/2001/XInclude">
+
+    <notheme css:if-not-content="#visual-portal-wrapper" />
+    <theme href="++theme++openheidelberg.layout/site.html" />
+
+    <xi:include href="++theme++openheidelberg.layout/frame.xml" />
+    <xi:include href="++theme++openheidelberg.layout/regions/common.xml" />
+    <xi:include href="++theme++openheidelberg.layout/regions/header-slim.xml" />
+    <xi:include href="++theme++openheidelberg.layout/regions/statusmessage.xml" />
+    <xi:include href="++theme++openheidelberg.layout/regions/breadcrumbs.xml" />
+    <xi:include href="++theme++openheidelberg.layout/regions/content.xml" />
+    <xi:include href="++theme++openheidelberg.layout/regions/footer.xml" />
+
+</rules>

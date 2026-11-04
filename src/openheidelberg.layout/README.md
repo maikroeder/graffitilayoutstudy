@@ -13,6 +13,7 @@ not yet installed or run in Plone.
 | `site-search-layout` | the TilePage that is the default page of the site root (automatic) | landing page of the site; the start page of the showcase study (docs/showcase.html in graffiti.theme): hero, search, then the tiles of the page |
 | `default-tiles-layout` | the editorial tile pages `/editing` and `/exploring` (field `page_layout`) | the site look with breadcrumbs and the title of the page, without the search of the header and without document actions; search and dashboard are tiles of the page (`default-tiles.css`) |
 | `site-layout` | every other page that main_template renders in view mode (no body class; the fallback) | the look of `/exploring` for the whole site: slim blue header, breadcrumbs, search bar above the title, content, blue footer (`site.css`) |
+| `site-edit-layout` | edit mode of tile pages (body class `edit-mode`), when `site_layout_enabled` is on | the frame of the site (slim header, breadcrumbs, blue footer) around the tiles editor; no search bar, no extra title |
 
 Portlet columns are not part of the new layouts (the content area is always full width).
 
@@ -36,7 +37,7 @@ Portlet columns are not part of the new layouts (the content area is always full
 - `layout_policy.py` subclasses the TilePage layout policy of interaktiv.basetiles and adds the body class
   `layout-<id>`. A TilePage without a value that is the default page of the site root gets
   `layout-site-search-layout`.
-- The two explicit layouts apply in view mode only; in edit mode the tiles editor stays on `interaktiv.theme`.
+- The two explicit layouts apply in view mode only; in edit mode a tile page gets `site-edit-layout` (frame of the site, editor and toolbar as before) while the switch is on, and `interaktiv.theme` when it is off.
 - `site-layout` is switched on by the theme parameter `site_layout_enabled` (`manifest.cfg`), since 2026-11-04 for
   all visitors (`python:'1'`; read at server start). To go back to the cookie preview use
   `python:'1' if request.cookies.get('openheidelberg_layout') == 'new' else ''` (set the cookie in the browser

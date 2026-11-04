@@ -5,8 +5,9 @@
     iframe view                         -> interaktiv.theme (unchanged)
     site-search-layout, view mode       -> layouts/site-search-layout
     default-tiles-layout, view mode     -> layouts/default-tiles-layout
-    site-layout switched on (parameter site_layout_enabled, see manifest.cfg), not an edit-mode
-    tile page                           -> layouts/site-layout
+    site-layout switched on (parameter site_layout_enabled, see manifest.cfg), not edit mode
+                                        -> layouts/site-layout
+    site-layout switched on, edit mode  -> layouts/site-edit-layout (frame of the site around the editor)
     everything else                     -> interaktiv.theme (unchanged)
 
   The body classes layout-<id> and view-mode / edit-mode are set on TilePages by layout_policy.py
@@ -34,7 +35,11 @@
                 <xi:include href="++theme++openheidelberg.layout/layouts/site-layout/rules.xml" />
             </rules>
 
-            <rules if-content="string($site_layout_enabled) != '1' or //body[contains(concat(' ',normalize-space(@class),' '),' edit-mode ')]">
+            <rules if-content="string($site_layout_enabled) = '1'" css:if-content="body.edit-mode">
+                <xi:include href="++theme++openheidelberg.layout/layouts/site-edit-layout/rules.xml" />
+            </rules>
+
+            <rules if-content="string($site_layout_enabled) != '1'">
                 <xi:include href="++theme++interaktiv.theme/rules.xml" />
             </rules>
 
