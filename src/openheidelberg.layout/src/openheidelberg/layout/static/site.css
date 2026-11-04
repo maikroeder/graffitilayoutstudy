@@ -306,8 +306,15 @@ footer#company-footer a:focus {
   text-decoration: underline;
 }
 
-/* content of the standard pages: the column of the breadcrumbs, the search bar and the title (tile pages keep
-   their own tile widths) */
+/* content of the standard pages: the column of the breadcrumbs, the search bar and the title. All of them are
+   1180px wide and centred in the same box (#company-content). The grid of the theme would put the content
+   15px further out (the row has negative margins) or in (the article has padding): both are removed. Tile
+   pages keep their own tile widths. */
+body:not(.is-tilepage) #main-container.row {
+  margin-left: 0;
+  margin-right: 0;
+}
+
 body:not(.is-tilepage) #main-container > .col-sm-12 {
   box-sizing: border-box;
   max-width: 1180px;
@@ -315,4 +322,33 @@ body:not(.is-tilepage) #main-container > .col-sm-12 {
   margin-right: auto;
   padding-left: 0;
   padding-right: 0;
+}
+
+body:not(.is-tilepage) #main-container #content {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+/* footer: the row of the site actions in the same column */
+footer#company-footer #social-media-site-actions #inner-wrapper {
+  box-sizing: border-box;
+  max-width: 1180px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+/* one column for everything: the theme limits #company-content to 1200px (on standard pages with a rule of higher specificity,
+   hence the leading "body") with 15px padding, which leaves 1170px;
+   the editorial pages use 1180px (the tiles). With 1210px the column is 1180px on every page. */
+body #company-content.container-fluid.main-content-wrapper {
+  max-width: 1210px;
+}
+
+/* footer actions: no indent, so that the first link starts at the left edge of the column */
+footer#company-footer #site-actions ul,
+footer#company-footer #site-actions li {
+  margin-left: 0;
+  padding-left: 0;
 }
