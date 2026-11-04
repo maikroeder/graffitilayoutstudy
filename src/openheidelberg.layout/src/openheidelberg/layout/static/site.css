@@ -352,3 +352,18 @@ footer#company-footer #site-actions li {
   margin-left: 0;
   padding-left: 0;
 }
+
+/* Plone's management toolbar on small screens. style.css of interaktiv.theme hides it below 1024px
+   (#edit-zone { display: none !important }). Plone's own pattern (pat-toolbar, desktop_width 768px) puts it
+   off-canvas on the right below 768px and shows only its toggle, the blue Plone icon at the top right; that is
+   what these pages show again. Between 768px and 1024px the toolbar stays hidden as before. */
+@media (max-width: 767px) {
+  body #edit-zone {
+    display: block !important;
+  }
+
+  /* the toggle (60px wide) sits over the right end of the header: keep the site actions out from under it */
+  body.plone-toolbar-left .slim-header-inner {
+    padding-right: 76px;
+  }
+}
