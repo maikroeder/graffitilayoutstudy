@@ -373,30 +373,11 @@ footer#company-footer #site-actions li {
   box-sizing: border-box;
   width: auto;
   max-width: 1180px;
-  margin: 14px auto 0 auto;
+  margin: 4px auto 0 auto;
   padding: 0;
   font-size: 14px;
   line-height: 1.5;
   color: #475569;
-}
-
-.site-setup-bar .site-setup-up {
-  font-weight: 600;
-  color: #1d55cc;
-  text-decoration: none;
-}
-
-.site-setup-bar .site-setup-up::before {
-  content: "\2039\00a0";
-}
-
-.site-setup-bar .site-setup-up:hover {
-  text-decoration: underline;
-}
-
-.site-setup-bar .site-setup-sep {
-  margin: 0 6px;
-  color: #94a3b8;
 }
 
 .site-setup-bar .site-setup-all {
@@ -560,4 +541,25 @@ footer#company-footer #site-actions li {
 /* the theme indents the entries with 40px on the link itself */
 .site-setup-bar .site-setup-all nav.portletContent li li a {
   padding-left: 0 !important;
+}
+
+/* control panels: the link to the Site Setup in the breadcrumbs (regions/breadcrumbs.xml) carries the id and class of
+   the control panel templates of Plone; the theme draws a.link-parent as a grey button with a return arrow, here it
+   is a crumb like the others */
+nav.breadcrumbs a#setup-link.link-parent {
+  display: inline;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: none;
+  font-weight: 400;
+  color: #1d55cc;
+}
+
+nav.breadcrumbs a#setup-link.link-parent::before {
+  content: none;
+}
+
+nav.breadcrumbs a#setup-link.link-parent:hover {
+  text-decoration: underline;
 }

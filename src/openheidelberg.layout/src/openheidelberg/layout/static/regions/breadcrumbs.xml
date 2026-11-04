@@ -1,9 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Breadcrumbs. plone.path_bar sits in the same viewlet manager as the above-content area. -->
+<!--
+  Breadcrumbs. plone.path_bar sits in the same viewlet manager as the above-content area.
+
+  Control panels (pages with the Site Setup portlet in the right column) have an empty trail: it is built here as
+  Home / Site Setup / <title of the page>, in the markup of the trail of the theme. The link to the Site Setup is the
+  one of the portlet, with the id and class that the control panel templates of Plone give it (a#setup-link.link-parent).
+-->
 <rules xmlns="http://namespaces.plone.org/diazo"
        xmlns:css="http://namespaces.plone.org/diazo/css"
        xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
-    <replace css:theme-children="#company-content .breadcrumbs" css:content-children="#portal-breadcrumbs" />
+    <replace css:theme-children="#company-content .breadcrumbs" css:content-children="#portal-breadcrumbs"
+             css:if-not-content="#portal-column-two .portletSiteSetup" />
+
+    <replace css:theme-children="#company-content .breadcrumbs" css:if-content="#portal-column-two .portletSiteSetup"
+             method="raw">
+        <xsl:variable name="setup-link"
+                      select="(//*[@id='portal-column-two']//*[contains(@class, 'portletSiteSetup')]//a[contains(@href, '@@overview-controlpanel')])[1]" />
+        <div class="container">
+            <ol aria-labelledby="breadcrumbs-you-are-here">
+                <li id="breadcrumbs-home">
+                    <a href="{//a[@id='portal-logo']/@href}"><i class="interaktiv-icon-basetilestheme-breadcrumb"></i></a>
+                </li>
+                <li id="breadcrumbs-1">
+                    <a id="setup-link" class="link-parent" href="{$setup-link/@href}"><xsl:value-of select="normalize-space($setup-link)" /></a>
+                </li>
+                <li id="breadcrumbs-2">
+                    <span id="breadcrumbs-current"><xsl:value-of select="normalize-space((//h1[contains(@class, 'documentFirstHeading')])[1])" /></span>
+                </li>
+            </ol>
+        </div>
+    </replace>
 
 </rules>

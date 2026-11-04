@@ -1,22 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-  Control panels: the way back to the Site Setup. The slim header has no personal tools and the portlet columns are
-  left out, so a control panel page would have no link to the overview. The Site Setup portlet that Plone puts in the
-  right column of every control panel (not on the overview itself, which carries it as its content) gives the
-  target and the label; the bar shows "Site Setup / <title of the page>" in the column of the title and keeps the
-  portlet, the list of all sections, in a closed <details>, so that the other panels are one click away.
+  Control panels: the other sections. The slim header has no personal tools and the portlet columns are left out. The
+  way back to the Site Setup is in the breadcrumbs (regions/breadcrumbs.xml); below them this bar keeps the Site Setup
+  portlet that Plone puts in the right column of every control panel (not on the overview itself, which carries it as
+  its content), the list of all sections, in a closed <details>, so that the other panels are one click away.
 -->
 <rules xmlns="http://namespaces.plone.org/diazo"
        xmlns:css="http://namespaces.plone.org/diazo/css"
        xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
     <before css:theme="#main-container" css:if-content="#portal-column-two .portletSiteSetup" method="raw">
-        <xsl:variable name="setup-link"
-                      select="(//*[@id='portal-column-two']//*[contains(@class, 'portletSiteSetup')]//a[contains(@href, '@@overview-controlpanel')])[1]" />
         <nav class="container site-setup-bar" aria-label="Site Setup">
-            <a class="site-setup-up" href="{$setup-link/@href}"><xsl:value-of select="normalize-space($setup-link)" /></a>
-            <span class="site-setup-sep" aria-hidden="true">/</span>
-            <span class="site-setup-current"><xsl:value-of select="normalize-space((//h1[contains(@class, 'documentFirstHeading')])[1])" /></span>
             <details class="site-setup-all">
                 <summary>All settings</summary>
                 <xsl:copy-of css:select="#portal-column-two .portletSiteSetup" />
