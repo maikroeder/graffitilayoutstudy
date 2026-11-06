@@ -1,0 +1,39 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Packaging and build output
+*.egg
+*.egg-info/
+.eggs/
+build/
+dist/
+pip-wheel-metadata/
+
+# Compiled translations (the .po sources are tracked)
+*.mo
+
+# Tests and coverage
+.pytest_cache/
+.tox/
+.coverage
+.coverage.*
+htmlcov/
+coverage.xml
+
+# Node tooling (package.json is tracked, installs are not)
+node_modules/
+npm-debug.log*
+
+# Local environments
+.venv/
+venv/
+.env
+
+# Editors and OS
+.idea/
+.vscode/
+*.swp
+*~
+.DS_Store
