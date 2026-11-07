@@ -13,10 +13,25 @@ Portal type `TileCard`, tile id `openheidelberg_tile_card`, label "Card". Fields
 - one primary action: `link_href` (full URL or a path starting with `/`), `link_label`, `link_new_window`, `link_show_button`.
   With `link_show_button` off (default on) there is no button: the title becomes the link and the whole card stays
   clickable. Cards created before the option existed keep their button.
-- an optional icon (`card_icon`, from the icon fonts of interaktiv.basetiles and its font families) and
-  `card_icon_orientation` (`title`, the default, `left` or `right`). `left`/`right` put the icon in a column beside the title and the
-  description together, spanning both; `title` puts it beside the title only, with the description below
-  starting at the icon's left edge. The "Edit card" dialog has an "Icon" tab for it.
+- an optional vector icon: `card_icon_svg`, the name of one icon of the icon registry (see below), shown beside the
+  title, and `card_icon_orientation` for its position (`title`, the default, `left` or `right`). `left`/`right` put the
+  icon in a column beside the title and the description together, spanning both; `title` puts it beside the title
+  only, with the description below. Without a vector icon the card uses the plain layout and leaves no room for one.
+  The description starts at the same height in all positions.
+- an optional action icon: `card_icon`, a glyph of the icon fonts of interaktiv.basetiles and its font families. It
+  replaces the arrow at the bottom right of the card; without it the default arrow stays.
+
+The "Edit card" dialog has an "Icon" tab with the position select, the picker of the vector icons and the action
+icons.
+
+## Vector icon registry
+
+The vector icons are kept in the `plone.registry` record `openheidelberg.tile_card.svg_icons` (a dictionary from name
+to SVG markup); until something is saved, the files bundled in `static/icons` are used. The control panel
+"Card tile SVG icons" (`@@tile-card-svg-icons`, section "Mosaik Tiles" of the Site Setup overview) adds icons by
+pasted markup or uploaded `.svg`, replaces and deletes them, and restores missing bundled icons. Markup passes
+`svg_sanitizer.py` (whitelist of elements and attributes; no script, style, `url()`, `data:` or DOCTYPE). An icon that
+a tile uses (published or working copy) is listed with its pages and cannot be deleted.
 
 Editing happens in a small modal ("Edit card" in the tile's tool bar, page `@@configure_tilecard_modal`) that
 saves through the generic `update_content` API of interaktiv.basetiles. Background, padding, vertical
@@ -27,7 +42,7 @@ alignment and anchor come from the basetiles behaviors. The card boundary (borde
 
 Because the add-on was already installed as a dependency of `openheidelberg.policy`, restart `bin/instance fg`, then
 run the upgrade step of the profile (Site Setup, Add-ons, Upgrades: `openheidelberg.tile_card` 0003 -> 0004
-registers the script bundle) or re-apply the profile `openheidelberg.tile_card:default` (Site Setup, Add-ons, or ZMI
+registers the script bundle; earlier versions 0001 -> 0003 add the control panel and its section) or re-apply the profile `openheidelberg.tile_card:default` (Site Setup, Add-ons, or ZMI
 `portal_setup`, Import, profile `openheidelberg.tile_card`). The tile registration happens in the profile's post
 handler. No buildout and no Grunt run are needed for this package.
 
