@@ -24,4 +24,15 @@
         />
     </genericsetup:upgradeSteps>
 
+    <!-- 0003 -> 0004: the script of the dialog becomes a plain bundle (registry.xml) -->
+    <genericsetup:upgradeSteps
+        profile="openheidelberg.tile_card:default"
+        source="0003"
+        destination="0004">
+        <genericsetup:upgradeDepends
+            title="Register the plain script bundle of the card dialog"
+            import_steps="plone.app.registry"
+        />
+    </genericsetup:upgradeSteps>
+
 </configure>

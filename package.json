@@ -88,8 +88,7 @@
       "graffiti.tile_view",
       "graffiti.tile_tabs",
       "graffiti.tile_button",
-      "interaktiv.workingcopy",
-      "openheidelberg.tile_card"
+      "interaktiv.workingcopy"
     ],
     "javascript_lib_files": [
       "<%= paths.node %>bootstrap/dist/js/bootstrap.js",

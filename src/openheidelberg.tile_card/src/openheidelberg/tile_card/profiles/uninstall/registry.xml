@@ -3,4 +3,7 @@
     <records prefix="plone.bundles/openheidelberg-tile-card"
              interface="Products.CMFPlone.interfaces.IBundleRegistry"
              remove="true" />
+    <records prefix="plone.bundles/openheidelberg-tile-card-js"
+             interface="Products.CMFPlone.interfaces.IBundleRegistry"
+             remove="true" />
 </registry>

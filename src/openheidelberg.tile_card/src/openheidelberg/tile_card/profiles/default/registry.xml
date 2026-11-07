@@ -11,4 +11,17 @@
         <value key="depends">plone</value>
         <value key="last_compilation">2026-10-27 09:00:00</value>
     </records>
+
+    <!-- The script of the "Edit card" dialog (initializeConfigureTileCardModal), served as it is, like the stylesheet:
+         it is not part of the Grunt build (this package is not listed in interaktiv_setup.packages). basetiles looks
+         the function up on window when the dialog opens, so the load order does not matter. -->
+    <records prefix="plone.bundles/openheidelberg-tile-card-js"
+             interface="Products.CMFPlone.interfaces.IBundleRegistry">
+        <value key="enabled">True</value>
+        <value key="compile">False</value>
+        <value key="jscompilation">++resource++openheidelberg.tile_card/js/modal_configure.js</value>
+        <value key="expression">python: getattr(context, 'portal_type', '') == 'TilePage'</value>
+        <value key="depends">plone</value>
+        <value key="last_compilation">2026-11-07 20:00:00</value>
+    </records>
 </registry>

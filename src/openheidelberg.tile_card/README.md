@@ -25,10 +25,11 @@ alignment and anchor come from the basetiles behaviors. The card boundary (borde
 
 ## Activate after an update
 
-Because the add-on was already installed as a dependency of `openheidelberg.policy`, run
-`./bin/buildout -c stage.cfg` (the Grunt part collects the modal JS), restart `bin/instance fg`, then
-re-apply the profile `openheidelberg.tile_card:default` (Site Setup, Add-ons, or ZMI `portal_setup`, Import,
-profile `openheidelberg.tile_card`). The tile registration happens in the profile's post handler.
+Because the add-on was already installed as a dependency of `openheidelberg.policy`, restart `bin/instance fg`, then
+run the upgrade step of the profile (Site Setup, Add-ons, Upgrades: `openheidelberg.tile_card` 0003 -> 0004
+registers the script bundle) or re-apply the profile `openheidelberg.tile_card:default` (Site Setup, Add-ons, or ZMI
+`portal_setup`, Import, profile `openheidelberg.tile_card`). The tile registration happens in the profile's post
+handler. No buildout and no Grunt run are needed for this package.
 
 ## Image and layout in a row
 
@@ -37,9 +38,16 @@ one row stay equally tall whatever the image proportions. The description is cla
 link stretches over the whole card (`::after`), so the card as a whole is the click target, which gives
 news-style grids a single primary action per card. The image scale is `@@images/image/large`.
 
-## Plain CSS bundle
+## Plain CSS and JavaScript bundles
 
 `static/css/tile.css` is the only stylesheet of the tile (there is no LESS file in this branch). It is registered as
 the Plone bundle `openheidelberg-tile-card` (`profiles/default/registry.xml`) and served from the resource directory
 `++resource++openheidelberg.tile_card/css/tile.css` without compilation, so a reload shows edits without buildout or
 Grunt. The bundle adds one `<link>` per page (not per tile) and only on tiles pages.
+
+The script of the "Edit card" dialog, `static/js/modal_configure.js`, is served the same way: the bundle
+`openheidelberg-tile-card-js` (`jscompilation`, `compile` off) points at
+`++resource++openheidelberg.tile_card/js/modal_configure.js`. It is not part of the Grunt build, because the package
+is not listed in `interaktiv_setup.packages` (its `package.json` lists none, and the root `package.json` does not
+name it). basetiles looks `initializeConfigureTileCardModal` up on `window` when the dialog opens, so the file only has
+to define it as a global function; the load order does not matter. For debugging, edit the file and reload hard.
