@@ -6,12 +6,13 @@
   display: flex;
   flex-direction: column;
   height: 100%;
-  background: #fff;
-  border: 1px solid #e3e3e3;
+  min-height: 119.2px;
+  background: #ffffff;
+  border: 1px solid #e6eaf0;
   border-radius: 10px;
-  /* two layers: a tight contact shadow and a wide soft one for depth */
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.10), 0 6px 16px rgba(0, 0, 0, 0.10);
-  overflow: hidden; /* also clips the image to the rounded corners */
+  box-shadow: 0 4px 14px rgba(12, 24, 68, 0.05), 0 1px 3px rgba(12, 24, 68, 0.03);
+  overflow: visible; /* the image gets its own rounded top corners below */
+  transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
 }
 
 /* Equal-width cards with a gap. The tile padding is written inline by the editor (0 by
@@ -180,6 +181,11 @@
 
 /* absolutely positioned: a percentage height does not resolve against an
    aspect-ratio box, which left the image at its natural proportions */
+.tile-card .card-image,
+.tile-card .card-image img {
+  border-radius: 9px 9px 0 0;
+}
+
 .tile-card .card-image img {
   position: absolute;
   top: 0;
@@ -194,11 +200,7 @@
   display: flex;
   flex-direction: column;
   flex: 1 1 auto;
-  padding: 1em;
-}
-
-.tile-card .card-title {
-  margin: 0 0 0.5em;
+  padding: 16px 18px 12px 18px;
 }
 
 /* teaser length: at most four lines, so cards in a row stay balanced */
@@ -308,13 +310,6 @@
   text-align: center;
 }
 
-/* The theme gives h3 a top margin (ID selector); drop it so the title and the
-   icon both start at the card padding, the same distance as from the left edge. */
-#content-core .tile-card .card-title {
-  margin-top: 0;
-  margin-bottom: .75em;
-}
-
 .tile-card .card-main[data-icon-orientation="right"] .card-icon {
   order: 2;
 }
@@ -365,10 +360,9 @@
   left: 0;
 }
 
-/* The theme changes its typography at 768px and below: html font-size 12px, h3 weight 600,
-   font-size 1.3125rem, line-height 24px (24px line box against a 15px icon). The cards follow
-   the theme; these two adjustments keep the icon on the title's first line and the title to
-   description distance at the same value in the "title" layout as in the left/right layouts. */
+/* The theme changes its typography at 768px and below (html font-size 12px, h3 font-size 1.3125rem, line-height
+   24px). The title and description set their own sizes below; the icon adjustment keeps the icon on the title's
+   first line. */
 @media (max-width: 768px) {
   .tile-card .card-icon {
     margin-top: 4px;
@@ -380,10 +374,11 @@
 }
 
 /* ===== Card section =====================================================================
-   A frame (TileFrame) that contains cards is shown as a section: a white box with a heading
-   and the cards in equal columns. The frame itself is the platform's own tile; this package
-   owns the look, so editors get the same box wherever they put cards into a frame, and the
-   start page of the site (scripts/setup_demo_start_page.py) needs no style values on the frame.
+   The look of the card (box, typography, spacing, arrow) belongs to the card itself and does not depend on
+   where it stands: in a row of the page, in a frame, under any theme. Only the section box below is tied to a
+   frame (TileFrame) that contains cards: a white box with a heading and the cards in equal columns. The frame is
+   the platform's own tile; this package owns the box, so editors get the same look wherever they put cards into a
+   frame, and the start page of the site (scripts/setup_demo_start_page.py) needs no style values on the frame.
    Sizes follow the study page docs/showcase.html of graffiti.theme (.showcase-section-box and
    .showcase-card). Needs :has(), which all current browsers have. */
 
@@ -410,29 +405,17 @@
   color: #12192c;
 }
 
-/* cards inside a section: the look of .showcase-card */
-.tile.tile-frame:has(.tile-card) .tile-card .card {
-  min-height: 119.2px;
-  background: #ffffff;
-  border: 1px solid #e6eaf0;
-  border-radius: 10px;
-  box-shadow: 0 4px 14px rgba(12, 24, 68, 0.05), 0 1px 3px rgba(12, 24, 68, 0.03);
-  overflow: visible;
-  transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
-}
-
-.tile.tile-frame:has(.tile-card) .tile-card .card:hover {
+/* hover: the look of .showcase-card */
+.tile-card .card:hover {
   transform: translateY(-2px);
   border-color: #cbd5e1;
   box-shadow: 0 10px 24px rgba(12, 24, 68, 0.11), 0 3px 8px rgba(12, 24, 68, 0.06);
 }
 
-.tile.tile-frame:has(.tile-card) .tile-card .card-body {
-  padding: 16px 18px 12px 18px;
-}
-
-.tile.tile-frame:has(.tile-card) .tile-card .card-title,
-#content-core .tile.tile-frame:has(.tile-card) .tile-card .card-title {
+/* Typography and spacing are the card's own, so it looks the same under any theme. The #content-core variants
+   outrank the theme's h3 and p rules (ID selectors), which also give h3 a top margin. */
+.tile-card .card-title,
+#content-core .tile-card .card-title {
   margin: 0 0 6px 0;
   font-size: 16px;
   font-weight: 600;
@@ -440,8 +423,8 @@
   color: #12192c;
 }
 
-.tile.tile-frame:has(.tile-card) .tile-card .card-description,
-#content-core .tile.tile-frame:has(.tile-card) .tile-card .card-description {
+.tile-card .card-description,
+#content-core .tile-card .card-description {
   margin: 0;
   padding-right: 18px;
   font-size: 13.5px;
@@ -450,7 +433,7 @@
 }
 
 /* the arrow at the bottom right of a card without a button */
-.tile.tile-frame:has(.tile-card) .tile-card .card-body::after {
+.tile-card .card-body:not(.has-action-button)::after {
   content: "\2192";
   display: block;
   margin-top: auto;
@@ -462,13 +445,13 @@
   transition: transform 0.18s ease, color 0.18s ease;
 }
 
-.tile.tile-frame:has(.tile-card) .tile-card .card:hover .card-body::after {
+.tile-card .card:hover .card-body:not(.has-action-button)::after {
   transform: translateX(4px);
   color: #000064;
 }
 
 /* the action icon (icon font) takes the place of the arrow */
-.tile.tile-frame:has(.tile-card) .tile-card .card-body.has-action-icon::after {
+.tile-card .card-body.has-action-icon::after {
   content: none;
 }
 
@@ -513,7 +496,7 @@
   height: 100%;
 }
 
-.tile.tile-frame:has(.tile-card) .tile-card .card-icon.card-icon-svg {
+.tile-card .card-icon.card-icon-svg {
   color: #1d55cc;
 }
 
@@ -611,29 +594,31 @@
    Icon beside the title: gap 12px; the title row is at least 24px high and the description starts 8px below
    it. Same font stack as the study page. */
 .tile.tile-frame:has(.tile-card) h2,
-.tile.tile-frame:has(.tile-card) .tile-card .card-title,
-.tile.tile-frame:has(.tile-card) .tile-card .card-description {
+.tile-card .card-title,
+#content-core .tile-card .card-title,
+.tile-card .card-description,
+#content-core .tile-card .card-description {
   font-family: "Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", Arial, sans-serif;
 }
 
-.tile.tile-frame:has(.tile-card) .tile-card .card-main[data-icon-orientation="title"] {
+.tile-card .card-main[data-icon-orientation="title"] {
   grid-template-rows: minmax(24px, auto) auto;
   gap: 8px 12px;
 }
 
 /* the theme's bottom margin of h3 would add to the row of the title */
-.tile.tile-frame:has(.tile-card) .tile-card .card-main[data-icon-orientation="title"] .card-title {
+.tile-card .card-main[data-icon-orientation="title"] .card-title {
   margin-bottom: 0;
 }
 
-#content-core .tile.tile-frame:has(.tile-card) .tile-card .card-main[data-icon-orientation="title"] .card-description {
+#content-core .tile-card .card-main[data-icon-orientation="title"] .card-description {
   margin-top: 0;
 }
 
 /* The description starts at the same height whatever the position of the icon: in the other positions the title
    block is as high as the title row of the "title" layout (24px) plus its 8px gap. */
-.tile.tile-frame:has(.tile-card) .tile-card .card-main:not([data-icon-orientation="title"]) .card-title,
-#content-core .tile.tile-frame:has(.tile-card) .tile-card .card-main:not([data-icon-orientation="title"]) .card-title {
+.tile-card .card-main:not([data-icon-orientation="title"]) .card-title,
+#content-core .tile-card .card-main:not([data-icon-orientation="title"]) .card-title {
   box-sizing: border-box;
   min-height: 24px;
   margin-bottom: 8px;

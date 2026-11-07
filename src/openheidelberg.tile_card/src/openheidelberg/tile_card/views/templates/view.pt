@@ -6,7 +6,7 @@
       <figure class="card-image" tal:condition="python: image">
         <img src="${image/url}" alt="${image/alt}" loading="lazy" />
       </figure>
-      <div class="card-body ${python: 'has-action-icon' if icon else ''}">
+      <div class="card-body ${python: 'has-action-icon' if icon else ''} ${python: 'has-action-button' if (link and link['show_button']) else ''}">
         <div class="card-main" data-icon-orientation="${orientation}">
           <span class="card-icon card-icon-svg" aria-hidden="true" tal:condition="python: svg_icon" tal:content="structure svg_icon"></span>
           <div class="card-text">

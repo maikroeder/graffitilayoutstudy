@@ -46,6 +46,15 @@ registers the script bundle; earlier versions 0001 -> 0003 add the control panel
 `portal_setup`, Import, profile `openheidelberg.tile_card`). The tile registration happens in the profile's post
 handler. No buildout and no Grunt run are needed for this package.
 
+## Look of the card
+
+The look of a card (box, border and shadow, padding, title and description typography, the arrow at the bottom right,
+hover) is defined by `tile.css` on the card itself. It does not depend on the theme or on where the card stands (in
+a row of the page or in a frame). The title and description rules also exist with the prefix `#content-core`, which
+outranks the ID selectors of the theme's `h3` and `p`. Only the section box (a frame tile that contains cards, with its
+heading) is tied to the frame: `.tile.tile-frame:has(.tile-card)`. The arrow is shown only when the card has no button
+(`has-action-button` on `.card-body`); an action icon replaces it.
+
 ## Image and layout in a row
 
 The image sits in a fixed 16:9 frame (`aspect-ratio`) and is cropped with `object-fit: cover`, so cards in
