@@ -4,9 +4,6 @@ Cards
 
 Cards are rectangular containers that bundle related information — an image, a title, a short description, and an action. They work well for grid layouts of similar items (product listings, team members, blog posts). Cards should have clear boundaries (shadow or border) and a single primary action.
 
-Structure to follow `graffiti.tile_button` / `graffiti.tile_listing` in `src/`: content type, interfaces,
-adapters, views, GenericSetup profiles.
-
 ## What the tile does
 
 Portal type `TileCard`, tile id `openheidelberg_tile_card`, label "Card". Fields:
@@ -17,7 +14,7 @@ Portal type `TileCard`, tile id `openheidelberg_tile_card`, label "Card". Fields
   With `link_show_button` off (default on) there is no button: the title becomes the link and the whole card stays
   clickable. Cards created before the option existed keep their button.
 - an optional icon (`card_icon`, from the icon fonts of interaktiv.basetiles and its font families) and
-  `card_icon_orientation` (`left`, the default, `right`, or `title`). `left`/`right` put the icon in a column beside the title and the
+  `card_icon_orientation` (`title`, the default, `left` or `right`). `left`/`right` put the icon in a column beside the title and the
   description together, spanning both; `title` puts it beside the title only, with the description below
   starting at the icon's left edge. The "Edit card" dialog has an "Icon" tab for it.
 
