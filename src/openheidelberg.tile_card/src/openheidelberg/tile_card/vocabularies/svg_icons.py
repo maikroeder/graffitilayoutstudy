@@ -1,3 +1,4 @@
+import logging
 import os
 from typing import Dict
 from typing import List
@@ -10,6 +11,8 @@ from zope.component import queryUtility
 from zope.schema.vocabulary import SimpleTerm
 from zope.schema.vocabulary import SimpleVocabulary
 
+logger = logging.getLogger(__name__)
+
 # The svg icons of the card tile live in the registry (control panel "Card tile SVG icons"): a dict from the
 # name, which is stored in the tile, to the sanitised markup. As long as nothing was saved there, the icons bundled
 # with the package (static/icons/*.svg) are used.
@@ -19,12 +22,22 @@ ICONS_DIRECTORY = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(_
 
 
 def get_bundled_svg_icons() -> Dict[str, str]:
-    """The icons shipped with the package: file name without ".svg" -> markup."""
+    """The icons shipped with the package: file name without ".svg" -> markup.
+
+    Hidden files are skipped: macOS writes "._name.svg" sidecar files (AppleDouble, binary) next to the real files
+    when a folder is copied to another file system. A file that is not UTF-8 text is skipped and logged.
+    """
     icons = {}
     for file_name in sorted(os.listdir(ICONS_DIRECTORY)):
-        if file_name.endswith('.svg'):
+        if file_name.startswith('.') or not file_name.endswith('.svg'):
+            continue
+        try:
             with open(os.path.join(ICONS_DIRECTORY, file_name), encoding='utf-8') as svg_file:
-                icons[file_name[:-len('.svg')]] = svg_file.read().strip()
+                markup = svg_file.read().strip()
+        except UnicodeDecodeError:
+            logger.warning('Bundled svg icon %s is not UTF-8 text, skipped.', file_name)
+            continue
+        icons[file_name[:-len('.svg')]] = markup
     return icons
 
 
