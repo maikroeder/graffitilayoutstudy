@@ -1,0 +1,22 @@
+/*
+  What the start page (layouts/site-search-layout/site-search.css) and the other pages (site.css) have in common:
+  the colour and shadow tokens and the typeface of the site. Linked first by both theme files (site.html and
+  layouts/site-search-layout/site-search-layout.html); nothing else is in this file.
+*/
+
+:root {
+  --hero-bg: #000064;
+  --page-bg: #f1f4f9;
+  --text-primary: #12192c;
+  --shadow-search: 0 8px 24px rgba(0, 0, 100, 0.18), 0 2px 6px rgba(0, 0, 100, 0.10);
+  --font: "Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+/* The typeface of the site is set once, on the page and on #content. Text that has no rule of its own (title and
+   description of the card tile, which inherit) follows it. style.css of the theme sets
+   "html, body.portaltype-tilepage, body:not(.portaltype-tilepage), #content { font-family: Arial !important }", so
+   this needs !important too; the ID of the body outranks the theme's selectors, #content wins by coming later. */
+html body#visual-portal-wrapper,
+#content {
+  font-family: var(--font) !important;
+}

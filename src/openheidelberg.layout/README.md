@@ -41,7 +41,7 @@ Portlet columns are not part of the new layouts (the content area is always full
   all visitors (`python:'1'`; read at server start). To go back to the cookie preview use
   `python:'1' if request.cookies.get('openheidelberg_layout') == 'new' else ''` (set the cookie in the browser
   console: `document.cookie = 'openheidelberg_layout=new; path=/'`), or `python:''` to switch it off.
-- Styles: `site.css` is the look of the whole site except the start page (not scoped to a layout; it includes the dashboard tile and the document count);
+- Styles: `base.css` holds what the start page and the other pages share (colour and shadow tokens, the typeface with its `!important` against `style.css` of the theme); both theme files link it first. `site.css` is the look of the whole site except the start page (not scoped to a layout; it includes the dashboard tile and the document count);
   the start page has its own `layouts/site-search-layout/site-search.css`. /exploring and /editing are ordinary pages. A stored `page_layout` value `default-tiles-layout` is ignored.
 
 The registration of the layout policy replaces the one of interaktiv.basetiles (same discriminators, in
