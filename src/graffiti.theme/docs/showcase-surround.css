@@ -6,6 +6,7 @@
    showcase.html loads. The old .showcase-section-box / .showcase-card rules were removed from here when the page
    was changed to the real tile markup. */
 
+/* Colours used on this page. The card colours are not here: they belong to tile.css. */
 :root {
   --hero-bg: #000064;
   --page-bg: #f1f4f9;
@@ -13,10 +14,12 @@
   --shadow-search: 0 8px 24px rgba(0, 0, 100, 0.18), 0 2px 6px rgba(0, 0, 100, 0.10);
 }
 
+/* as in Barceloneta, so widths include padding and borders */
 * {
   box-sizing: border-box;
 }
 
+/* page background, typeface and colour of the whole page; font smoothing only matters on macOS */
 html, body {
   margin: 0;
   padding: 0;
@@ -28,12 +31,15 @@ html, body {
   -webkit-font-smoothing: antialiased;
 }
 
+/* <main>: full width, with room below the last section */
 .showcase-page-wrapper {
   width: 100%;
   margin: 0;
   padding: 0 0 56px 0;
 }
 
+/* HERO: the dark blue band at the top, 402px high. Everything in it is placed absolutely inside .showcase-hero-inner,
+   so the logo, the title and the neon line keep their relation to each other. Below 768px it flows instead (see the media query). */
 .showcase-hero {
   position: relative;
   width: 100%;
@@ -43,6 +49,7 @@ html, body {
   overflow: hidden;
 }
 
+/* the 1180px column of the page (32px padding on each side); it is the reference for the absolute positions below */
 .showcase-hero-inner {
   position: relative;
   width: 100%;
@@ -52,6 +59,7 @@ html, body {
   padding: 0 32px;
 }
 
+/* the editor-window logo at the left; its svg already contains the first part of the neon line, which leaves it below the window */
 .hero-graffiti-logo-wrap {
   position: absolute;
   top: 0;
@@ -68,6 +76,7 @@ html, body {
   display: block;
 }
 
+/* the neon "Graffiti" sign at the top right (the class name is a leftover from the old Plone logo) */
 .hero-plone-logo-wrap {
   position: absolute;
   top: 18px;
@@ -83,6 +92,7 @@ html, body {
   display: block;
 }
 
+/* title and subtitle, placed next to the logo; 304px = logo width 248px + its 32px offset + a gap */
 .hero-title-block {
   position: absolute;
   top: 196px;
@@ -95,6 +105,7 @@ html, body {
   align-items: center;
 }
 
+/* the page title "Tiles" */
 .hero-title-block h1 {
   margin: 0;
   font-size: 86px;
@@ -104,6 +115,9 @@ html, body {
   color: #ffffff;
 }
 
+/* the second part of the neon line: it continues the line of the logo at the same height (top 268px), starts to the right of the
+   title (left 568px) and runs out of the hero (right: -100vw; the hero clips it). The title thus interrupts the line.
+   The class name is a leftover from an orange line. */
 .hero-orange-line-right {
   position: absolute;
   top: 268px;
@@ -118,6 +132,7 @@ html, body {
   pointer-events: none;
 }
 
+/* the subtitle under the title; it does not wrap on wide screens, so it stays on one line next to the logo */
 .hero-title-block p.hero-subtitle {
   margin: 14px 0 0 2px;
   font-size: 27px;
@@ -127,6 +142,7 @@ html, body {
   white-space: nowrap;
 }
 
+/* SEARCH: the white search bar overlaps the lower edge of the hero (margin-top -34px); z-index lifts it above the hero */
 .showcase-search-container {
   position: relative;
   z-index: 10;
@@ -135,6 +151,7 @@ html, body {
   padding: 0 32px;
 }
 
+/* the bar itself: icon, input and button in one row, in a white rounded box with a dark outline */
 #searchbar form#search {
   display: flex;
   align-items: center;
@@ -146,11 +163,13 @@ html, body {
   transition: box-shadow 0.2s ease, border-color 0.2s ease;
 }
 
+/* focus anywhere inside the bar: stronger shadow and a lighter blue outline */
 #searchbar form#search:focus-within {
   box-shadow: 0 12px 32px rgba(0, 0, 100, 0.26);
   border-color: #1d63b8;
 }
 
+/* the magnifier at the left */
 .search-lupe-icon {
   display: flex;
   align-items: center;
@@ -160,6 +179,7 @@ html, body {
   flex-shrink: 0;
 }
 
+/* wrapper of the input; position relative so the clear button can sit inside the field */
 #search-input {
   display: flex;
   align-items: center;
@@ -167,6 +187,7 @@ html, body {
   position: relative;
 }
 
+/* the input has no box of its own (the bar draws it); the right padding keeps the text clear of the clear button */
 #searchableText {
   width: 100%;
   height: 46px;
@@ -182,6 +203,7 @@ html, body {
   color: #475569;
 }
 
+/* the clear button (x) inside the field; hidden until showcase.js shows it when the field has text */
 #clear-search {
   position: absolute;
   right: 12px;
@@ -197,6 +219,7 @@ html, body {
   color: var(--text-primary);
 }
 
+/* the dark "Suchen" button at the right end of the bar */
 #searchbar-submit {
   background-color: #16224f;
   color: #ffffff;
@@ -219,6 +242,8 @@ html, body {
   transform: translateY(1px);
 }
 
+/* SECTIONS: the column that holds the tile page, 1180px wide and centred like the hero and the search bar.
+   The look of what is inside (frames, headings, cards) is not defined here, see tile.css. */
 .showcase-sections-wrapper {
   max-width: 1180px;
   margin: 0 auto;
@@ -228,6 +253,7 @@ html, body {
   gap: 24px;
 }
 
+/* narrower than the design width: smaller sign, title and subtitle, and the line starts further to the left */
 @media (max-width: 1100px) {
   .hero-plone-logo-wrap svg {
     width: 260px;
@@ -243,6 +269,8 @@ html, body {
   }
 }
 
+/* small screens: the hero is no longer a fixed-height stage with absolute positions; the logo, the title and the subtitle
+   stack in the normal flow, the neon line is dropped, and the subtitle may wrap */
 @media (max-width: 768px) {
   .showcase-hero {
     height: auto;

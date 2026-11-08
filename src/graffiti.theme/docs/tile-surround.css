@@ -5,44 +5,52 @@
    n columns is 1/n wide, rows marked break-on-tablet stack up to 991px. .tile-content is the wrapper that every tile
    has (text, frame, card). */
 
+/* the rows of the page, one below the other, 24px apart (in the site the rows carry margins of their own) */
 #tile-page-content > .tile-page > .tile-rows-wrapper {
   display: flex;
   flex-direction: column;
   gap: 24px;
 }
 
+/* all containers of the tile structure are flex containers */
 .tile-rows-wrapper,
 .tile-row,
 .tiles-wrapper {
   display: flex;
 }
 
+/* rows lie below each other, and a row is a column that holds its tiles-wrapper */
 .tile-rows-wrapper,
 .tile-row {
   flex-direction: column;
 }
 
+/* a row spans the width of its container */
 .tile-row {
   width: 100%;
 }
 
+/* the tiles of a row sit side by side (stacked again below 991px, see the end) */
 .tiles-wrapper {
   flex-direction: row;
   width: 100%;
 }
 
+/* a tile: positioned box that can hold its content */
 .tile {
   position: relative;
   display: flex;
   box-sizing: border-box;
 }
 
+/* the wrapper every tile has; it takes the full width of the tile */
 .tile-content {
   position: relative;
   display: flex;
   width: 100%;
 }
 
+/* the width of a tile follows the number of columns of its row */
 .tile-row.columns-1 > .tiles-wrapper > .tile {
   width: 100%;
 }
@@ -51,10 +59,14 @@
   width: 33.3333%;
 }
 
+/* a frame tile holds whole rows (heading row, card row) one below the other, so its content is a column */
 .tile.tile-frame > .tile-content {
   flex-direction: column;
 }
 
+/* stacking: the platform puts the tiles of a row below each other from 768px to 991px (break-on-tablet) and below 768px
+   (break-on-mobile). The rows of the showcase carry both classes, so this stand-in only needs one rule up to 991px.
+   The platform gives stacked tiles 15px bottom margin; tile.css counts on it when it computes the gap between stacked cards. */
 @media (max-width: 991px) {
   .tile-row.break-on-tablet > .tiles-wrapper {
     flex-direction: column;
