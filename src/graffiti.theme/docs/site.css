@@ -1,35 +1,7 @@
 /* The look of the site in the study: the values of site.css of openheidelberg.layout, as the pages /exploring, /editing and
-   every standard page use them. The study pages (showcase-pages.html) link this file and showcase-pages.css, which
-   holds only what draws the study itself (the frames and their labels). --column is the width of the content column. */
-
-:root {
-  --hero-bg: #000064;
-  --page-bg: #f1f4f9;
-  --card-bg: #ffffff;
-  --card-border: #e6eaf0;
-  --text-primary: #12192c;
-  --text-secondary: #5a657d;
-  --link: #1d55cc;
-  --column: 1180px;
-  --shadow-card: 0 4px 14px rgba(12, 24, 68, 0.05), 0 1px 3px rgba(12, 24, 68, 0.03);
-  --shadow-card-hover: 0 10px 24px rgba(12, 24, 68, 0.11), 0 3px 8px rgba(12, 24, 68, 0.06);
-  --shadow-search: 0 8px 24px rgba(0, 0, 100, 0.18), 0 2px 6px rgba(0, 0, 100, 0.10);
-  --font: "Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", Arial, sans-serif;
-}
-
-/* as in Barceloneta, so widths include padding and borders */
-* { box-sizing: border-box; }
-
-/* page background, typeface and colour; the frames below are drawn on this light background */
-html, body {
-  margin: 0;
-  background: var(--page-bg);
-  font-family: var(--font);
-  color: var(--text-primary);
-  -webkit-font-smoothing: antialiased;
-}
-
-.study-intro h1 { margin: 0 0 6px; font-size: 22px; color: var(--text-primary); }
+   every standard page use them. The study pages (showcase-pages.html) link base.css, this file and showcase-pages.css, which
+   holds only what draws the study itself (the frames and their labels). --column is the width of the content column.
+   The tokens and the rules for html and body are in base.css. */
 
 /* header (regions/header-slim.xml): the blue of the hero, the sign left, the site actions right */
 .slim-header {

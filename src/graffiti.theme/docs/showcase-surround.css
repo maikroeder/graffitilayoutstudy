@@ -1,35 +1,11 @@
 /* The page around the tiles in docs/showcase.html: the hero, the search bar and the page wrapper.
-   The stand-in for the tile layout of interaktiv.basetiles is in tile-surround.css.
+   The stand-in for the tile layout of interaktiv.basetiles is in tile-surround.css. The colours, box-sizing and the
+   rules for html and body are in base.css, which showcase.html and showcase-pages.html link first.
 
    Not in this file: everything inside the tiles. The cards and the section box (a frame tile that contains cards,
    with its heading) are styled by the tile itself, by openheidelberg.tile_card/static/css/tile.css, which
    showcase.html loads. The old .showcase-section-box / .showcase-card rules were removed from here when the page
    was changed to the real tile markup. */
-
-/* Colours used on this page. The card colours are not here: they belong to tile.css. */
-:root {
-  --hero-bg: #000064;
-  --page-bg: #f1f4f9;
-  --text-primary: #12192c;
-  --shadow-search: 0 8px 24px rgba(0, 0, 100, 0.18), 0 2px 6px rgba(0, 0, 100, 0.10);
-}
-
-/* as in Barceloneta, so widths include padding and borders */
-* {
-  box-sizing: border-box;
-}
-
-/* page background, typeface and colour of the whole page; font smoothing only matters on macOS */
-html, body {
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  min-height: 100vh;
-  background-color: var(--page-bg);
-  font-family: "Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", Arial, sans-serif;
-  color: var(--text-primary);
-  -webkit-font-smoothing: antialiased;
-}
 
 /* <main>: full width, with room below the last section */
 .showcase-page-wrapper {

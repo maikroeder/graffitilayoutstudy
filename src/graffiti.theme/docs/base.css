@@ -1,0 +1,36 @@
+/* What the start page (showcase.html) and the pages of the site (showcase-pages.html) have in common: the colour
+   and typeface tokens, box-sizing and the rules for html and body. Both studies link this file first.
+   The card colours are not here: they belong to tile.css (the card tile). */
+
+/* Colours, shadows, the typeface and the width of the content column */
+:root {
+  --hero-bg: #000064;
+  --page-bg: #f1f4f9;
+  --card-bg: #ffffff;
+  --card-border: #e6eaf0;
+  --text-primary: #12192c;
+  --text-secondary: #5a657d;
+  --link: #1d55cc;
+  --column: 1180px;
+  --shadow-card: 0 4px 14px rgba(12, 24, 68, 0.05), 0 1px 3px rgba(12, 24, 68, 0.03);
+  --shadow-card-hover: 0 10px 24px rgba(12, 24, 68, 0.11), 0 3px 8px rgba(12, 24, 68, 0.06);
+  --shadow-search: 0 8px 24px rgba(0, 0, 100, 0.18), 0 2px 6px rgba(0, 0, 100, 0.10);
+  --font: "Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+/* as in Barceloneta, so widths include padding and borders */
+* {
+  box-sizing: border-box;
+}
+
+/* page background, typeface and colour of the whole page; font smoothing only matters on macOS */
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100vh;
+  background-color: var(--page-bg);
+  font-family: var(--font);
+  color: var(--text-primary);
+  -webkit-font-smoothing: antialiased;
+}

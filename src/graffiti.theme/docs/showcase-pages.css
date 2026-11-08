@@ -1,5 +1,5 @@
 /* What draws the study itself in docs/showcase-pages.html: the room around the pages, the introduction, the frame of
-   a page and its label. The look of the pages is in site.css (link it first: the rules here use its custom properties). */
+   a page and its label. The look of the pages is in site.css (link base.css first: the rules here use its custom properties). */
 
 /* room around the study: the frames and their labels */
 body { padding: 24px 16px 48px; }
@@ -11,6 +11,9 @@ body { padding: 24px 16px 48px; }
   font-size: 15px;
   color: var(--text-secondary);
 }
+
+/* the title of the introduction */
+.study-intro h1 { margin: 0 0 6px; font-size: 22px; color: var(--text-primary); }
 
 /* one page of the site, drawn as a frame */
 .page-frame {
@@ -30,4 +33,9 @@ body { padding: 24px 16px 48px; }
   letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--text-secondary);
+}
+
+/* the start page in its frame: standalone it is drawn on the page background (body), here the frame is white */
+.page-frame > .showcase-page-wrapper {
+  background-color: var(--page-bg);
 }
