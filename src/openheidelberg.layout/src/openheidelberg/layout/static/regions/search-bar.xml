@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-  Search bar above the title, for the pages that have no search tile: the same markup and classes as the search
+  Search bar above the title, for the pages that have no search tile of their own (a page whose content has a .tile-search gets none): the same markup and classes as the search
   tile of graffiti.tile_search (wrapper .tile-search, form .tile-search-form), so site.css styles both alike.
   The form submits to the site search of the portal; the portal URL is the target of the logo link.
   Not on control panels (pages with the Site Setup portlet, the overview included) and the personal pages of a user: searching the content of the site
@@ -10,7 +10,7 @@
        xmlns:css="http://namespaces.plone.org/diazo/css"
        xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
-    <before css:theme="#main-container" css:if-not-content=".portletSiteSetup, #content a#setup-link, body.viewpermission-set-own-properties, body.viewpermission-set-own-password" method="raw">
+    <before css:theme="#main-container" css:if-not-content=".tile-search, .portletSiteSetup, #content a#setup-link, body.viewpermission-set-own-properties, body.viewpermission-set-own-password" method="raw">
         <div class="container site-search-bar">
             <div class="tile-search">
                 <form class="tile-search-form pat-livesearch" role="search"

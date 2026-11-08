@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-  What default-tiles-layout leaves out: the search of the header, the byline and the document actions. Both are parts of
+  What site-layout leaves out of a page that has a search tile of its own (.tile-search, as /editing and /exploring): the search of the header, the byline and the document actions. Both are parts of
   Plone's output and are dropped from the content. The breadcrumbs are included (breadcrumbs.xml).
 
   Selectors checked against the unthemed page (?diazo.off=1) of the running site on 2026-10-31:
@@ -13,12 +13,12 @@
        xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
     <!-- search (a future search region of site-layout copies this; here it stays out) -->
-    <drop css:content="#portal-searchbox" />
+    <drop css:if-content=".tile-search" css:content="#portal-searchbox" />
 
     <!-- document actions -->
-    <drop css:content="#content .documentActions" />
+    <drop css:if-content=".tile-search" css:content="#content .documentActions" />
 
     <!-- byline ("by admin, last modified ...") -->
-    <drop css:content="#viewlet-below-content-title .documentByLine" />
+    <drop css:if-content=".tile-search" css:content="#viewlet-below-content-title .documentByLine" />
 
 </rules>

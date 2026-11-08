@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-  Layout "site-layout": the look of every page that main_template renders, except the special pages and edit
+  Layout "site-layout": the look of every page that main_template renders, except the start page and edit
   mode: slim header, breadcrumbs, search bar, title, content, footer, in the look of /exploring (site.css).
 -->
 <rules xmlns="http://namespaces.plone.org/diazo"
@@ -26,5 +26,6 @@
     </before>
     <xi:include href="++theme++openheidelberg.layout/regions/content.xml" />
     <xi:include href="++theme++openheidelberg.layout/regions/footer.xml" />
+    <xi:include href="++theme++openheidelberg.layout/regions/omitted-with-search-tile.xml" />
 
 </rules>

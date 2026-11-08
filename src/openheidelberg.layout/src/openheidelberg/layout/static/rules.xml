@@ -4,7 +4,6 @@
 
     iframe view                         -> interaktiv.theme (unchanged)
     site-search-layout, view mode       -> layouts/site-search-layout
-    default-tiles-layout, view mode     -> layouts/default-tiles-layout
     site-layout switched on (parameter site_layout_enabled, see manifest.cfg), not edit mode
                                         -> layouts/site-layout
     site-layout switched on, edit mode  -> layouts/site-edit-layout (frame of the site around the editor)
@@ -25,11 +24,7 @@
             <xi:include href="++theme++openheidelberg.layout/layouts/site-search-layout/rules.xml" />
         </rules>
 
-        <rules css:if-content="body.layout-default-tiles-layout.view-mode">
-            <xi:include href="++theme++openheidelberg.layout/layouts/default-tiles-layout/rules.xml" />
-        </rules>
-
-        <rules css:if-not-content="body.layout-site-search-layout.view-mode, body.layout-default-tiles-layout.view-mode">
+        <rules css:if-not-content="body.layout-site-search-layout.view-mode">
 
             <rules if-content="string($site_layout_enabled) = '1'" css:if-not-content="body.edit-mode">
                 <xi:include href="++theme++openheidelberg.layout/layouts/site-layout/rules.xml" />

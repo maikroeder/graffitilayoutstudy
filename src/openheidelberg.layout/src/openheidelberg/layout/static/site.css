@@ -1,5 +1,5 @@
 /*
-  Shared look of the pages that site.html renders (site-layout and default-tiles-layout): the look of the showcase
+  Shared look of the pages that site.html renders (site-layout): the look of the showcase
   study (graffiti.theme docs/showcase.html), taken over from the editorial pages /exploring and /editing. Header,
   breadcrumbs, title, search bar, headings, tables, footer. The values are those of site-search.css (search).
   Nothing here is scoped to a layout: edit mode and the iframe views do not use site.html.
@@ -404,4 +404,69 @@ nav.breadcrumbs a#setup-link.link-parent::before {
 
 nav.breadcrumbs a#setup-link.link-parent:hover {
   text-decoration: underline;
+}
+
+/* dashboard tile and count of documents (tiles of the editorial pages /editing and /exploring) */
+
+/* dashboard tile: the boxes get the look of the cards */
+.tile-dashboard .tile-dashboard-boxes {
+  gap: 20px;
+}
+
+.tile-dashboard .tile-dashboard-box {
+  flex: 1 1 220px;
+  min-height: 119.2px;
+  justify-content: center;
+  background: #ffffff;
+  border: 1px solid #e6eaf0;
+  border-radius: 10px;
+  box-shadow: 0 4px 14px rgba(12, 24, 68, 0.05), 0 1px 3px rgba(12, 24, 68, 0.03);
+  font-family: "Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", Arial, sans-serif;
+  color: #12192c;
+  transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+}
+
+.tile-dashboard .tile-dashboard-box:hover,
+.tile-dashboard .tile-dashboard-box:focus {
+  transform: translateY(-2px);
+  border-color: #cbd5e1;
+  box-shadow: 0 10px 24px rgba(12, 24, 68, 0.11), 0 3px 8px rgba(12, 24, 68, 0.06);
+}
+
+.tile-dashboard .tile-dashboard-count {
+  font-size: 36px;
+  font-weight: 600;
+  line-height: 1.2;
+  color: #1d55cc;
+}
+
+.tile-dashboard .tile-dashboard-title {
+  font-size: 14px;
+  color: #5a657d;
+}
+
+/* a box that is a to-do keeps its warning colours */
+.tile-dashboard .tile-dashboard-box.is-urgent {
+  border-color: #c0392b;
+  background: #fdf3f2;
+}
+
+.tile-dashboard .tile-dashboard-box.is-urgent .tile-dashboard-count,
+.tile-dashboard .tile-dashboard-box.is-urgent .tile-dashboard-title {
+  color: #c0392b;
+}
+
+/* the embedded view tile with the number of documents (#content p in the selector: style.css of the theme sets #content p { line-height: 16px }) */
+#content p.documents-count {
+  margin: 0;
+  font-family: "Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-size: 19.5px;
+  /* the view tile clips its content (overflow: auto) and the theme's line-height of 16px is smaller than the font */
+  line-height: 1.4;
+  color: #12192c;
+}
+
+.documents-count-number {
+  font-weight: 600;
+  color: #1d55cc;
 }

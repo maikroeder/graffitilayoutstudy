@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-  Slim header of default-tiles-layout: on the blue of the hero of the start page, the logo (the neon sign, as a
-  background image of the link in default-tiles.css) on the left and the site actions of Plone (Site Map, Accessibility,
+  Slim header of site-layout: on the blue of the hero of the start page, the logo (the neon sign, as a
+  background image of the link in site.css) on the left and the site actions of Plone (Site Map, Accessibility,
   Contact) on the right. The navigation of the standard header is left out. The theme element header#company-header
   stays, so that the rules that put the cookie hint and the stickybar before it (common.xml) still find it.
 -->
