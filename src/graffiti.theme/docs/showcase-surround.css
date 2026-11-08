@@ -1,5 +1,5 @@
-/* The page around the tiles in docs/showcase.html: the hero, the search bar, the page
-   wrapper, and a small stand-in for the tile layout that interaktiv.basetiles provides in the real site.
+/* The page around the tiles in docs/showcase.html: the hero, the search bar and the page wrapper.
+   The stand-in for the tile layout of interaktiv.basetiles is in tile-surround.css.
 
    Not in this file: everything inside the tiles. The cards and the section box (a frame tile that contains cards,
    with its heading) are styled by the tile itself, by openheidelberg.tile_card/static/css/tile.css, which
@@ -267,69 +267,5 @@ html, body {
   }
   .hero-title-block p.hero-subtitle {
     white-space: normal;
-  }
-}
-
-/* ===== Stand-in for the tile layout of interaktiv.basetiles ==========================================
-   The real site gets these from basetiles; the static page needs them so that the tile markup lays out in rows.
-   Values as measured in the running site: rows and the wrapper of the tiles are flex containers, a tile of a
-   row with n columns is 1/n wide, rows marked break-on-tablet stack up to 991px. */
-#tile-page-content > .tile-page > .tile-rows-wrapper {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-}
-
-.tile-rows-wrapper,
-.tile-row,
-.tiles-wrapper {
-  display: flex;
-}
-
-.tile-rows-wrapper,
-.tile-row {
-  flex-direction: column;
-}
-
-.tile-row {
-  width: 100%;
-}
-
-.tiles-wrapper {
-  flex-direction: row;
-  width: 100%;
-}
-
-.tile {
-  position: relative;
-  display: flex;
-  box-sizing: border-box;
-}
-
-.tile-content {
-  position: relative;
-  display: flex;
-  width: 100%;
-}
-
-.tile-row.columns-1 > .tiles-wrapper > .tile {
-  width: 100%;
-}
-
-.tile-row.columns-3 > .tiles-wrapper > .tile {
-  width: 33.3333%;
-}
-
-.tile.tile-frame > .tile-content {
-  flex-direction: column;
-}
-
-@media (max-width: 991px) {
-  .tile-row.break-on-tablet > .tiles-wrapper {
-    flex-direction: column;
-  }
-
-  .tile-row.break-on-tablet > .tiles-wrapper > .tile {
-    width: 100%;
   }
 }

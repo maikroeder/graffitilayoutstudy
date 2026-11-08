@@ -1,0 +1,66 @@
+/* Stand-in for the tile layout of interaktiv.basetiles, for static pages that use the real tile markup (docs/showcase.html).
+   The real site gets these rules from basetiles (static/less/_tiles.less); a static page needs them so that the markup
+   lays out in rows. Not part of the layout package, and not part of tile_card (its look is tile.css).
+   Values as measured in the running site: rows and the wrapper of the tiles are flex containers, a tile of a row with
+   n columns is 1/n wide, rows marked break-on-tablet stack up to 991px. .tile-content is the wrapper that every tile
+   has (text, frame, card). */
+
+#tile-page-content > .tile-page > .tile-rows-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.tile-rows-wrapper,
+.tile-row,
+.tiles-wrapper {
+  display: flex;
+}
+
+.tile-rows-wrapper,
+.tile-row {
+  flex-direction: column;
+}
+
+.tile-row {
+  width: 100%;
+}
+
+.tiles-wrapper {
+  flex-direction: row;
+  width: 100%;
+}
+
+.tile {
+  position: relative;
+  display: flex;
+  box-sizing: border-box;
+}
+
+.tile-content {
+  position: relative;
+  display: flex;
+  width: 100%;
+}
+
+.tile-row.columns-1 > .tiles-wrapper > .tile {
+  width: 100%;
+}
+
+.tile-row.columns-3 > .tiles-wrapper > .tile {
+  width: 33.3333%;
+}
+
+.tile.tile-frame > .tile-content {
+  flex-direction: column;
+}
+
+@media (max-width: 991px) {
+  .tile-row.break-on-tablet > .tiles-wrapper {
+    flex-direction: column;
+  }
+
+  .tile-row.break-on-tablet > .tiles-wrapper > .tile {
+    width: 100%;
+  }
+}
