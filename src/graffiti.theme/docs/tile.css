@@ -1,0 +1,625 @@
+/* Card tile, plain CSS served live from the resource directory as the Plone bundle
+   openheidelberg-tile-card. There is no LESS source: Grunt does not compile this file. */
+
+.tile-card .card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 119.2px;
+  background: #ffffff;
+  border: 1px solid #e6eaf0;
+  border-radius: 10px;
+  box-shadow: 0 4px 14px rgba(12, 24, 68, 0.05), 0 1px 3px rgba(12, 24, 68, 0.03);
+  overflow: visible; /* the image gets its own rounded top corners below */
+  transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+}
+
+/* Equal-width cards with a gap. The tile padding is written inline by the editor (0 by
+   default) and the row gives every tile the same width W/n, so the gap is made from margins on
+   the card. With gap g and n columns, card i (0-based) gets margin-left i*g/n and margin-right
+   (n-1-i)*g/n: every card is then (W - (n-1)*g)/n wide, the first card stays flush with the
+   page text and the last one with the right edge of the row. Set --card-gap on a row or a
+   parent to change the gap. Defined for rows of 2 to 6 columns (class columns-N). */
+
+.tile-row.columns-2 .tile-card:nth-child(1) .card {
+  margin-left: calc(var(--card-gap, 24px) * 0 / 2);
+  margin-right: calc(var(--card-gap, 24px) * 1 / 2);
+}
+
+.tile-row.columns-2 .tile-card:nth-child(2) .card {
+  margin-left: calc(var(--card-gap, 24px) * 1 / 2);
+  margin-right: calc(var(--card-gap, 24px) * 0 / 2);
+}
+
+.tile-row.columns-3 .tile-card:nth-child(1) .card {
+  margin-left: calc(var(--card-gap, 24px) * 0 / 3);
+  margin-right: calc(var(--card-gap, 24px) * 2 / 3);
+}
+
+.tile-row.columns-3 .tile-card:nth-child(2) .card {
+  margin-left: calc(var(--card-gap, 24px) * 1 / 3);
+  margin-right: calc(var(--card-gap, 24px) * 1 / 3);
+}
+
+.tile-row.columns-3 .tile-card:nth-child(3) .card {
+  margin-left: calc(var(--card-gap, 24px) * 2 / 3);
+  margin-right: calc(var(--card-gap, 24px) * 0 / 3);
+}
+
+.tile-row.columns-4 .tile-card:nth-child(1) .card {
+  margin-left: calc(var(--card-gap, 24px) * 0 / 4);
+  margin-right: calc(var(--card-gap, 24px) * 3 / 4);
+}
+
+.tile-row.columns-4 .tile-card:nth-child(2) .card {
+  margin-left: calc(var(--card-gap, 24px) * 1 / 4);
+  margin-right: calc(var(--card-gap, 24px) * 2 / 4);
+}
+
+.tile-row.columns-4 .tile-card:nth-child(3) .card {
+  margin-left: calc(var(--card-gap, 24px) * 2 / 4);
+  margin-right: calc(var(--card-gap, 24px) * 1 / 4);
+}
+
+.tile-row.columns-4 .tile-card:nth-child(4) .card {
+  margin-left: calc(var(--card-gap, 24px) * 3 / 4);
+  margin-right: calc(var(--card-gap, 24px) * 0 / 4);
+}
+
+.tile-row.columns-5 .tile-card:nth-child(1) .card {
+  margin-left: calc(var(--card-gap, 24px) * 0 / 5);
+  margin-right: calc(var(--card-gap, 24px) * 4 / 5);
+}
+
+.tile-row.columns-5 .tile-card:nth-child(2) .card {
+  margin-left: calc(var(--card-gap, 24px) * 1 / 5);
+  margin-right: calc(var(--card-gap, 24px) * 3 / 5);
+}
+
+.tile-row.columns-5 .tile-card:nth-child(3) .card {
+  margin-left: calc(var(--card-gap, 24px) * 2 / 5);
+  margin-right: calc(var(--card-gap, 24px) * 2 / 5);
+}
+
+.tile-row.columns-5 .tile-card:nth-child(4) .card {
+  margin-left: calc(var(--card-gap, 24px) * 3 / 5);
+  margin-right: calc(var(--card-gap, 24px) * 1 / 5);
+}
+
+.tile-row.columns-5 .tile-card:nth-child(5) .card {
+  margin-left: calc(var(--card-gap, 24px) * 4 / 5);
+  margin-right: calc(var(--card-gap, 24px) * 0 / 5);
+}
+
+.tile-row.columns-6 .tile-card:nth-child(1) .card {
+  margin-left: calc(var(--card-gap, 24px) * 0 / 6);
+  margin-right: calc(var(--card-gap, 24px) * 5 / 6);
+}
+
+.tile-row.columns-6 .tile-card:nth-child(2) .card {
+  margin-left: calc(var(--card-gap, 24px) * 1 / 6);
+  margin-right: calc(var(--card-gap, 24px) * 4 / 6);
+}
+
+.tile-row.columns-6 .tile-card:nth-child(3) .card {
+  margin-left: calc(var(--card-gap, 24px) * 2 / 6);
+  margin-right: calc(var(--card-gap, 24px) * 3 / 6);
+}
+
+.tile-row.columns-6 .tile-card:nth-child(4) .card {
+  margin-left: calc(var(--card-gap, 24px) * 3 / 6);
+  margin-right: calc(var(--card-gap, 24px) * 2 / 6);
+}
+
+.tile-row.columns-6 .tile-card:nth-child(5) .card {
+  margin-left: calc(var(--card-gap, 24px) * 4 / 6);
+  margin-right: calc(var(--card-gap, 24px) * 1 / 6);
+}
+
+.tile-row.columns-6 .tile-card:nth-child(6) .card {
+  margin-left: calc(var(--card-gap, 24px) * 5 / 6);
+  margin-right: calc(var(--card-gap, 24px) * 0 / 6);
+}
+
+/* Stacked rows. When a row breaks into one column (the row options break-on-mobile up to 767px,
+   break-on-tablet from 768px to 991px, as in the platform's own stylesheet) the staggered side
+   margins above would shift the cards sideways. The platform pads stacked tiles by 15px
+   itself and gives each tile a 15px bottom margin, so the cards drop their side margins and
+   get the rest of the gap (--card-gap minus those 15px) as bottom margin instead. The extra
+   :nth-child(n) only raises the specificity to that of the rules above; order decides. */
+@media (max-width: 767px) {
+  .tile-row.break-on-mobile .tile-card:nth-child(n) .card {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .tile-row.break-on-mobile .tile-card:nth-child(n):not(:last-child) .card {
+    margin-bottom: calc(var(--card-gap, 24px) - 15px);
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  .tile-row.break-on-tablet .tile-card:nth-child(n) .card {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .tile-row.break-on-tablet .tile-card:nth-child(n):not(:last-child) .card {
+    margin-bottom: calc(var(--card-gap, 24px) - 15px);
+  }
+}
+
+/* Equal height. The editor's vertical alignment "top" (the default) stops the tile content
+   from stretching to the height of the row, so a percentage height on the card does not
+   resolve and a card with a short text stays short. Cards always stretch; the selector is as
+   specific as the editor's own rule. */
+.is-tilepage .tile-page .tile-row .tile.tile-card.tile-valign-top .tile-content,
+.is-tilepage .tile-page .tile-row .tile.tile-card.tile-valign-center .tile-content,
+.is-tilepage .tile-page .tile-row .tile.tile-card.tile-valign-bottom .tile-content {
+  align-self: stretch;
+}
+
+.tile-card .tile-card-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.tile-card .card {
+  flex: 1 1 auto;
+}
+
+/* Fixed 16:9 frame: cards of different images stay equally tall side by side,
+   the image is cropped (not distorted) to fill the frame. */
+.tile-card .card-image {
+  position: relative;
+  margin: 0;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: #eee;
+}
+
+/* absolutely positioned: a percentage height does not resolve against an
+   aspect-ratio box, which left the image at its natural proportions */
+.tile-card .card-image,
+.tile-card .card-image img {
+  border-radius: 9px 9px 0 0;
+}
+
+.tile-card .card-image img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.tile-card .card-body {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  padding: 16px 18px 12px 18px;
+}
+
+/* teaser length: at most four lines, so cards in a row stay balanced */
+.tile-card .card-description {
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.tile-card .card-action {
+  margin: auto 0 0;
+  padding-top: 1em;
+}
+
+/* Theme p margins (ID selector) would add space below the last text line. Spacing to the
+   button comes from the action's padding, so cards without a button end at the card padding. */
+#content-core .tile-card .card-description {
+  margin-bottom: 0;
+}
+
+#content-core .tile-card .card-action {
+  padding-top: 1em;
+}
+
+/* The action. Barceloneta styles every link in the content area with
+   "#content-core a { border-bottom: 1px solid #ccc }" and removes that border on hover, which
+   left a grey lower border as the only part of the button reacting. The id selector below
+   outranks it, so all four sides are one border and the whole button reacts. Hover and focus
+   are taken from the card (the link's ::after covers it), not only from the link itself. */
+.tile-card .card-link,
+#content-core .tile-card .card-link {
+  display: inline-block;
+  padding: 0.4em 1em;
+  color: var(--card-accent, #337ab7);
+  background-color: transparent;
+  border: 1px solid var(--card-accent, #337ab7);
+  border-radius: 6px; /* a bit tighter than the 10px card corner */
+  text-decoration: none;
+  transition: background-color 0.15s, color 0.15s, border-color 0.15s;
+}
+
+.tile-card .card:hover .card-link,
+#content-core .tile-card .card:hover .card-link,
+.tile-card .card-link:hover,
+#content-core .tile-card .card-link:hover,
+.tile-card .card-link:focus,
+#content-core .tile-card .card-link:focus {
+  color: #fff;
+  background-color: var(--card-accent, #337ab7);
+  border: 1px solid var(--card-accent, #337ab7);
+  text-decoration: none;
+}
+
+.tile-card .card-link:focus-visible,
+#content-core .tile-card .card-link:focus-visible {
+  outline: 2px solid var(--card-accent, #337ab7);
+  outline-offset: 2px;
+}
+
+/* Without the button the title is the link: plain text colour, no border, underlined while
+   the card is hovered. The ::after below still makes the whole card the click target. */
+.tile-card .card-link.card-link-plain,
+#content-core .tile-card .card-link.card-link-plain {
+  display: inline;
+  padding: 0;
+  color: inherit;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  text-decoration: none;
+}
+
+.tile-card .card:hover .card-link.card-link-plain,
+#content-core .tile-card .card:hover .card-link.card-link-plain,
+.tile-card .card-link.card-link-plain:hover,
+#content-core .tile-card .card-link.card-link-plain:hover,
+.tile-card .card-link.card-link-plain:focus,
+#content-core .tile-card .card-link.card-link-plain:focus {
+  color: var(--card-accent, #337ab7);
+  background: transparent;
+  border: 0;
+  text-decoration: underline;
+}
+
+/* Icon column. The icon sits beside the title and the description together and spans both
+   vertically; data-icon-orientation="right" puts it behind the text. The icon column has a fixed
+   width and the gap keeps the text clear of it. */
+.tile-card .card-main {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.25em;
+}
+
+.tile-card .card-main .card-text {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.tile-card .card-icon {
+  flex: 0 0 1.25rem;
+  width: 1.25rem;
+  font-size: 1.25rem;
+  font-style: normal;
+  line-height: 1;
+  text-align: center;
+}
+
+.tile-card .card-main[data-icon-orientation="right"] .card-icon {
+  order: 2;
+}
+
+/* "title": the icon sits beside the title only; the description starts below, at the icon's
+   left edge. card-text is flattened (display: contents) so title and description can be placed
+   on the same grid as the icon. */
+.tile-card .card-main[data-icon-orientation="title"] {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: start;
+  gap: 0 1em;
+}
+
+.tile-card .card-main[data-icon-orientation="title"] .card-text {
+  display: contents;
+}
+
+.tile-card .card-main[data-icon-orientation="title"] .card-icon {
+  grid-column: 1;
+  grid-row: 1;
+  width: auto;
+}
+
+.tile-card .card-main[data-icon-orientation="title"] .card-title,
+#content-core .tile-card .card-main[data-icon-orientation="title"] .card-title {
+  grid-column: 2;
+  grid-row: 1;
+  min-width: 0;
+  margin-bottom: 0;
+}
+
+.tile-card .card-main[data-icon-orientation="title"] .card-description,
+#content-core .tile-card .card-main[data-icon-orientation="title"] .card-description {
+  grid-column: 1 / -1;
+  grid-row: 2;
+  margin-top: 11px; /* 4px less than the 15px title gap of the other layouts: the icon row is 4px taller than the title line */
+}
+
+/* the single primary action covers the whole card, so the card as a whole is the click target */
+.tile-card .card-link::after,
+#content-core .tile-card .card-link::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+/* The theme changes its typography at 768px and below (html font-size 12px, h3 font-size 1.3125rem, line-height
+   24px). The title and description set their own sizes below; the icon adjustment keeps the icon on the title's
+   first line. */
+@media (max-width: 768px) {
+  .tile-card .card-icon {
+    margin-top: 4px;
+  }
+
+  #content-core .tile-card .card-main[data-icon-orientation="title"] .card-description {
+    margin-top: 12px;
+  }
+}
+
+/* ===== Card section =====================================================================
+   The look of the card (box, typography, spacing, arrow) belongs to the card itself and does not depend on
+   where it stands: in a row of the page, in a frame, under any theme. Only the section box below is tied to a
+   frame (TileFrame) that contains cards: a white box with a heading and the cards in equal columns. The frame is
+   the platform's own tile; this package owns the box, so editors get the same look wherever they put cards into a
+   frame, and the start page of the site (scripts/setup_demo_start_page.py) needs no style values on the frame.
+   Sizes follow the study page docs/showcase.html of graffiti.theme (.showcase-section-box and
+   .showcase-card). Needs :has(), which all current browsers have. */
+
+.tile.tile-frame:has(.tile-card) {
+  --card-gap: 20px;
+  box-sizing: border-box;
+  background-color: #ffffff;
+  border: 1px solid rgba(226, 232, 240, 0.85);
+  border-radius: 12px;
+  /* !important: the editor writes the padding of a tile as an inline style (0 by default), which
+     would otherwise empty the box */
+  padding: 22px 26px 24px 26px !important;
+  box-shadow: 0 10px 30px rgba(12, 24, 68, 0.06), 0 2px 6px rgba(12, 24, 68, 0.04);
+}
+
+/* heading of the section: the first text tile above the cards */
+.tile.tile-frame:has(.tile-card) h2 {
+  margin: 0 0 16px 0;
+  padding: 0;
+  font-size: 19.5px;
+  font-weight: 600;
+  line-height: normal;
+  letter-spacing: -0.01em;
+  color: #12192c;
+}
+
+/* hover: the look of .showcase-card */
+.tile-card .card:hover {
+  transform: translateY(-2px);
+  border-color: #cbd5e1;
+  box-shadow: 0 10px 24px rgba(12, 24, 68, 0.11), 0 3px 8px rgba(12, 24, 68, 0.06);
+}
+
+/* Typography and spacing are the card's own, so it looks the same under any theme. The #content-core variants
+   outrank the theme's h3 and p rules (ID selectors), which also give h3 a top margin. */
+.tile-card .card-title,
+#content-core .tile-card .card-title {
+  margin: 0 0 6px 0;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.28;
+  color: #12192c;
+}
+
+.tile-card .card-description,
+#content-core .tile-card .card-description {
+  margin: 0;
+  padding-right: 18px;
+  font-size: 13.5px;
+  line-height: 1.42;
+  color: #5a657d;
+}
+
+/* the arrow at the bottom right of a card without a button */
+.tile-card .card-body:not(.has-action-button)::after {
+  content: "\2192";
+  display: block;
+  margin-top: auto;
+  padding-top: 4px;
+  text-align: right;
+  font-size: 16px;
+  line-height: 1;
+  color: #475569;
+  transition: transform 0.18s ease, color 0.18s ease;
+}
+
+.tile-card .card:hover .card-body:not(.has-action-button)::after {
+  transform: translateX(4px);
+  color: #000064;
+}
+
+/* the action icon (icon font) takes the place of the arrow */
+.tile-card .card-body.has-action-icon::after {
+  content: none;
+}
+
+.tile-card .card-action-icon {
+  display: block;
+  margin-top: auto;
+  padding-top: 4px;
+  text-align: right;
+  font-size: 16px;
+  font-style: normal;
+  line-height: 1;
+  color: #475569;
+  transition: transform 0.18s ease, color 0.18s ease;
+}
+
+.tile-card .card:hover .card-action-icon {
+  transform: translateX(4px);
+  color: #000064;
+}
+
+/* ===== Vector icons ======================================================================
+   The bundled svg icons (static/icons/*.svg) are drawn inline with stroke="currentColor", so the colour of the
+   icon is the text colour of its box. They sit in the same column as the icon font icons. */
+.tile-card .card-icon.card-icon-svg {
+  flex: 0 0 1.25rem;
+  width: 1.25rem;
+  height: 1.25rem;
+  font-size: 0;
+  line-height: 0;
+  color: var(--card-icon-color, var(--card-accent, #337ab7));
+}
+
+.tile-card .card-main[data-icon-orientation] .card-icon.card-icon-svg {
+  width: 1.25rem;
+}
+
+/* The viewBox of each icon is cropped to the drawing (stroke included), so the svg fills the box
+   like an icon font glyph; preserveAspectRatio (meet) centres the narrower icons in the box. */
+.tile-card .card-icon.card-icon-svg svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.tile-card .card-icon.card-icon-svg {
+  color: #1d55cc;
+}
+
+/* the picker in the "Edit card" dialog */
+.card-svg-icon-picker {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.card-svg-icon-option {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  margin: 0;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  cursor: pointer;
+  color: #1d55cc;
+}
+
+/* The modal theme styles every radio as a 18px box with a margin and position: relative. In the picker the
+   radio is only the state holder of the label: out of the flow, so the svg is centred in the 44px box. */
+.card-svg-icon-option input[type="radio"] {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  margin: 0 !important;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.card-svg-icon-option:has(input:checked) {
+  border-color: #1d55cc;
+  box-shadow: 0 0 0 2px rgba(29, 85, 204, 0.35);
+  background: #f0f5ff;
+}
+
+.card-svg-icon-option svg {
+  display: block;
+  width: 24px;
+  height: 24px;
+}
+
+/* "No icon" row: radio and label side by side */
+.tab-icon .no-icon-wrapper {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.tab-icon .no-icon-wrapper input {
+  margin-top: 0;
+}
+
+/* Icon tab of the "Edit card" dialog: air between the headings and the rows. The modal theme gives the captions
+   no space of their own, so the headings sat on the icons above and below. */
+.tab-icon .row.modal-content-row {
+  margin-bottom: 0;
+  padding-bottom: 28px;
+}
+
+.tab-icon p.caption {
+  margin: 0 0 14px;
+  line-height: 1.3;
+}
+
+/* The select of the position: left, under its heading; the wedge is drawn inside the box (the native one sat on the
+   right border). */
+.tab-icon select.field-input {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 200px;
+  padding: 6px 36px 6px 12px;
+  background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5l5 5 5-5' fill='none' stroke='%235a657d' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") no-repeat right 12px center / 12px 8px;
+}
+
+/* the arrow shown in the label of the default option: the glyph of the card, at its size */
+.tab-icon .card-default-arrow {
+  font-size: 16px;
+  line-height: 1;
+  color: #475569;
+}
+
+/* "no vector icon" option of the picker */
+.card-svg-icon-option-none {
+  font-size: 22px;
+  line-height: 1;
+  color: #5a657d;
+}
+
+/* ===== Card section: details of the showcase ===============================================
+   Icon beside the title: gap 12px; the title row is at least 24px high and the description starts 8px below
+   it. Same font stack as the study page. */
+.tile.tile-frame:has(.tile-card) h2,
+.tile-card .card-title,
+#content-core .tile-card .card-title,
+.tile-card .card-description,
+#content-core .tile-card .card-description {
+  font-family: "Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+.tile-card .card-main[data-icon-orientation="title"] {
+  grid-template-rows: minmax(24px, auto) auto;
+  gap: 8px 12px;
+}
+
+/* the theme's bottom margin of h3 would add to the row of the title */
+.tile-card .card-main[data-icon-orientation="title"] .card-title {
+  margin-bottom: 0;
+}
+
+#content-core .tile-card .card-main[data-icon-orientation="title"] .card-description {
+  margin-top: 0;
+}
+
+/* The description starts at the same height whatever the position of the icon: in the other positions the title
+   block is as high as the title row of the "title" layout (24px) plus its 8px gap. */
+.tile-card .card-main:not([data-icon-orientation="title"]) .card-title,
+#content-core .tile-card .card-main:not([data-icon-orientation="title"]) .card-title {
+  box-sizing: border-box;
+  min-height: 24px;
+  margin-bottom: 8px;
+}
