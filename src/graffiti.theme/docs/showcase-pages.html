@@ -6,11 +6,12 @@
   <title>Pages - Design study of the inner pages and the editorial pages</title>
   <!--
     Design study of the pages that come after the start page (showcase.html): the layout every page of the site has
-    (slim header, breadcrumbs, search bar, title, content, footer) and the two editorial pages /exploring and /editing.
-    The values (showcase-pages.css) are those of site.css and default-tiles.css of openheidelberg.layout; if one
-    changes, change it there. Static HTML, no script. There are no cards on these pages, so the stylesheet of the
+    (slim header, breadcrumbs, search bar, title, content, footer) and the two pages /exploring and /editing, which are ordinary pages whose content is tiles.
+    The values (site.css, a study copy) are those of site.css of openheidelberg.layout; if one
+    changes, change it there. showcase-pages.css holds only what draws the study (frames, labels). Static HTML, no script. There are no cards on these pages, so the stylesheet of the
     card tile is not loaded; like showcase.html, the page has no toolbar.
   -->
+  <link rel="stylesheet" href="site.css" />
   <link rel="stylesheet" href="showcase-pages.css" />
 </head>
 <body>
@@ -20,7 +21,7 @@
     <p>The kinds of page that follow the start page (<code>showcase.html</code>): a standard page, <code>/exploring</code> and <code>/editing</code>. Same header, same column, same footer; the editorial pages add tiles.</p>
   </div>
 
-  <!-- 1. a standard page: every page of the site that is not one of the special pages -->
+  <!-- 1. a standard page: every page of the site except the start page -->
   <div class="page-label">1. Standard page (document, folder, collection, ...)</div>
   <article class="page-frame">
     <header class="slim-header">
