@@ -583,12 +583,8 @@
 
 /* ===== Card section: details of the showcase ===============================================
    Icon beside the title: gap 12px; the title row is at least 24px high and the description starts 8px below
-   it. The heading of a section has the font stack of the study page. */
-.tile.tile-frame:has(.tile-card) h2 {
-  font-family: "Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", Arial, sans-serif;
-}
-
-/* title and description take the typeface of the page, not one of their own */
+   it. The heading of a section, the title and the description take the typeface of the page, not one of their own. */
+.tile.tile-frame:has(.tile-card) h2,
 .tile-card .card-title,
 #content-core .tile-card .card-title,
 .tile-card .card-description,

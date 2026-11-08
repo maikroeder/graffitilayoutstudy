@@ -10,7 +10,8 @@ body.layout-site-search-layout {
   margin: 0;
   min-height: 100vh;
   background-color: var(--page-bg);
-  font-family: "Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", Arial, sans-serif;
+  /* !important: style.css of the theme sets font-family: Arial !important on the body of tile pages */
+  font-family: "Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", Arial, sans-serif !important;
   color: var(--text-primary);
   -webkit-font-smoothing: antialiased;
 }

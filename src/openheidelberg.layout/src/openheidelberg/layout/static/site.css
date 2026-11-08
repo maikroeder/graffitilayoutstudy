@@ -5,6 +5,15 @@
   Nothing here is scoped to a layout: edit mode and the iframe views do not use site.html.
 */
 
+/* The typeface of the site is set once, on the page and on #content. Text that has no rule of its own (title and
+   description of the card tile, which inherit) follows it. style.css of the theme sets
+   "html, body.portaltype-tilepage, body:not(.portaltype-tilepage), #content { font-family: Arial !important }", so
+   this needs !important too; the ID of the body outranks the theme's selectors, #content wins by coming later. */
+html body#visual-portal-wrapper,
+#content {
+  font-family: "Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", Arial, sans-serif !important;
+}
+
 /* breadcrumbs and title: on one vertical line with the tiles. The tiles are 1180px wide and centred in the
    content area; the theme gives breadcrumbs and title the fixed widths and the padding of .container. */
 nav.breadcrumbs.container,
