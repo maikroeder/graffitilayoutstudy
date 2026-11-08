@@ -331,7 +331,6 @@
 .tile-card .card-main[data-icon-orientation="title"] .card-icon {
   grid-column: 1;
   grid-row: 1;
-  width: auto;
 }
 
 .tile-card .card-main[data-icon-orientation="title"] .card-title,
@@ -481,11 +480,7 @@
   height: 1.25rem;
   font-size: 0;
   line-height: 0;
-  color: var(--card-icon-color, var(--card-accent, #337ab7));
-}
-
-.tile-card .card-main[data-icon-orientation] .card-icon.card-icon-svg {
-  width: 1.25rem;
+  color: var(--card-icon-color, #1d55cc);
 }
 
 /* The viewBox of each icon is cropped to the drawing (stroke included), so the svg fills the box
@@ -494,10 +489,6 @@
   display: block;
   width: 100%;
   height: 100%;
-}
-
-.tile-card .card-icon.card-icon-svg {
-  color: #1d55cc;
 }
 
 /* the picker in the "Edit card" dialog */
@@ -592,13 +583,17 @@
 
 /* ===== Card section: details of the showcase ===============================================
    Icon beside the title: gap 12px; the title row is at least 24px high and the description starts 8px below
-   it. Same font stack as the study page. */
-.tile.tile-frame:has(.tile-card) h2,
+   it. The heading of a section has the font stack of the study page. */
+.tile.tile-frame:has(.tile-card) h2 {
+  font-family: "Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+/* title and description take the typeface of the page, not one of their own */
 .tile-card .card-title,
 #content-core .tile-card .card-title,
 .tile-card .card-description,
 #content-core .tile-card .card-description {
-  font-family: "Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-family: inherit;
 }
 
 .tile-card .card-main[data-icon-orientation="title"] {
