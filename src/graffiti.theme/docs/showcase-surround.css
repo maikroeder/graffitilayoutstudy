@@ -1,4 +1,4 @@
-/* The page around the tiles in docs/showcase.html: the Plone toolbar mock, the hero, the search bar, the page
+/* The page around the tiles in docs/showcase.html: the hero, the search bar, the page
    wrapper, and a small stand-in for the tile layout that interaktiv.basetiles provides in the real site.
 
    Not in this file: everything inside the tiles. The cards and the section box (a frame tile that contains cards,
@@ -8,22 +8,8 @@
 
 :root {
   --hero-bg: #000064;
-  --plone-navy: #0c1844;
-  --plone-blue: #0a5ee7;
-  --plone-coral: #f4644d;
   --page-bg: #f1f4f9;
-  --card-bg: #ffffff;
-  --card-inner-bg: #f9fafc;
-  --card-border: #e6eaf0;
   --text-primary: #12192c;
-  --text-secondary: #5a657d;
-  --sidebar-width: 195px;
-  --sidebar-collapsed-width: 54px;
-  --sidebar-bg: #eef1f6;
-  --sidebar-active-bg: #ffffff;
-  --shadow-section: 0 10px 30px rgba(12, 24, 68, 0.06), 0 2px 6px rgba(12, 24, 68, 0.04);
-  --shadow-card: 0 4px 14px rgba(12, 24, 68, 0.05), 0 1px 3px rgba(12, 24, 68, 0.03);
-  --shadow-card-hover: 0 10px 24px rgba(12, 24, 68, 0.11), 0 3px 8px rgba(12, 24, 68, 0.06);
   --shadow-search: 0 8px 24px rgba(0, 0, 100, 0.18), 0 2px 6px rgba(0, 0, 100, 0.10);
 }
 
@@ -40,102 +26,6 @@ html, body {
   font-family: "Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", Arial, sans-serif;
   color: var(--text-primary);
   -webkit-font-smoothing: antialiased;
-}
-
-body#visual-portal-wrapper {
-  padding-left: var(--sidebar-width);
-  transition: padding-left 0.25s ease;
-}
-
-body#visual-portal-wrapper.toolbar-collapsed {
-  padding-left: var(--sidebar-collapsed-width);
-}
-
-#edit-zone {
-  position: fixed;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  width: var(--sidebar-width);
-  background-color: var(--sidebar-bg);
-  border-right: 1px solid #d8dee9;
-  z-index: 1050;
-  display: flex;
-  flex-direction: column;
-  transition: width 0.25s ease;
-  user-select: none;
-}
-
-body.toolbar-collapsed #edit-zone {
-  width: var(--sidebar-collapsed-width);
-}
-
-/* the toggle of the toolbar on small screens: 60 x 50px, top left of the off-canvas toolbar, i.e. at the top right of the page */
-.plone-toolbar-logo {
-  display: none;
-  position: absolute;
-  top: 0;
-  left: -60px;
-  width: 60px;
-  height: 50px;
-  align-items: center;
-  justify-content: center;
-  background: #1d4e89;
-  color: #ffffff;
-}
-
-.plone-toolbar-container {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  padding-top: 14px;
-}
-
-.plone-toolbar-main {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-.plone-toolbar-main > li {
-  position: relative;
-  margin: 2px 0;
-}
-
-.plone-toolbar-main > li > a {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  padding: 13px 20px;
-  color: #1e293b;
-  font-size: 14.5px;
-  font-weight: 500;
-  text-decoration: none;
-  white-space: nowrap;
-  overflow: hidden;
-  transition: background-color 0.15s ease, color 0.15s ease;
-}
-
-.plone-toolbar-main > li > a:hover {
-  background-color: rgba(255, 255, 255, 0.65);
-}
-
-.plone-toolbar-main > li.active > a {
-  background-color: var(--sidebar-active-bg);
-  color: var(--hero-bg);
-  font-weight: 600;
-  border-left: 4px solid #1d63b8;
-  padding-left: 16px;
-}
-
-.toolbar-icon {
-  width: 22px;
-  height: 22px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  color: #2b4c7e;
 }
 
 .showcase-page-wrapper {
@@ -354,28 +244,6 @@ body.toolbar-collapsed #edit-zone {
 }
 
 @media (max-width: 768px) {
-  /* as in Plone (pat-toolbar, desktop_width 768px; this block uses 768px and below): the toolbar leaves the page, sits off-canvas on
-     the right and shows only its toggle, the Plone icon at the top right; a click slides it in */
-  body#visual-portal-wrapper,
-  body#visual-portal-wrapper.toolbar-collapsed {
-    padding-left: 0;
-  }
-  #edit-zone,
-  body.toolbar-collapsed #edit-zone {
-    left: auto;
-    right: 0;
-    width: var(--sidebar-width);
-    border-right: none;
-    border-left: 1px solid #d8dee9;
-    transform: translateX(100%);
-    transition: transform 0.25s ease;
-  }
-  body.toolbar-open #edit-zone {
-    transform: none;
-  }
-  .plone-toolbar-logo {
-    display: flex;
-  }
   .showcase-hero {
     height: auto;
     padding: 24px 0 60px 0;
