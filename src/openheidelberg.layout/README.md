@@ -48,8 +48,9 @@ Portlet columns are not part of the new layouts (the content area is always full
 - Styles: `base.css` holds what the start page and the other pages share (colour and shadow tokens, the typeface with its `!important` against `style.css` of the theme); both theme files link it first. `site.css` is the look of the whole site except the start page (not scoped to a layout; it includes the dashboard tile and the document count);
   the start page has its own `layouts/site-search-layout/site-search.css`. /exploring and /editing are ordinary pages. A stored `page_layout` value `default-tiles-layout` is ignored.
 
-Status 2026-11-09: adapter written, not yet run in Plone (needs a restart). It replaces the two policy classes
-(`layout_policy.py`, `overrides.zcml`) that were run and verified before.
+Status 2026-11-09: the adapter replaces the two policy classes (`layout_policy.py`, `overrides.zcml`). Run on the local
+site after a restart: `layout-site-search-layout` on `/` and `/search-layout`, not on `edit`, `@@sharing`, `@@manage-portlets`
+of the page, nor on `/exploring`, `/editing`, `/news`. Not checked: anonymous view, 375 px, other browsers, portlet editing.
 
 ## Setting a layout
 
