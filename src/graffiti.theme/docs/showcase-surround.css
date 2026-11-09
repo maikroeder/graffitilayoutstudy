@@ -271,5 +271,53 @@
   }
   .hero-title-block p.hero-subtitle {
     white-space: normal;
+    line-height: 1.3;
+  }
+}
+
+/* phones: the neon sign gets its own row above the editor logo (at the top right it overlapped the logo), smaller
+   title and subtitle, and the search field gets the width that the "Suchen" button took.
+   The same block is in openheidelberg.theme (layouts/site-search-layout/site-search.css), with the layout class in front. */
+@media (max-width: 480px) {
+  .showcase-hero-inner {
+    display: flex;
+    flex-direction: column;
+    padding: 0 20px;
+  }
+  .hero-plone-logo-wrap {
+    position: relative;
+    top: 0;
+    right: 0;
+    order: -1;
+    align-self: flex-start;
+    margin-bottom: 4px;
+  }
+  .hero-plone-logo-wrap svg {
+    width: 200px;
+    max-width: 100%;
+  }
+  .hero-graffiti-logo-wrap {
+    left: 0;
+  }
+  .hero-title-block h1 {
+    font-size: 52px;
+    overflow-wrap: anywhere;
+  }
+  .hero-title-block p.hero-subtitle {
+    font-size: 18px;
+  }
+  .showcase-search-container,
+  .showcase-sections-wrapper {
+    padding: 0 16px;
+  }
+  #searchbar form#search {
+    padding-left: 14px;
+  }
+  .search-lupe-icon {
+    margin-right: 8px;
+  }
+  #searchbar-submit {
+    padding: 0 16px;
+    font-size: 15px;
   }
 }
