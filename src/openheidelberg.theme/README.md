@@ -91,7 +91,7 @@ out by design), `dummy` (designer's text). Update it in the same commit as the r
 | toolbar | empty | live |
 | hero (logos, lines, title, subtitle) | live (static in the theme file; title from `<title>`, subtitle from `meta[name=description]`) | - |
 | header | omitted (no header on the start page) | slim (same) |
-| search | live (form in the theme file, action `@@search`, field `SearchableText`; clear button in `site-search.js`) | live (search bar above the title, `regions/search-bar.xml`, same look as the tile) |
+| search | live (form in the theme file, action `@@search`, field `SearchableText`; clear button in `site-search.js`) | live (search bar above the title, `regions/search-bar.xml`, same look as the tile; only on pages with `viewpermission-view` or `viewpermission-none`, so not on edit forms, sharing, portlet management, folder contents, add forms, control panels, personal pages or the history view) |
 | status messages | empty | live |
 | breadcrumbs | empty | live |
 | document actions | empty | live (copied; not restyled) |

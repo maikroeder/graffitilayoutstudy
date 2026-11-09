@@ -191,6 +191,13 @@ class TestDiazoFiles(unittest.TestCase):
         for name in names:
             self.assertTrue(os.path.isfile(os.path.join(layouts_dir, name, 'rules.xml')), name)
 
+    def test_search_bar_is_limited_to_reading_views(self):
+        text = read_text(os.path.join(STATIC_DIR, 'regions', 'search-bar.xml'))
+        without_comments = re.sub(r'<!--.*?-->', '', text, flags=re.DOTALL)
+        self.assertIn('viewpermission-view', without_comments)
+        self.assertIn('viewpermission-none', without_comments)
+        self.assertIn('body.template-historyview', without_comments)
+
     def test_dispatcher_branches(self):
         text = read_text(os.path.join(STATIC_DIR, 'rules.xml'))
         self.assertIn('body.layout-site-search-layout', text)

@@ -3,27 +3,33 @@
   Search bar above the title, for the pages that have no search tile of their own (a page whose content has a .tile-search gets none): the same markup and classes as the search
   tile of graffiti.tile_search (wrapper .tile-search, form .tile-search-form), so site.css styles both alike.
   The form submits to the site search of the portal; the portal URL is the target of the logo link.
-  Not on control panels (pages with the Site Setup portlet, the overview included) and the personal pages of a user: searching the content of the site
-  is not what one does there; the way back is the Site Setup crumb of regions/breadcrumbs.xml.
+  Only where one reads the site: Plone puts the permission that a view requires into the body class (viewpermission-<name>); the bar is shown for
+  viewpermission-view (content views, the search page) and viewpermission-none (public templates such as the login form and the sitemap), and
+  when there is no such class. It is not shown on edit forms, @@sharing, @@manage-portlets, the folder contents, the add forms, the control panels
+  (the overview included) and the personal pages of a user, which all require another permission: searching the content of the site is not what one
+  does there. The history view requires View but is a tool of the editor, so it is left out by its template class. The way back from the control
+  panels is the Site Setup crumb of regions/breadcrumbs.xml.
 -->
 <rules xmlns="http://namespaces.plone.org/diazo"
        xmlns:css="http://namespaces.plone.org/diazo/css"
        xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
-    <before css:theme="#main-container" css:if-not-content=".tile-search, .portletSiteSetup, #content a#setup-link, body.viewpermission-set-own-properties, body.viewpermission-set-own-password" method="raw">
-        <div class="container site-search-bar">
-            <div class="tile-search">
-                <form class="tile-search-form pat-livesearch" role="search"
-                      action="{//a[@id='portal-logo']/@href}/@@search"
-                      data-pat-livesearch="ajaxUrl:{//a[@id='portal-logo']/@href}/@@ajax-search">
-                    <label class="hiddenStructure" for="site-search-bar-input">Search Site</label>
-                    <input class="searchField form-control" id="site-search-bar-input" name="SearchableText"
-                           type="text" value="" placeholder="Search Site" title="Search Site" autocomplete="off" />
-                    <ul class="livesearch-results" style="display: none;"></ul>
-                    <button class="searchButton btn btn-primary" type="submit">Search</button>
-                </form>
+    <rules if-content="//body[contains(concat(' ', normalize-space(@class), ' '), ' viewpermission-view ') or contains(concat(' ', normalize-space(@class), ' '), ' viewpermission-none ') or not(contains(@class, 'viewpermission-'))]">
+        <before css:theme="#main-container" css:if-not-content=".tile-search, .portletSiteSetup, #content a#setup-link, body.template-historyview" method="raw">
+            <div class="container site-search-bar">
+                <div class="tile-search">
+                    <form class="tile-search-form pat-livesearch" role="search"
+                          action="{//a[@id='portal-logo']/@href}/@@search"
+                          data-pat-livesearch="ajaxUrl:{//a[@id='portal-logo']/@href}/@@ajax-search">
+                        <label class="hiddenStructure" for="site-search-bar-input">Search Site</label>
+                        <input class="searchField form-control" id="site-search-bar-input" name="SearchableText"
+                               type="text" value="" placeholder="Search Site" title="Search Site" autocomplete="off" />
+                        <ul class="livesearch-results" style="display: none;"></ul>
+                        <button class="searchButton btn btn-primary" type="submit">Search</button>
+                    </form>
+                </div>
             </div>
-        </div>
-    </before>
+        </before>
+    </rules>
 
 </rules>
