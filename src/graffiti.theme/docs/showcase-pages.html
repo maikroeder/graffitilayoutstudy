@@ -8,7 +8,9 @@
     Design study of the start page (showcase.html, its markup copied into the first frame; it has stylesheets of its own) and of the pages that come after it: the layout every page of the site has
     (slim header, breadcrumbs, search bar, title, content, footer) and the two pages /exploring and /editing, which are ordinary pages whose content is tiles.
     The values (site.css, a study copy) are those of site.css of openheidelberg.theme; if one
-    changes, change it there. showcase-pages.css holds only what draws the study (frames, labels). Static HTML, no script (showcase.js of the start page only clears the search field, and is not loaded here). The start page has cards, so the stylesheet of the card tile is loaded; like showcase.html, the page has no toolbar.
+    changes, change it there. Scope: the pages show reading views. The administrative views of the same items (sharing, portlet management,
+    history, the edit forms) are ordinary pages in the same frame without the search bar; the rules for Plone-only parts (status messages with 20px above,
+    40px above the footer on standard pages, the start page at 480px and below) are in the package only, because this static study has no such parts. showcase-pages.css holds only what draws the study (frames, labels). Static HTML, no script (showcase.js of the start page only clears the search field, and is not loaded here). The start page has cards, so the stylesheet of the card tile is loaded; like showcase.html, the page has no toolbar.
   -->
   <link rel="stylesheet" href="base.css" />
   <link rel="stylesheet" href="site.css" />
@@ -21,7 +23,7 @@
 
   <div class="study-intro">
     <h1>Pages</h1>
-    <p>The start page (<code>showcase.html</code>), the only page with a look of its own, and the kinds of page that follow it: a standard page, <code>/exploring</code> and <code>/editing</code>. These three use <code>site.css</code>: same header, same column, same footer; the last two have tiles as their content.</p>
+    <p>The start page (<code>showcase.html</code>), the only page with a look of its own, and the kinds of page that follow it: a standard page, <code>/exploring</code> and <code>/editing</code>. These three use <code>site.css</code>: same header, same column, same footer; the last two have tiles as their content. The study shows reading views; the administrative views of the same items (sharing, portlet management, history) use the same frame without the search bar and are not drawn here.</p>
   </div>
 
   <!-- 1. the start page: its own look (hero, search, tiles); the markup is that of showcase.html -->
