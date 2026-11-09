@@ -60,6 +60,19 @@ the "Default" fieldset. Choose `Default tiles layout` for the editorial pages (`
 site root gets `site-search-layout`, every other TilePage keeps the standard theme. The plain Edit link opens the
 tiles editor, which has no form fields.
 
+## Tests
+
+`bin/test -s openheidelberg.theme` (the package is in `eggs-test` of `buildout.d/base/sources.cfg`). No Plone site is needed.
+
+- `tests/test_package_files.py` (standard library only): XML/ZCML well-formed, LF only, no trace of the old package name,
+  names that must agree (manifest prefix, `plone:static`, theme and browser layer in the profiles, behavior in ZCML and in
+  both TilePage profiles, vocabulary, adapter name), Diazo includes and theme links point to existing files.
+- `tests/test_body_classes.py`: `OpenHeidelbergBodyClasses` with fake content (Acquisition, a registered stand-in for
+  `plone_context_state`): field value, default page of the navigation root, unknown or removed values, no class outside the
+  default view; `layouts.py` and its vocabulary.
+- Not covered: the Diazo rules applied to real pages, the registration of the adapter in a running site, the profile
+  install. Those were checked by hand on the local site (see the status above).
+
 ## Pitfalls
 
 - The behavior schema `IPageLayout` has to provide `IFormFieldProvider` (`alsoProvides` at the end of
