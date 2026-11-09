@@ -317,13 +317,14 @@ footer#company-footer a:focus {
 /* content of the standard pages: the column of the breadcrumbs, the search bar and the title. All of them are
    1180px wide and centred in the same box (#company-content). The grid of the theme would put the content
    15px further out (the row has negative margins) or in (the article has padding): both are removed. Tile
-   pages keep their own tile widths. */
-body:not(.is-tilepage) #main-container.row {
+   pages keep their own tile widths: the default view of a tile page (template-view) and its edit mode. The other
+   views of a tile page (@@sharing, @@manage-portlets, ...) are standard pages. */
+body:not(.is-tilepage.template-view):not(.is-tilepage.edit-mode) #main-container.row {
   margin-left: 0;
   margin-right: 0;
 }
 
-body:not(.is-tilepage) #main-container > .col-sm-12 {
+body:not(.is-tilepage.template-view):not(.is-tilepage.edit-mode) #main-container > .col-sm-12 {
   box-sizing: border-box;
   max-width: 1180px;
   margin-left: auto;
@@ -332,9 +333,37 @@ body:not(.is-tilepage) #main-container > .col-sm-12 {
   padding-right: 0;
 }
 
-body:not(.is-tilepage) #main-container #content {
+body:not(.is-tilepage.template-view):not(.is-tilepage.edit-mode) #main-container #content {
   padding-left: 0;
   padding-right: 0;
+}
+
+/* space between the end of the content and the blue footer (not on tile pages, whose tiles bring their own spacing) */
+body:not(.is-tilepage.template-view):not(.is-tilepage.edit-mode) #main-container {
+  padding-bottom: 40px;
+}
+
+/* status messages (Plone's own, e.g. "Locked", "Changes saved"; #viewlet-above-content takes the place of #above-content
+   of the theme file): in the same column as the breadcrumbs, with space to the header. A page can have a second message inside its content (the sharing page has one under the title);
+   it comes from the template of the view, not from the status area, and is aligned by the rules for #content above. */
+.status-message-row {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+#company-content .status-message-row > #global_statusmessage,
+#company-content .status-message-row > #viewlet-above-content {
+  box-sizing: border-box;
+  width: auto;
+  max-width: 1180px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.status-message-row .portalMessage {
+  margin-top: 20px;
 }
 
 /* footer: the row of the site actions in the same column */

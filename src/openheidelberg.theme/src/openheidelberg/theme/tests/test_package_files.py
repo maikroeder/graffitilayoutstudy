@@ -198,6 +198,14 @@ class TestDiazoFiles(unittest.TestCase):
         self.assertIn('viewpermission-none', without_comments)
         self.assertIn('body.template-historyview', without_comments)
 
+    def test_tile_page_width_applies_to_the_tiles_views_only(self):
+        # @@sharing, @@manage-portlets, ... of a TilePage are ordinary pages with a gutter
+        content = re.sub(r'<!--.*?-->', '', read_text(os.path.join(STATIC_DIR, 'regions', 'content.xml')), flags=re.DOTALL)
+        self.assertIn('body.is-tilepage.template-view, body.is-tilepage.edit-mode', content)
+        self.assertNotIn('css:test="body.is-tilepage"', content)
+        css = read_text(os.path.join(STATIC_DIR, 'site.css'))
+        self.assertNotIn('body:not(.is-tilepage) ', css)
+
     def test_dispatcher_branches(self):
         text = read_text(os.path.join(STATIC_DIR, 'rules.xml'))
         self.assertIn('body.layout-site-search-layout', text)

@@ -2,7 +2,8 @@
 <!--
   Content area: the viewlets above the content and the content itself. From rules_default.xml of
   interaktiv.theme, without the portlet columns: the width is always the full one (col-sm-12).
-  Tile pages get the extra class no-padding as before.
+  Tile pages get the extra class no-padding as before, but only where the tiles are shown (the default view, template-view,
+  and edit mode). Their other views (@@sharing, @@manage-portlets, history, rename, ...) are ordinary pages with a gutter.
   On @@manage-portlets (body.template-manage-portlets) the portlet managers are added below the content.
 -->
 <rules xmlns="http://namespaces.plone.org/diazo"
@@ -14,7 +15,7 @@
     <drop css:content="#viewlet-above-content #portal-breadcrumbs" />
     <replace css:theme="#content-container" method="raw">
         <xsl:variable name="padding">
-          <xsl:if css:test="body.is-tilepage"> no-padding</xsl:if>
+          <xsl:if css:test="body.is-tilepage.template-view, body.is-tilepage.edit-mode"> no-padding</xsl:if>
         </xsl:variable>
         <div class="col-xs-12 col-sm-12{$padding}">
           <xsl:apply-templates css:select="#content" />

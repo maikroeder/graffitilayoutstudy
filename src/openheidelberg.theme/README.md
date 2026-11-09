@@ -60,6 +60,12 @@ the "Default" fieldset. Choose `Default tiles layout` for the editorial pages (`
 site root gets `site-search-layout`, every other TilePage keeps the standard theme. The plain Edit link opens the
 tiles editor, which has no form fields.
 
+Views of a TilePage other than its default view and edit mode (`@@sharing`, `@@manage-portlets`, history, rename, ...) are
+ordinary pages: no full-width `no-padding` column, no extra title, the gutter and the 40px above the footer of the standard pages
+(`body.is-tilepage.template-view` / `body.is-tilepage.edit-mode` mark the tiles views). Status messages sit in the column of the
+breadcrumbs with 20px above; a page can have a second message inside its content (the sharing page has an Info under the
+title), which comes from the template of the view and is aligned by the content rules.
+
 ## Tests
 
 `bin/test -s openheidelberg.theme` (the package is in `eggs-test` of `buildout.d/base/sources.cfg`). No Plone site is needed.
