@@ -21,6 +21,10 @@ Options:
 
 1. Check the installed versions of `collective.solr` and `plone.restapi` and the newer releases of `collective.solr`
    for a fix (do this first).
+   Checked 2026-11-09: the buildout pins `collective.solr` 8.4.2 and `plone.restapi` 7.0.0 (`buildout.d/base/versions.cfg`). The
+   newest `collective.solr` is 9.3.0 (2024-02-15); a summary of its changelog (socket.dev, not the changelog itself) lists no entry about
+   `sort_on`, relevance sorting or `@search` after 8.4.2. So no fix is known; 9.x was not tried, and whether it fits this Plone
+   version was not checked.
 2. Drop an empty `sort_on` before the catalog call (patch or subscriber before the `collective.solr` dispatcher; the
    place is `plone.restapi/search/handler.py`).
 3. Change `search.min.js` or its source so that the relevance option sends no `sort_on`.
