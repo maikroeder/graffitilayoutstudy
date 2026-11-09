@@ -34,6 +34,11 @@ class LayoutClassMixin:
     def is_view_mode(self) -> bool:
         raise NotImplementedError
 
+    def is_default_view(self) -> bool:
+        """True when the request shows the default view of the object (not an edit form, the sharing page, ...)."""
+        context_state = getMultiAdapter((self.context, self.request), name='plone_context_state')
+        return bool(context_state.is_view_template())
+
     def get_layout(self) -> Optional[str]:
         layout = self.get_configured_layout()
         if layout and self.is_view_mode():
@@ -53,10 +58,14 @@ class LayoutClassMixin:
 
 
 class OpenHeidelbergTilePageLayoutPolicy(LayoutClassMixin, TilePageLayoutPolicy):
-    """TilePages: keeps the body classes of interaktiv.basetiles (view-mode, edit-mode, is-tilepage, ...)."""
+    """TilePages: keeps the body classes of interaktiv.basetiles (view-mode, edit-mode, is-tilepage, ...).
+
+    View mode here is: not edit mode and the default view is shown. basetiles sets view-mode on every TilePage view that
+    is not edit mode, also on @@sharing or @@manage-portlets of the page; those must not get the layout.
+    """
 
     def is_view_mode(self) -> bool:
-        return not self.get_edit_mode()
+        return not self.get_edit_mode() and self.is_default_view()
 
 
 class OpenHeidelbergLayoutPolicy(LayoutClassMixin, LayoutPolicy):
@@ -67,5 +76,4 @@ class OpenHeidelbergLayoutPolicy(LayoutClassMixin, LayoutPolicy):
     """
 
     def is_view_mode(self) -> bool:
-        context_state = getMultiAdapter((self.context, self.request), name='plone_context_state')
-        return bool(context_state.is_view_template())
+        return self.is_default_view()

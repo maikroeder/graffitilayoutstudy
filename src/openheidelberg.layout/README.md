@@ -38,7 +38,7 @@ Portlet columns are not part of the new layouts (the content area is always full
   interaktiv.basetiles, so `view-mode`, `edit-mode`, `is-tilepage` stay) and `OpenHeidelbergLayoutPolicy` (subclass of
   `plone.app.layout.globals.layout.LayoutPolicy`, for all other content). An object without a value of `page_layout`
   that is the default page of the site root gets `layout-site-search-layout`. The class is only added in view mode
-  (TilePage: not edit mode; other content: the default view is shown, `plone_context_state.is_view_template()`).
+  (the default view is shown, `plone_context_state.is_view_template()`; for TilePages also: not edit mode). The sharing and portlet pages of a page therefore keep the site layout.
 - The explicit layout applies in view mode only; in edit mode a tile page gets `site-edit-layout` (frame of the site, editor and toolbar as before) while the switch is on, and `interaktiv.theme` when it is off.
 - `site-layout` is switched on by the theme parameter `site_layout_enabled` (`manifest.cfg`), since 2026-11-04 for
   all visitors (`python:'1'`; read at server start). To go back to the cookie preview use
