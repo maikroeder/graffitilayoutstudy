@@ -33,12 +33,13 @@ Portlet columns are not part of the new layouts (the content area is always full
 
 - The behavior `openheidelberg.layout.page_layout` (added to the TilePage FTI by the profile) adds the field
   `page_layout` (`site-search-layout` or empty).
-- `layout_policy.py` adds the body class `layout-<id>` to the body class of the policy of the page, through a mixin
-  (`LayoutClassMixin`) used by two classes: `OpenHeidelbergTilePageLayoutPolicy` (subclass of the TilePage policy of
-  interaktiv.basetiles, so `view-mode`, `edit-mode`, `is-tilepage` stay) and `OpenHeidelbergLayoutPolicy` (subclass of
-  `plone.app.layout.globals.layout.LayoutPolicy`, for all other content). An object without a value of `page_layout`
-  that is the default page of the site root gets `layout-site-search-layout`. The class is only added in view mode
-  (the default view is shown, `plone_context_state.is_view_template()`; for TilePages also: not edit mode). The sharing and portlet pages of a page therefore keep the site layout.
+- `body_classes.py` adds the body class `layout-<id>` through an `IBodyClassAdapter` (`OpenHeidelbergBodyClasses`, the
+  same mechanism as `InteraktivLayoutBodyClasses` in interaktiv.layout), registered in `configure.zcml` as a named
+  adapter for `(*, IOpenHeidelbergLayoutLayer)`. Plone's `LayoutPolicy.bodyClass` collects all such adapters, so it works for
+  TilePages (policy of interaktiv.basetiles) and for all other content, without replacing a policy. An object without a
+  value of `page_layout` that is the default page of the site root gets `layout-site-search-layout`. The class is only
+  added when the default view is shown (`plone_context_state.is_view_template()`), so the edit forms, the tiles editor,
+  the sharing and the portlet pages of a page keep the site layout.
 - The explicit layout applies in view mode only; in edit mode a tile page gets `site-edit-layout` (frame of the site, editor and toolbar as before) while the switch is on, and `interaktiv.theme` when it is off.
 - `site-layout` is switched on by the theme parameter `site_layout_enabled` (`manifest.cfg`), since 2026-11-04 for
   all visitors (`python:'1'`; read at server start). To go back to the cookie preview use
@@ -47,9 +48,8 @@ Portlet columns are not part of the new layouts (the content area is always full
 - Styles: `base.css` holds what the start page and the other pages share (colour and shadow tokens, the typeface with its `!important` against `style.css` of the theme); both theme files link it first. `site.css` is the look of the whole site except the start page (not scoped to a layout; it includes the dashboard tile and the document count);
   the start page has its own `layouts/site-search-layout/site-search.css`. /exploring and /editing are ordinary pages. A stored `page_layout` value `default-tiles-layout` is ignored.
 
-`overrides.zcml` (loaded by z3c.autoinclude for Plone add-ons) registers both classes under the view name `plone_layout`:
-the TilePage one replaces the one of interaktiv.basetiles (same discriminators), the other is registered for `*` on the
-layer `IOpenHeidelbergLayoutLayer`. Status 2026-11-09: written, not yet run in Plone (needs a restart).
+Status 2026-11-09: adapter written, not yet run in Plone (needs a restart). It replaces the two policy classes
+(`layout_policy.py`, `overrides.zcml`) that were run and verified before.
 
 ## Setting a layout
 

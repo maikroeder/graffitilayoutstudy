@@ -8,7 +8,7 @@
     site-layout switched on, edit mode  -> layouts/site-edit-layout (frame of the site around the editor)
     everything else                     -> interaktiv.theme (unchanged)
 
-  The body class layout-<id> is set by layout_policy.py in view mode, on TilePages and on all other content.
+  The body class layout-<id> is set by body_classes.py when the default view is shown, on TilePages and on all other content.
   edit-mode is set on TilePages by interaktiv.basetiles; other pages carry no edit-mode class.
 
   Diazo has no "else", so the last branches repeat the negation of what the ones before them test.

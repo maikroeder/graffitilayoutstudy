@@ -48,6 +48,13 @@
             provides="Products.GenericSetup.interfaces.EXTENSION"
     />
 
+    <!-- Body class layout-<id>; the name must differ from "layout" (interaktiv.layout) -->
+    <adapter
+            for="* openheidelberg.layout.interfaces.IOpenHeidelbergLayoutLayer"
+            name="openheidelberg.layout"
+            factory=".body_classes.OpenHeidelbergBodyClasses"
+    />
+
     <utility factory=".setuphandlers.HiddenProfiles" name="openheidelberg.layout-hiddenprofiles"/>
 
 </configure>
