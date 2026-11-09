@@ -14,7 +14,7 @@ STATIC_DIR = os.path.join(PACKAGE_DIR, 'static')
 SETUP_PY = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(PACKAGE_DIR))), 'setup.py')
 NAME = 'openheidelberg.theme'
 OLD_NAME = 'openheidelberg.' + 'layout'
-INTERFACE = 'openheidelberg.theme.interfaces.IOpenHeidelbergLayoutLayer'
+INTERFACE = 'openheidelberg.theme.interfaces.IOpenHeidelbergThemeLayer'
 
 TEXT_SUFFIXES = ('.py', '.zcml', '.xml', '.cfg', '.html', '.css', '.js', '.svg')
 
@@ -103,7 +103,7 @@ class TestThemeNames(unittest.TestCase):
         self.assertEqual(len(layers), 1)
         self.assertEqual(layers[0].get('name'), NAME)
         self.assertEqual(layers[0].get('interface'), INTERFACE)
-        self.assertIn('class IOpenHeidelbergLayoutLayer', read_text(os.path.join(PACKAGE_DIR, 'interfaces.py')))
+        self.assertIn('class IOpenHeidelbergThemeLayer', read_text(os.path.join(PACKAGE_DIR, 'interfaces.py')))
 
     def test_uninstall_removes_the_browser_layer(self):
         layers = find_elements(os.path.join(PACKAGE_DIR, 'profiles', 'uninstall', 'browserlayer.xml'), 'layer')
@@ -140,7 +140,7 @@ class TestThemeNames(unittest.TestCase):
         adapters = find_elements(os.path.join(PACKAGE_DIR, 'configure.zcml'), 'adapter')
         self.assertEqual(len(adapters), 1)
         adapter = adapters[0]
-        self.assertEqual(adapter.get('for'), '* ' + NAME + '.interfaces.IOpenHeidelbergLayoutLayer')
+        self.assertEqual(adapter.get('for'), '* ' + NAME + '.interfaces.IOpenHeidelbergThemeLayer')
         self.assertEqual(adapter.get('factory'), '.body_classes.OpenHeidelbergBodyClasses')
         # the name "layout" belongs to interaktiv.layout; two adapters of one name would conflict
         self.assertEqual(adapter.get('name'), NAME)

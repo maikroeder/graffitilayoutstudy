@@ -7,7 +7,7 @@ from zope.interface import Interface
 from openheidelberg.theme import _
 
 
-class IOpenHeidelbergLayoutLayer(Interface):
+class IOpenHeidelbergThemeLayer(Interface):
     """Browser layer of openheidelberg.theme."""
 
 

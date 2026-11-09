@@ -50,7 +50,7 @@
 
     <!-- Body class layout-<id>; the name must differ from "layout" (interaktiv.layout) -->
     <adapter
-            for="* openheidelberg.theme.interfaces.IOpenHeidelbergLayoutLayer"
+            for="* openheidelberg.theme.interfaces.IOpenHeidelbergThemeLayer"
             name="openheidelberg.theme"
             factory=".body_classes.OpenHeidelbergBodyClasses"
     />

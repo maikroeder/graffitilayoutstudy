@@ -2,6 +2,6 @@
 <layers>
     <layer
         name="openheidelberg.theme"
-        interface="openheidelberg.theme.interfaces.IOpenHeidelbergLayoutLayer"
+        interface="openheidelberg.theme.interfaces.IOpenHeidelbergThemeLayer"
     />
 </layers>

@@ -35,7 +35,7 @@ Portlet columns are not part of the new layouts (the content area is always full
   `page_layout` (`site-search-layout` or empty).
 - `body_classes.py` adds the body class `layout-<id>` through an `IBodyClassAdapter` (`OpenHeidelbergBodyClasses`, the
   same mechanism as `InteraktivLayoutBodyClasses` in interaktiv.layout), registered in `configure.zcml` as a named
-  adapter for `(*, IOpenHeidelbergLayoutLayer)`. Plone's `LayoutPolicy.bodyClass` collects all such adapters, so it works for
+  adapter for `(*, IOpenHeidelbergThemeLayer)`. Plone's `LayoutPolicy.bodyClass` collects all such adapters, so it works for
   TilePages (policy of interaktiv.basetiles) and for all other content, without replacing a policy. An object without a
   value of `page_layout` that is the default page of the site root gets `layout-site-search-layout`. The class is only
   added when the default view is shown (`plone_context_state.is_view_template()`), so the edit forms, the tiles editor,
