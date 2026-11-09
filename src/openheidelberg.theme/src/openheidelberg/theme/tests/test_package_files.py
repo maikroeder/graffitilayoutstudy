@@ -206,6 +206,15 @@ class TestDiazoFiles(unittest.TestCase):
         css = read_text(os.path.join(STATIC_DIR, 'site.css'))
         self.assertNotIn('body:not(.is-tilepage) ', css)
 
+    def test_every_region_file_is_included_somewhere(self):
+        # a region that no layout includes is a leftover (header.xml stayed behind when default-tiles-layout was removed)
+        regions_dir = os.path.join(STATIC_DIR, 'regions')
+        sources = ''
+        for path in list_files(STATIC_DIR, ('.xml',)):
+            sources += read_text(path)
+        for name in sorted(os.listdir(regions_dir)):
+            self.assertIn('regions/' + name, sources, 'region %s is included nowhere' % name)
+
     def test_dispatcher_branches(self):
         text = read_text(os.path.join(STATIC_DIR, 'rules.xml'))
         self.assertIn('body.layout-site-search-layout', text)
