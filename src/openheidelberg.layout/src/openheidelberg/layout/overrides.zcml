@@ -13,4 +13,15 @@
             allowed_interface="plone.app.layout.globals.interfaces.ILayoutPolicy"
     />
 
+    <!-- All other content: the policy of plone.app.layout (registered there for "*") plus the layout class. The
+         more specific registration above, for TilePages, is still preferred for TilePages. -->
+    <browser:page
+            for="*"
+            name="plone_layout"
+            class="openheidelberg.layout.layout_policy.OpenHeidelbergLayoutPolicy"
+            permission="zope.Public"
+            layer="openheidelberg.layout.interfaces.IOpenHeidelbergLayoutLayer"
+            allowed_interface="plone.app.layout.globals.interfaces.ILayoutPolicy"
+    />
+
 </configure>

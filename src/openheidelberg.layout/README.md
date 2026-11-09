@@ -18,8 +18,8 @@ Portlet columns are not part of the new layouts (the content area is always full
 
 ## Files in `static/`
 
-- `rules.xml`: the dispatcher, exactly one branch per page (iframe views and everything not switched on stay on
-  `interaktiv.theme`).
+- `rules.xml`: the dispatcher, exactly one branch per page (everything not switched on stays on `interaktiv.theme`). A branch for
+  pages with an element of the class `.iframe-view` was removed on 2026-11-09: no code in `src/` sets that class.
 - `site.html`: the one theme file of `site-layout` (copy of `authenticated.html` of
   interaktiv.theme).
 - `frame.xml`: head, body attributes, toolbar (anonymous and authenticated variants).
@@ -33,9 +33,12 @@ Portlet columns are not part of the new layouts (the content area is always full
 
 - The behavior `openheidelberg.layout.page_layout` (added to the TilePage FTI by the profile) adds the field
   `page_layout` (`site-search-layout` or empty).
-- `layout_policy.py` subclasses the TilePage layout policy of interaktiv.basetiles and adds the body class
-  `layout-<id>`. A TilePage without a value that is the default page of the site root gets
-  `layout-site-search-layout`.
+- `layout_policy.py` adds the body class `layout-<id>` to the body class of the policy of the page, through a mixin
+  (`LayoutClassMixin`) used by two classes: `OpenHeidelbergTilePageLayoutPolicy` (subclass of the TilePage policy of
+  interaktiv.basetiles, so `view-mode`, `edit-mode`, `is-tilepage` stay) and `OpenHeidelbergLayoutPolicy` (subclass of
+  `plone.app.layout.globals.layout.LayoutPolicy`, for all other content). An object without a value of `page_layout`
+  that is the default page of the site root gets `layout-site-search-layout`. The class is only added in view mode
+  (TilePage: not edit mode; other content: the default view is shown, `plone_context_state.is_view_template()`).
 - The explicit layout applies in view mode only; in edit mode a tile page gets `site-edit-layout` (frame of the site, editor and toolbar as before) while the switch is on, and `interaktiv.theme` when it is off.
 - `site-layout` is switched on by the theme parameter `site_layout_enabled` (`manifest.cfg`), since 2026-11-04 for
   all visitors (`python:'1'`; read at server start). To go back to the cookie preview use
@@ -44,8 +47,9 @@ Portlet columns are not part of the new layouts (the content area is always full
 - Styles: `base.css` holds what the start page and the other pages share (colour and shadow tokens, the typeface with its `!important` against `style.css` of the theme); both theme files link it first. `site.css` is the look of the whole site except the start page (not scoped to a layout; it includes the dashboard tile and the document count);
   the start page has its own `layouts/site-search-layout/site-search.css`. /exploring and /editing are ordinary pages. A stored `page_layout` value `default-tiles-layout` is ignored.
 
-The registration of the layout policy replaces the one of interaktiv.basetiles (same discriminators, in
-`overrides.zcml`, which z3c.autoinclude loads for Plone add-ons).
+`overrides.zcml` (loaded by z3c.autoinclude for Plone add-ons) registers both classes under the view name `plone_layout`:
+the TilePage one replaces the one of interaktiv.basetiles (same discriminators), the other is registered for `*` on the
+layer `IOpenHeidelbergLayoutLayer`. Status 2026-11-09: written, not yet run in Plone (needs a restart).
 
 ## Setting a layout
 
