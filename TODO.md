@@ -12,7 +12,7 @@ Cause, as observed in the browser pane (logged in, local site):
 - It requests `/Plone/@search?metadata_fields=Creator&metadata_fields=modified&sort_on=&SearchableText=test`; the empty
   `sort_on` is what the "relevance" option of the sort dropdown sends.
 - `@search?SearchableText=test` returns 200 with items; `...&sort_on=modified` returns 200; `...&sort_on=` returns 500.
-- The same request is sent with `?diazo.off=1` (no theme), so it does not come from `openheidelberg.layout`.
+- The same request is sent with `?diazo.off=1` (no theme), so it does not come from `openheidelberg.theme`.
 
 Not checked: whether it happened before 2026-11-08; whether it depends on Solr being up locally (the traceback goes through
 the dispatcher into the plain catalog).

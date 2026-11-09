@@ -4,7 +4,7 @@ Usage:
     bin/instance run scripts/setup_demo_editorial_pages.py [site_id]
     (or with scripts/run_with_instance.py, see there)
 
-Both are tiles pages in the layout "default-tiles-layout" of openheidelberg.layout: header, breadcrumbs and the
+Both are tiles pages in the layout "default-tiles-layout" of openheidelberg.theme: header, breadcrumbs and the
 title of the page come from the layout, this script fills the tiles below them.
 
 /exploring   a view tile with the number of documents (view "documents-count" of openheidelberg.policy), the
@@ -50,8 +50,8 @@ SCRIPT_PATH = [arg for arg in sys.argv if arg.endswith('.py')][-1]
 SCRIPTS = os.path.dirname(os.path.abspath(SCRIPT_PATH))
 sys.path.insert(0, SCRIPTS)
 import demo_common  # noqa: E402 - needs the folder of the scripts on the path
-from openheidelberg.layout.layouts import LAYOUT_DEFAULT_TILES  # noqa: E402
-from openheidelberg.layout.interfaces import IPageLayout  # noqa: E402
+from openheidelberg.theme.layouts import LAYOUT_DEFAULT_TILES  # noqa: E402
+from openheidelberg.theme.interfaces import IPageLayout  # noqa: E402
 from openheidelberg.policy.providers import LATEST_DOCUMENTS_ID  # noqa: E402
 from openheidelberg.policy.views import NOT_DOCUMENTS  # noqa: E402
 

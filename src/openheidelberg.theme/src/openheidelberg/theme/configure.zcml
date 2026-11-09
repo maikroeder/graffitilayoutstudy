@@ -1,0 +1,60 @@
+<configure
+        xmlns="http://namespaces.zope.org/zope"
+        xmlns:five="http://namespaces.zope.org/five"
+        xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+        xmlns:plone="http://namespaces.plone.org/plone"
+        i18n_domain="openheidelberg.theme">
+
+    <five:registerPackage package="." initialize=".initialize"/>
+
+    <include package="plone.app.theming"/>
+    <include package="plone.behavior" file="meta.zcml"/>
+
+    <!-- Diazo theme: ++theme++openheidelberg.theme -->
+    <plone:static
+            type="theme"
+            directory="static"
+            name="openheidelberg.theme"
+    />
+
+    <!-- Behavior: choose the layout of a TilePage -->
+    <plone:behavior
+            name="openheidelberg.theme.page_layout"
+            title="Page layout"
+            description="Choose the layout (theme file) of a TilePage."
+            provides=".interfaces.IPageLayout"
+            for="interaktiv.basetiles.contenttypes.tilepage.ITilePage"
+    />
+
+    <utility
+            name="openheidelberg.theme.page_layouts"
+            component=".layouts.page_layouts_vocabulary"
+            provides="zope.schema.interfaces.IVocabularyFactory"
+    />
+
+    <genericsetup:registerProfile
+            name="default"
+            title="openheidelberg.theme"
+            directory="profiles/default"
+            description="Installs the Diazo theme with the OpenHeidelberg page layouts."
+            provides="Products.GenericSetup.interfaces.EXTENSION"
+    />
+
+    <genericsetup:registerProfile
+            name="uninstall"
+            title="openheidelberg.theme (uninstall)"
+            directory="profiles/uninstall"
+            description="Uninstalls openheidelberg.theme and re-enables interaktiv.theme."
+            provides="Products.GenericSetup.interfaces.EXTENSION"
+    />
+
+    <!-- Body class layout-<id>; the name must differ from "layout" (interaktiv.layout) -->
+    <adapter
+            for="* openheidelberg.theme.interfaces.IOpenHeidelbergLayoutLayer"
+            name="openheidelberg.theme"
+            factory=".body_classes.OpenHeidelbergBodyClasses"
+    />
+
+    <utility factory=".setuphandlers.HiddenProfiles" name="openheidelberg.theme-hiddenprofiles"/>
+
+</configure>

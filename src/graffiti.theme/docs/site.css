@@ -1,4 +1,4 @@
-/* The look of the site in the study: the values of site.css of openheidelberg.layout, as the pages /exploring, /editing and
+/* The look of the site in the study: the values of site.css of openheidelberg.theme, as the pages /exploring, /editing and
    every standard page use them. The study pages (showcase-pages.html) link base.css, this file and showcase-pages.css, which
    holds only what draws the study itself (the frames and their labels). --column is the width of the content column.
    The tokens and the rules for html and body are in base.css. */

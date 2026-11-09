@@ -1,4 +1,4 @@
-""" Apply the theme openheidelberg.layout again, so that Plone takes over the current manifest.cfg.
+""" Apply the theme openheidelberg.theme again, so that Plone takes over the current manifest.cfg.
 
 Usage:
     scripts/run_with_instance.py (see there) scripts/apply_theme.py [site_id]
@@ -14,7 +14,7 @@ import sys
 from plone.app.theming.utils import applyTheme
 from plone.app.theming.utils import getTheme
 
-THEME_ID = 'openheidelberg.layout'
+THEME_ID = 'openheidelberg.theme'
 
 # "bin/instance run" puts its own options in front of the script name, the arguments follow it
 SCRIPT_ARGS = []

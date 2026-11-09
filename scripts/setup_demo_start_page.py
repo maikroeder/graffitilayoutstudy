@@ -4,7 +4,7 @@ Usage:
     bin/instance run scripts/setup_demo_start_page.py [site_id] [page_id]
 
 The page is the default page of the site (a tiles page), or the tiles page named by page_id (id or path below the
-site). It is shown by the layout "site-search-layout" of openheidelberg.layout: the hero (logo, title, subtitle) and the
+site). It is shown by the layout "site-search-layout" of openheidelberg.theme: the hero (logo, title, subtitle) and the
 search come from the layout, this script fills the content below them: every section is a frame (a column with its own
 rows) with a heading and one row of three cards (openheidelberg.tile_card). The box around the cards is not set here:
 the stylesheet of the card package shows every frame that contains cards as a section. The title and the description of

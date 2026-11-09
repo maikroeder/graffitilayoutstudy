@@ -1,7 +1,7 @@
 /* What the start page (showcase.html) and the pages of the site (showcase-pages.html) have in common: the colour
    and typeface tokens, box-sizing and the rules for html and body. Both studies link this file first.
    The card colours are not here: they belong to tile.css (the card tile). The package has its own, smaller base.css
-   (openheidelberg.layout: tokens and typeface only); the study's also has box-sizing and the rules for html and body. */
+   (openheidelberg.theme: tokens and typeface only); the study's also has box-sizing and the rules for html and body. */
 
 /* Colours, shadows, the typeface and the width of the content column */
 :root {
