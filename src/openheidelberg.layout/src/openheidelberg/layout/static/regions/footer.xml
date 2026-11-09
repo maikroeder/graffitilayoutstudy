@@ -8,7 +8,11 @@
     <rules css:if-content="body.tilepagefooter-enabled">
         <replace css:content="#tilepagefooter-container" css:theme="#tilepagefooter-container" />
     </rules>
-    <rules css:if-not-content="body.tilepagefooter-enabled">
+    <!-- @@manage-portlets: the footer portlet manager is shown in the content area (content.xml), not here -->
+    <rules css:if-content="body.template-manage-portlets">
+        <drop css:theme="#company-footer>.portlets" />
+    </rules>
+    <rules css:if-not-content="body.tilepagefooter-enabled, body.template-manage-portlets">
         <replace css:content-children="#portal-footer-wrapper>.row>div" css:theme-children="#company-footer>.portlets" />
         <replace if-content="//div[@id='content-portlets']"
                  content-children="//div[@id='content-portlets']"

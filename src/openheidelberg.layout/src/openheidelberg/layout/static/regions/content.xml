@@ -3,6 +3,7 @@
   Content area: the viewlets above the content and the content itself. From rules_default.xml of
   interaktiv.theme, without the portlet columns: the width is always the full one (col-sm-12).
   Tile pages get the extra class no-padding as before.
+  On @@manage-portlets (body.template-manage-portlets) the portlet managers are added below the content.
 -->
 <rules xmlns="http://namespaces.plone.org/diazo"
        xmlns:css="http://namespaces.plone.org/diazo/css"
@@ -21,6 +22,15 @@
               <xsl:apply-templates css:select="footer .discussion" />
               <xsl:apply-templates css:select="footer .reply" />
             </div>
+          <!-- @@manage-portlets: the management forms of all portlet managers sit in the content area (the columns
+               and the footer portlets are not part of this layout otherwise) -->
+          <xsl:if css:test="body.template-manage-portlets">
+            <div class="manage-portlets-managers">
+              <xsl:apply-templates css:select="#portletmanager-plone-leftcolumn" />
+              <xsl:apply-templates css:select="#portletmanager-plone-rightcolumn" />
+              <xsl:apply-templates css:select="#portletmanager-plone-footerportlets" />
+            </div>
+          </xsl:if>
         </div>
     </replace>
 
